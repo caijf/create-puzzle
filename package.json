@@ -2,6 +2,7 @@
   "private": true,
   "name": "create-puzzle",
   "version": "0.0.0",
+  "description": "在浏览器端生成滑块验证码的拼图和背景图。",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -33,7 +34,12 @@
     "type": "git",
     "url": "git+https://github.com/caijf/create-puzzle.git"
   },
-  "keywords": [],
+  "keywords": [
+    "puzzle",
+    "slider-captcha",
+    "slider",
+    "captcha"
+  ],
   "author": "caijf",
   "license": "MIT",
   "bugs": {
@@ -49,6 +55,8 @@
     "@types/jest": "^27.0.3",
     "@umijs/fabric": "^2.8.1",
     "@umijs/test": "^3.0.5",
+    "antd": "^4.23.6",
+    "antd-more": "^3.5.19",
     "dumi": "^1.1.0",
     "father": "^4.0.0-rc.2",
     "gh-pages": "^3.0.0",
