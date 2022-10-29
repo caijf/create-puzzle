@@ -1,11 +1,13 @@
 ---
-title: 拼图生成器
+title: 创建拼图
 sidemenu: false
 ---
 
 # create-puzzle
 
 在浏览器端生成滑块验证码的拼图和背景图。
+
+可以在客户端生成拼图，也可以使用它生成的拼图放到服务端图库，推荐搭配 [rc-slider-captcha] 使用。
 
 ## 安装使用
 
@@ -45,7 +47,7 @@ createPuzzle(imgUrl).then((res) => {
 
 ### 拼图生成器
 
-<code src="./demos/custom.tsx" inline />
+[点击进入](./generator)
 
 ## API
 
@@ -77,8 +79,7 @@ type Options = {
 type Result = {
   bgUrl: string; // 背景图
   puzzleUrl: string; // 拼图
-  x: number; // x 轴偏移值，建议校验时前后阈值增减 5 的范围
-  ratioX: number; // x 轴偏移比例
+  x: number; // x 轴偏移值。如果使用该值校验，建议前后阈值增减 5 的范围
   singlePuzzleUrl: string; // 不带透明背景的拼图，需要结合 singlePuzzleY 使用
   singlePuzzleY: number; // 不带透明背景的拼图 y 轴偏移值
 }
@@ -90,3 +91,5 @@ enum Point {
   Inner = 'inner',  // 内部
 }
 ```
+
+[rc-slider-captcha]: https://caijf.github.io/rc-slider-captcha/index.html

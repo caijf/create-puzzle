@@ -21,7 +21,6 @@ type Result = {
   bgUrl: string; // 背景图
   puzzleUrl: string; // 拼图
   x: number; // x 轴偏移值，建议校验时前后阈值增减 5 的范围
-  ratioX: number; // x 轴偏移比例
   singlePuzzleUrl: string; // 不带透明背景的拼图，需要结合 singlePuzzleY 使用
   singlePuzzleY: number; // 不带透明背景的拼图 y 轴偏移值
 };
@@ -72,8 +71,21 @@ function createPuzzle(imgUrl: string, options: Options = {}) {
       bgCanvas.width = bgWidth;
       bgCanvas.height = bgHeight;
 
-      const x = typeof outX === 'undefined' ? getRandomInt(bgWidth - width) : outX;
-      const y = typeof outY === 'undefined' ? getRandomInt(bgHeight - height) : outY;
+      let x = typeof outX === 'undefined' ? getRandomInt(bgWidth - width) : outX || 0;
+      let y = typeof outY === 'undefined' ? getRandomInt(bgHeight - height) : outY || 0;
+
+      if (x < 0) {
+        x = 0;
+      } else if (x > bgWidth - width) {
+        x = bgWidth - width;
+      }
+
+      if (y < 0) {
+        y = 0;
+      } else if (y > bgHeight - height) {
+        y = bgHeight - height;
+      }
+
       const points =
         typeof outPoints === 'number' || !outPoints ? getRandomPoints(outPoints) : outPoints;
       const bgOffset =
@@ -122,7 +134,6 @@ function createPuzzle(imgUrl: string, options: Options = {}) {
         bgUrl: bgCanvas.toDataURL(bgImageType, bgImageEncoderOptions),
         puzzleUrl,
         x,
-        ratioX: Number((x / bgWidth).toFixed(4)),
         singlePuzzleUrl,
         singlePuzzleY: y,
       });

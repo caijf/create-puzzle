@@ -30,7 +30,6 @@ function Demo() {
           </div>
           <div>无透明背景的拼图 y 轴：{result.singlePuzzleY}</div>
           <div>x 轴偏移值：{result.x}</div>
-          <div>x 轴偏移比例：{result.ratioX}</div>
         </div>
       )}
     </div>
