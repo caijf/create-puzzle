@@ -5,13 +5,17 @@ sidemenu: false
 
 # create-puzzle
 
+[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/caijf/create-puzzle.svg) [![GitHub Star][github-star]][github-url]
+
 在浏览器端生成滑块验证码的拼图和背景图。
 
 可以在客户端生成拼图，也可以使用它生成的拼图放到服务端图库，推荐搭配 [rc-slider-captcha] 使用。
 
 ## 安装使用
 
-安装
+### es
+
+安装依赖
 
 ```bash
 npm install create-puzzle
@@ -23,7 +27,7 @@ npm install create-puzzle
 yarn add create-puzzle
 ```
 
-浏览器环境中使用
+项目中使用
 
 ```typescript
 import createPuzzle from 'create-puzzle';
@@ -32,6 +36,12 @@ createPuzzle(imgUrl).then((res) => {
   console.log(res);
 });
 ```
+
+### 原生 js 开发环境
+
+如果你的项目使用的是原生方式开发，可以在浏览器中使用 script 标签直接引入文件，并使用全局变量 createPuzzle 。
+
+npm 包的 dist 目录下提供了 UMD 包 createPuzzle.js 以及 createPuzzle.min.js。你也可以通过 [UNPKG](https://unpkg.com/create-puzzle/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/create-puzzle@latest/dist/createPuzzle.min.js)<sup>注意版本</sup>。
 
 ## 代码演示
 
@@ -93,3 +103,7 @@ enum Point {
 ```
 
 [rc-slider-captcha]: https://caijf.github.io/rc-slider-captcha/index.html
+[npm]: https://img.shields.io/npm/v/create-puzzle.svg
+[npm-url]: https://npmjs.com/package/create-puzzle
+[github-star]: https://img.shields.io/github/stars/caijf/create-puzzle?style=social
+[github-url]: https://github.com/caijf/create-puzzle
