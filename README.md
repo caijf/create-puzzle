@@ -1,11 +1,6 @@
----
-title: 创建拼图
-sidemenu: false
----
-
 # create-puzzle
 
-[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/caijf/create-puzzle.svg) [![GitHub Star][github-star]][github-url]
+[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/caijf/create-puzzle.svg)
 
 在浏览器端生成滑块验证码的拼图和背景图。
 
@@ -16,7 +11,9 @@ sidemenu: false
 - [文档站点][site]
 - [拼图生成器][generator]
 
-## 安装使用
+![拼图生成器](./src/demos/generator.jpg)
+
+## 使用
 
 ### es
 
@@ -96,5 +93,3 @@ enum Point {
 [rc-slider-captcha]: https://caijf.github.io/rc-slider-captcha/index.html
 [npm]: https://img.shields.io/npm/v/create-puzzle.svg
 [npm-url]: https://npmjs.com/package/create-puzzle
-[github-star]: https://img.shields.io/github/stars/caijf/create-puzzle?style=social
-[github-url]: https://github.com/caijf/create-puzzle
