@@ -17,7 +17,7 @@ function Demo() {
     ctxRef.current = myCanvasRef.current!.getContext('2d');
 
     if (ctxRef.current) {
-      let offset = (120 - size) / 2;
+      const offset = (120 - size) / 2;
       drawPuzzle(ctxRef.current, {
         x: offset,
         y: offset,

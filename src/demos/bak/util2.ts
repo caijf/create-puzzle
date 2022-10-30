@@ -1,7 +1,7 @@
 type Point = 'none' | 'outer' | 'inner';
 const puzzlePoint: Point[] = ['none', 'outer', 'inner'];
 const validPuzzlePoint = puzzlePoint.slice(1);
-const MAX_POINT = 4;
+// const MAX_POINT = 4;
 
 // 随机整数，大于等于 0 小于最大值
 const getRandomInt = (max: number) => Math.floor(Math.random() * max);
@@ -32,7 +32,7 @@ export function drawPuzzle(
     };
   } = {},
 ) {
-  let {
+  const {
     r = 7,
     points = {
       top: getRandomPuzzlePoint(),

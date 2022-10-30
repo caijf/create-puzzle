@@ -190,7 +190,7 @@ export function getImage(url: string) {
   const xhr = new XMLHttpRequest();
   xhr.onloadend = function (e: ProgressEvent<EventTarget>) {
     console.log(e);
-    const file = new FileReader(); // FileReader仅支持IE10+
+    // const file = new FileReader(); // FileReader仅支持IE10+
     // file.readAsDataURL(e.target!.response)
     // file.onloadend = function (e) {
     //   img.src = e.target.result

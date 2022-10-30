@@ -25,23 +25,23 @@ function Demo() {
 
     const r = 7; // 圆的半径
     const l = Math.hypot(r, r); // 斜边长度
-    const c3_4r = l / 2;
+    // const c3_4r = l / 2;
 
-    // 圆在外面的位置
-    const outerPos = {
-      top: [rect.x + rect.w / 2, rect.y - c3_4r],
-      right: [rect.x + rect.w + c3_4r, rect.y + rect.h / 2],
-      bottom: [rect.x + rect.w / 2, rect.y + rect.h + c3_4r],
-      left: [rect.x - c3_4r, rect.y + rect.h / 2],
-    };
+    // // 圆在外面的位置
+    // const outerPos = {
+    //   top: [rect.x + rect.w / 2, rect.y - c3_4r],
+    //   right: [rect.x + rect.w + c3_4r, rect.y + rect.h / 2],
+    //   bottom: [rect.x + rect.w / 2, rect.y + rect.h + c3_4r],
+    //   left: [rect.x - c3_4r, rect.y + rect.h / 2],
+    // };
 
-    // 圆在里面的位置
-    const innerPos = {
-      top: [rect.x + rect.w / 2, rect.y + c3_4r],
-      right: [rect.x + rect.w - c3_4r, rect.y + rect.h / 2],
-      bottom: [rect.x + rect.w / 2, rect.y + rect.h - c3_4r],
-      left: [rect.x + c3_4r, rect.y + rect.h / 2],
-    };
+    // // 圆在里面的位置
+    // const innerPos = {
+    //   top: [rect.x + rect.w / 2, rect.y + c3_4r],
+    //   right: [rect.x + rect.w - c3_4r, rect.y + rect.h / 2],
+    //   bottom: [rect.x + rect.w / 2, rect.y + rect.h - c3_4r],
+    //   left: [rect.x + c3_4r, rect.y + rect.h / 2],
+    // };
 
     // sharp
     // ctx?.strokeRect(rect.x, rect.y, rect.w, rect.h);

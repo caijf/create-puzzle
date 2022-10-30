@@ -41,8 +41,8 @@ export function getRandomPoints(pointNum?: 2 | 3 | 4) {
   }
 
   if (pointNum) {
-    let inners: typeof pointsKeys = [];
-    let nones: typeof pointsKeys = [];
+    const inners: typeof pointsKeys = [];
+    const nones: typeof pointsKeys = [];
     pointsKeys.forEach((item) => {
       if (points[item] === Point.Inner) {
         inners.push(item);
@@ -89,7 +89,8 @@ export function drawPuzzle(
     margin?: number; // 外部留白
   } = {},
 ) {
-  let { x = 0, y = 0, w = 60, h = 60, points, margin = 0 } = options;
+  const { x = 0, y = 0, w = 60, h = 60 } = options;
+  let { points, margin = 0 } = options;
 
   margin = margin <= 0 ? 0 : margin;
 
