@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import createPuzzle, { Result } from 'create-puzzle';
 import DemoImage from './sunflower.jpg';
-import createPuzzle, { Result } from '..';
 
 function Demo() {
   const [result, setResult] = useState<Result>();

@@ -8,7 +8,7 @@ import {
   BizFormItemSelect,
   BizFormItemUpload,
 } from 'antd-more';
-import createPuzzle, { Result } from '..';
+import createPuzzle, { Result } from 'create-puzzle';
 import { Affix, Alert, Button, Card, Col, Empty, message, Radio, Row, Spin, Tabs } from 'antd';
 import styles from './generator.less';
 
