@@ -11,7 +11,7 @@
 - [文档站点][site]
 - [拼图生成器][generator]
 
-![拼图生成器](./src/demos/generator.jpg)
+![拼图生成器](./docs/generator.jpg)
 
 ## 使用
 
