@@ -160,6 +160,7 @@ function Demo() {
         if (count === countRef.current) {
           setError(null);
           setResult(res);
+          console.log(res);
         }
       })
       .catch((err) => {
@@ -391,7 +392,9 @@ function Demo() {
                       label="背景图"
                       tooltip="背景图展示比例可能有缩放，不影响图片实际大小"
                     >
-                      <img src={result.bgUrl} alt="背景图" />
+                      <div style={{ overflow: 'hidden' }}>
+                        <img src={result.bgUrl} alt="背景图" />
+                      </div>
                     </BizDescriptions.Item>
                     <BizDescriptions.Item label="拼图类型" tooltip="等高不需要 y 轴">
                       <Radio.Group
