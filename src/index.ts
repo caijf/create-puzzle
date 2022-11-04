@@ -139,13 +139,10 @@ function createPuzzle(imgUrl: string, options: Options = {}) {
       });
     };
     img.onerror = reject;
-
-    // document.body.appendChild(bgCanvas);
-    // document.body.appendChild(puzzleCanvas);
   });
 }
 
-export { getRandomPoints, drawPuzzle, getRandomInt };
-export type { Point, Result, Options };
+export { getRandomPoints, drawPuzzle, getRandomInt, Point };
+export type { Result, Options };
 
 export default createPuzzle;
