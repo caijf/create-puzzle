@@ -430,7 +430,7 @@ function Demo() {
                   showIcon
                 />
               ) : (
-                <Empty description="请在左侧上传图片" />
+                <Empty description="请在上传图片" />
               )}
             </Card>
           </Affix>
