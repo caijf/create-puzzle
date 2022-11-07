@@ -1,5 +1,4 @@
 {
-  "exclude": ["src/demos"],
   "compilerOptions": {
     "target": "ES5",
     "module": "ESNext",

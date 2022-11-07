@@ -14,6 +14,7 @@ export const commonConfig = {
     typescript({
       include: ['src/**/*'],
       exclude: ['src/demos/**/*', '.umi/**/*', '.umi*/**/*'],
+      tsconfig: './tsconfig.types.json',
     }),
   ],
 };
