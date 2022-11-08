@@ -220,6 +220,7 @@ function Demo() {
               title="点击上传图片"
               extra="上传后再点击图片也可以重新上传"
               className={styles.itemUpload}
+              maxSize={50 * 1024 * 1024}
             />
             <Card title="配置项" size="small">
               <Card
