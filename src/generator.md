@@ -12,6 +12,8 @@ toc: false
 
 <code src="./demos/generator.tsx" inline />
 
+[点击返回 create-puzzle 文档](./)
+
 [rc-slider-captcha]: https://caijf.github.io/rc-slider-captcha/index.html
 [npm]: https://img.shields.io/npm/v/create-puzzle.svg
 [npm-url]: https://npmjs.com/package/create-puzzle
