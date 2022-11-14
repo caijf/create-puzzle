@@ -228,19 +228,17 @@ function Demo() {
                 size="small"
                 type="inner"
                 extra={
-                  (typeX === InputType.Default || typeY === InputType.Default) && (
-                    <Button
-                      type="link"
-                      size="small"
-                      style={{ margin: '-1px 0' }}
-                      onClick={() => {
-                        countRef.current += 1;
-                        create();
-                      }}
-                    >
-                      重新随机生成
-                    </Button>
-                  )
+                  <Button
+                    type="link"
+                    size="small"
+                    style={{ margin: '-1px 0' }}
+                    onClick={() => {
+                      countRef.current += 1;
+                      create();
+                    }}
+                  >
+                    重新随机生成
+                  </Button>
                 }
               >
                 <BizFormItemRadio
