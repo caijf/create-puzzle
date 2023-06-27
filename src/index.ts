@@ -99,7 +99,7 @@ function createPuzzle(imgUrl: string, options: Options = {}) {
         bgCtx.fillStyle = fillColor;
         bgCtx.fill();
         bgCtx.globalCompositeOperation = 'destination-over';
-        bgCtx.drawImage(img, ...bgOffset);
+        bgCtx.drawImage(img, bgOffset[0], bgOffset[1]);
       }
 
       puzzleCanvas.width = bgWidth;
@@ -113,7 +113,7 @@ function createPuzzle(imgUrl: string, options: Options = {}) {
         drawPuzzle(puzzleCtx, { x, y, w: width, h: height, points, margin });
         puzzleCtx.globalCompositeOperation = 'destination-over';
         puzzleCtx.clip();
-        puzzleCtx.drawImage(img, ...bgOffset);
+        puzzleCtx.drawImage(img, bgOffset[0], bgOffset[1]);
 
         // restore image
         const imgData = puzzleCtx.getImageData(x, y, width, height);

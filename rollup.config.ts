@@ -12,9 +12,7 @@ export const commonConfig = {
     resolve(),
     commonjs(),
     typescript({
-      include: ['src/**/*'],
-      exclude: ['src/demos/**/*', '.umi/**/*', '.umi*/**/*'],
-      tsconfig: './tsconfig.types.json',
+      tsconfig: './tsconfig.build.json',
     }),
   ],
 };
@@ -33,7 +31,6 @@ const config: RollupOptions = {
       exports: 'named',
     },
   ],
-  external: ['tslib'],
 };
 
 export default config;

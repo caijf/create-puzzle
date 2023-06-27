@@ -218,7 +218,7 @@ function Demo() {
               type="avatar"
               name="img"
               title="点击上传图片"
-              extra="上传后再点击图片也可以重新上传"
+              extra="上传后再点击图片可以重新上传"
               className={styles.itemUpload}
               maxSize={50 * 1024 * 1024}
             />
