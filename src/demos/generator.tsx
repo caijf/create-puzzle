@@ -363,6 +363,7 @@ function Demo() {
                       label="导出图片质量"
                       name="bgImageEncoderOptions"
                       precision={2}
+                      step={0.1}
                     />
                   </Col>
                 </Row>
