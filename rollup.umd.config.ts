@@ -1,5 +1,5 @@
 import type { RollupOptions } from 'rollup';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 
 import { pkgName, outputFilePrefix, commonConfig } from './rollup.config';
 
