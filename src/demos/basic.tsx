@@ -5,11 +5,15 @@ import DemoImage from './sunflower.jpg';
 function Demo() {
   const [result, setResult] = useState<Result>();
 
-  useEffect(() => {
+  const generate = () => {
     createPuzzle(DemoImage).then((res) => {
       console.log(res);
       setResult(res);
     });
+  };
+
+  useEffect(() => {
+    generate();
   }, []);
 
   return (
@@ -32,6 +36,8 @@ function Demo() {
           <div>x 轴偏移值：{result.x}</div>
         </div>
       )}
+      <br />
+      <button onClick={generate}>点击重新生成</button>
     </div>
   );
 }
