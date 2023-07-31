@@ -135,7 +135,7 @@ function Demo() {
   const [error, setError] = useState<any>(null);
   const countRef = useRef(1);
 
-  function create(values?: any) {
+  const create = useCallback((values?: any) => {
     const {
       imgSourceType,
       imgSourceUrl,
@@ -220,9 +220,9 @@ function Demo() {
           }
         }
       });
-  }
+  }, []);
 
-  const deouncedCreate = useCallback(debounce(create, 500), []);
+  const deouncedCreate = useCallback(debounce(create, 500), [create]);
 
   return (
     <div>
@@ -272,28 +272,27 @@ function Demo() {
                 buttonStyle: 'solid',
               }}
             />
-            {imgSourceType === ImgSourceType.Upload ? (
-              <BizFormItemUpload
-                type="avatar"
-                name="img"
-                title="点击上传图片"
-                extra="上传后再点击图片可以重新上传"
-                className={styles.itemUpload}
-                maxSize={50 * 1024 * 1024}
-              />
-            ) : (
-              <BizFormItemInput
-                label="图片地址"
-                name="imgSourceUrl"
-                placeholder="请输入图片地址"
-                hideLabel
-                disabledWhiteSpace
-                allowClear
-                inputProps={{
-                  size: 'large',
-                }}
-              />
-            )}
+            <BizFormItemUpload
+              type="avatar"
+              name="img"
+              title="点击上传图片"
+              extra="上传后再点击图片可以重新上传"
+              className={styles.itemUpload}
+              maxSize={50 * 1024 * 1024}
+              hidden={imgSourceType !== ImgSourceType.Upload}
+            />
+            <BizFormItemInput
+              label="图片地址"
+              name="imgSourceUrl"
+              placeholder="请输入图片地址"
+              hideLabel
+              disabledWhiteSpace
+              allowClear
+              inputProps={{
+                size: 'large',
+              }}
+              hidden={imgSourceType !== ImgSourceType.Input}
+            />
             <Card title="配置项" size="small">
               <Card
                 title="拼图"
@@ -442,7 +441,7 @@ function Demo() {
                   </Col>
                 </Row>
               </Card>
-              <Card title="图片" size="small" type="inner">
+              <Card title="上传的图片" size="small" type="inner">
                 <BizFormItemRadio
                   label="宽度"
                   name="imageWidthType"

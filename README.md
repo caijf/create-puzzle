@@ -51,6 +51,7 @@ npm 包的 dist 目录下提供了 UMD 包 createPuzzle.js 以及 createPuzzle.m
 function createPuzzle(imgUrl: string | Blob, options?: Options): Promise<Result>;
 
 type Options = {
+  // 拼图
   borderWidth?: number; // 描边宽度。默认 2
   borderColor?: string; // 描边颜色。默认 rgba(255,255,255,0.7)
   fillColor?: string; // 填充颜色。默认 rgba(255,255,255,0.7)
@@ -65,13 +66,17 @@ type Options = {
   x?: number; // x 轴偏移值，如果不传内部随机生成。
   y?: number; // y 轴偏移值，如果不传内部随机生成。
   margin?: number;  // 上下左右留白。默认 2
-  imageWidth?: number; // 自定义图片宽度。
-  imageHeight?: number; // 自定义图片高度。
+
+  // 背景图
   bgWidth?: number; // 背景图宽度。默认 图片宽度
   bgHeight?: number; // 背景图高度。默认 图片高度
   bgOffset?: [number, number] | ((imgWidth: number, imgHeight: number) => [number, number]); // 背景图偏移值。 默认 [0,0]
   bgImageType?: string; // 背景图导出类型。默认 image/jpeg
   bgImageEncoderOptions?: any; // 背景图导出图片质量选项
+
+  // 上传的图片
+  imageWidth?: number; // 自定义图片宽度。
+  imageHeight?: number; // 自定义图片高度。
 }
 
 type Result = {
