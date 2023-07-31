@@ -1,16 +1,34 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   BizDescriptions,
   BizForm,
   BizFormItemColor,
+  BizFormItemInput,
   BizFormItemNumber,
   BizFormItemRadio,
   BizFormItemSelect,
   BizFormItemUpload,
 } from 'antd-more';
+import { debounce } from 'ut2';
 import createPuzzle, { Result } from 'create-puzzle';
 import { Affix, Alert, Button, Card, Col, Empty, message, Radio, Row, Spin } from 'antd';
 import styles from './generator.less';
+
+enum ImgSourceType {
+  Upload,
+  Input,
+}
+
+const ImgSourceTypeOptions = [
+  {
+    label: '上传图片',
+    value: ImgSourceType.Upload,
+  },
+  {
+    label: '远程地址',
+    value: ImgSourceType.Input,
+  },
+];
 
 // 输入类型
 enum InputType {
@@ -107,6 +125,9 @@ function Demo() {
   const typeY = BizForm.useWatch(['typeY'], form);
   const bgWidthType = BizForm.useWatch(['bgWidthType'], form);
   const bgHeightType = BizForm.useWatch(['bgHeightType'], form);
+  const imageWidthType = BizForm.useWatch(['imageWidthType'], form);
+  const imageHeightType = BizForm.useWatch(['imageHeightType'], form);
+  const imgSourceType = BizForm.useWatch(['imgSourceType'], form);
 
   const [puzzleEqualType, setPuzzleEqualType] = useState(PuzzleEqualHeightType.Yes);
   const [result, setResult] = useState<Result>();
@@ -116,6 +137,8 @@ function Demo() {
 
   function create(values?: any) {
     const {
+      imgSourceType,
+      imgSourceUrl,
       img,
       typeX: internalTypeX,
       typeY: internalTypeY,
@@ -127,24 +150,40 @@ function Demo() {
       bgHeight: internalBgHeight,
       bgOffsetX,
       bgOffsetY,
+
+      imageWidthType,
+      imageHeightType,
+      imageWidth: internalImageWidth,
+      imageHeight: internalImageHeight,
       ...restValues
     } = values || form.getFieldsValue();
 
-    if (!Array.isArray(img) || !img[0]) {
-      message.error('请上传图片');
-      return;
+    if (imgSourceType === ImgSourceType.Upload) {
+      if (!Array.isArray(img) || !img[0]) {
+        message.error('请上传图片');
+        return;
+      }
+    } else {
+      if (!imgSourceUrl) {
+        message.error('请输入图片地址');
+        return;
+      }
     }
 
     const count = countRef.current;
 
     setLoading(true);
 
-    const url = URL.createObjectURL(img[0]?.originFileObj || img[0]);
+    const url =
+      imgSourceType === ImgSourceType.Upload ? img[0]?.originFileObj || img[0] : imgSourceUrl;
     const x = internalTypeX === InputType.Default ? undefined : offsetX;
     const y = internalTypeY === InputType.Default ? undefined : offsetY;
     const bgWidth = bgWidthType === InputType.Default ? undefined : internalBgWidth;
     const bgHeight = bgHeightType === InputType.Default ? undefined : internalBgHeight;
     const bgOffset = [bgOffsetX, bgOffsetY];
+
+    const imageWidth = imageWidthType === InputType.Default ? undefined : internalImageWidth;
+    const imageHeight = imageHeightType === InputType.Default ? undefined : internalImageHeight;
 
     cacheURL.push(url);
 
@@ -154,6 +193,8 @@ function Demo() {
       bgWidth,
       bgHeight,
       bgOffset,
+      imageWidth,
+      imageHeight,
       ...restValues,
     })
       .then((res) => {
@@ -181,6 +222,8 @@ function Demo() {
       });
   }
 
+  const deouncedCreate = useCallback(debounce(create, 1000), []);
+
   return (
     <div>
       <Row gutter={[24, 24]}>
@@ -190,6 +233,8 @@ function Demo() {
             submitter={false}
             labelWidth={98}
             initialValues={{
+              imgSourceType: ImgSourceType.Upload,
+
               typeX: InputType.Default,
               typeY: InputType.Default,
               offsetX: 0,
@@ -208,20 +253,47 @@ function Demo() {
               bgOffsetY: 0,
               bgImageType: ImageTypeOptions[0].value,
               bgImageEncoderOptions: 0.92,
+
+              imageWidthType: InputType.Default,
+              imageHeightType: InputType.Default,
             }}
             onValuesChange={(_, values) => {
               countRef.current += 1;
-              create(values);
+              deouncedCreate(values);
             }}
           >
-            <BizFormItemUpload
-              type="avatar"
-              name="img"
-              title="点击上传图片"
-              extra="上传后再点击图片可以重新上传"
-              className={styles.itemUpload}
-              maxSize={50 * 1024 * 1024}
+            <BizFormItemRadio
+              label="图片源类型"
+              name="imgSourceType"
+              options={ImgSourceTypeOptions}
+              hideLabel
+              optionType="button"
+              radioGroupProps={{
+                buttonStyle: 'solid',
+              }}
             />
+            {imgSourceType === ImgSourceType.Upload ? (
+              <BizFormItemUpload
+                type="avatar"
+                name="img"
+                title="点击上传图片"
+                extra="上传后再点击图片可以重新上传"
+                className={styles.itemUpload}
+                maxSize={50 * 1024 * 1024}
+              />
+            ) : (
+              <BizFormItemInput
+                label="图片地址"
+                name="imgSourceUrl"
+                placeholder="请输入图片地址"
+                hideLabel
+                disabledWhiteSpace
+                allowClear
+                inputProps={{
+                  size: 'large',
+                }}
+              />
+            )}
             <Card title="配置项" size="small">
               <Card
                 title="拼图"
@@ -363,10 +435,48 @@ function Demo() {
                       label="导出图片质量"
                       name="bgImageEncoderOptions"
                       precision={2}
-                      step={0.1}
+                      step={0.01}
+                      max={1}
+                      min={0}
                     />
                   </Col>
                 </Row>
+              </Card>
+              <Card title="图片" size="small" type="inner">
+                <BizFormItemRadio
+                  label="宽度"
+                  name="imageWidthType"
+                  options={ImageWidthTypeOptions}
+                  className={styles.itemWrapperFlexNone}
+                  contentAfter={
+                    <BizFormItemNumber
+                      name="imageWidth"
+                      precision={0}
+                      inputProps={{
+                        min: 0,
+                      }}
+                      hidden={imageWidthType !== InputType.Custom}
+                      style={{ margin: 0 }}
+                    />
+                  }
+                />
+                <BizFormItemRadio
+                  label="高度"
+                  name="imageHeightType"
+                  options={ImageHeightTypeOptions}
+                  className={styles.itemWrapperFlexNone}
+                  contentAfter={
+                    <BizFormItemNumber
+                      name="imageHeight"
+                      precision={0}
+                      inputProps={{
+                        min: 0,
+                      }}
+                      hidden={imageHeightType !== InputType.Custom}
+                      style={{ margin: 0 }}
+                    />
+                  }
+                />
               </Card>
             </Card>
           </BizForm>

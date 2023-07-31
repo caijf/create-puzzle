@@ -6,8 +6,8 @@ import createPuzzle, { Point } from '../src';
 
 describe('createPuzzle', () => {
   // ref: https://stackoverflow.com/questions/44462665/how-do-you-use-jest-to-test-img-onerror
-  const LOAD_FAILURE_SRC = 'LOAD_FAILURE_SRC';
-  const LOAD_SUCCESS_SRC = 'LOAD_SUCCESS_SRC';
+  const LOAD_FAILURE_SRC = 'data:LOAD_FAILURE_SRC';
+  const LOAD_SUCCESS_SRC = 'data:LOAD_SUCCESS_SRC';
 
   beforeAll(() => {
     Object.defineProperties(globalThis.Image.prototype, {
@@ -70,6 +70,8 @@ describe('createPuzzle', () => {
       bgOffset: (imgWidth, imgHeight) => [imgWidth + 1, imgHeight + 2],
       bgImageType: 'image/png',
       bgImageEncoderOptions: 0.92,
+      imageWidth: 320,
+      imageHeight: 160,
     });
     // console.log('res: ', res);
 

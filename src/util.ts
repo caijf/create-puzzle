@@ -12,7 +12,7 @@ export function getRandomInt(max: number, min = 0) {
 }
 
 // 随机选择数组中的某一项
-export function pick<T = any>(arr: T[]) {
+function pick<T = any>(arr: T[]) {
   const len = arr.length;
   const randomIndex = getRandomInt(len);
   return arr[randomIndex];
@@ -30,14 +30,14 @@ export function getRandomPoints(pointNum?: 2 | 3 | 4) {
 
   // 保证上下 和 左右 都必须有一个外部的拼图点
   if (points.top === Point.Outer && points.bottom === Point.Outer) {
-    points[pick<typeof pointsKeys[0]>(['top', 'bottom'])] = Point.Inner;
+    points[pick<(typeof pointsKeys)[0]>(['top', 'bottom'])] = Point.Inner;
   } else if (points.top !== Point.Outer && points.bottom !== Point.Outer) {
-    points[pick<typeof pointsKeys[0]>(['top', 'bottom'])] = Point.Outer;
+    points[pick<(typeof pointsKeys)[0]>(['top', 'bottom'])] = Point.Outer;
   }
   if (points.left === Point.Outer && points.right === Point.Outer) {
-    points[pick<typeof pointsKeys[0]>(['left', 'right'])] = Point.Inner;
+    points[pick<(typeof pointsKeys)[0]>(['left', 'right'])] = Point.Inner;
   } else if (points.left !== Point.Outer && points.right !== Point.Outer) {
-    points[pick<typeof pointsKeys[0]>(['left', 'right'])] = Point.Outer;
+    points[pick<(typeof pointsKeys)[0]>(['left', 'right'])] = Point.Outer;
   }
 
   if (pointNum) {
@@ -176,4 +176,72 @@ export function drawPuzzle(
   // ctx.fill();
 
   // ctx.strokeRect(x, y, w, h);
+}
+
+function getUrlBlob(url: string) {
+  return new Promise<ProgressEvent>((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.responseType = 'blob';
+    xhr.onload = (e: ProgressEvent) => {
+      resolve(e);
+    };
+    xhr.onerror = (e: ProgressEvent) => {
+      reject(e);
+    };
+    xhr.send(null);
+  });
+}
+
+function isBlob(obj: any): obj is Blob {
+  return typeof Blob !== 'undefined' && obj instanceof Blob;
+}
+
+function isBase64(str: any) {
+  return typeof str === 'string' && str.indexOf('data:') === 0;
+}
+
+function isBlobUrl(str: any) {
+  return typeof str === 'string' && str.indexOf('blob:') === 0;
+}
+
+function getImageUrl(image: string | Blob) {
+  return new Promise<string>((resolve) => {
+    const imgIsBlob = isBlob(image);
+    const imgIsBase64 = isBase64(image);
+    if (imgIsBlob) {
+      resolve(URL.createObjectURL(image));
+    } else if (!imgIsBase64) {
+      // url 可能有跨域问题
+      getUrlBlob(image).then((ev) => {
+        // @ts-ignore
+        resolve(URL.createObjectURL(ev.target.response));
+      });
+    } else {
+      resolve(image);
+    }
+  });
+}
+
+export function internalLoadImage(image: string | Blob) {
+  return new Promise<HTMLImageElement>((resolve, reject) => {
+    getImageUrl(image).then((url) => {
+      function revoke() {
+        if (isBlobUrl(url)) {
+          URL.revokeObjectURL(url as string);
+        }
+      }
+      const img = new Image();
+      img.onload = () => {
+        revoke();
+        resolve(img);
+      };
+      img.onerror = (err) => {
+        revoke();
+        console.error(`[createPuzzle] image load failed. ${image}`);
+        reject(err);
+      };
+      img.src = url;
+    });
+  });
 }

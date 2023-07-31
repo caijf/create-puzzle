@@ -48,7 +48,7 @@ npm 包的 dist 目录下提供了 UMD 包 createPuzzle.js 以及 createPuzzle.m
 ## API
 
 ```javascript
-function createPuzzle(imgUrl: string, options?: Options): Promise<Result>;
+function createPuzzle(imgUrl: string | Blob, options?: Options): Promise<Result>;
 
 type Options = {
   borderWidth?: number; // 描边宽度。默认 2
@@ -65,6 +65,8 @@ type Options = {
   x?: number; // x 轴偏移值，如果不传内部随机生成。
   y?: number; // y 轴偏移值，如果不传内部随机生成。
   margin?: number;  // 上下左右留白。默认 2
+  imageWidth?: number; // 自定义图片宽度。
+  imageHeight?: number; // 自定义图片高度。
   bgWidth?: number; // 背景图宽度。默认 图片宽度
   bgHeight?: number; // 背景图高度。默认 图片高度
   bgOffset?: [number, number] | ((imgWidth: number, imgHeight: number) => [number, number]); // 背景图偏移值。 默认 [0,0]
