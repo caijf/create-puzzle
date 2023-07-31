@@ -222,7 +222,7 @@ function Demo() {
       });
   }
 
-  const deouncedCreate = useCallback(debounce(create, 1000), []);
+  const deouncedCreate = useCallback(debounce(create, 500), []);
 
   return (
     <div>
