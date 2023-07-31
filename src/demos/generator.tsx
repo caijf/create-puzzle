@@ -119,6 +119,30 @@ const colspan = {
 
 const cacheURL: string[] = [];
 
+const initialValues = {
+  typeX: InputType.Default,
+  typeY: InputType.Default,
+  offsetX: 0,
+  offsetY: 0,
+  width: 60,
+  height: 60,
+  margin: 2,
+  points: PointsOptions[0].value,
+  borderWidth: 2,
+  borderColor: 'rgba(255,255,255,0.7)',
+  fillColor: 'rgba(255,255,255,0.7)',
+
+  bgWidthType: InputType.Default,
+  bgHeightType: InputType.Default,
+  bgOffsetX: 0,
+  bgOffsetY: 0,
+  bgImageType: ImageTypeOptions[0].value,
+  bgImageEncoderOptions: 0.92,
+
+  imageWidthType: InputType.Default,
+  imageHeightType: InputType.Default,
+};
+
 function Demo() {
   const [form] = BizForm.useForm();
   const typeX = BizForm.useWatch(['typeX'], form);
@@ -234,28 +258,7 @@ function Demo() {
             labelWidth={98}
             initialValues={{
               imgSourceType: ImgSourceType.Upload,
-
-              typeX: InputType.Default,
-              typeY: InputType.Default,
-              offsetX: 0,
-              offsetY: 0,
-              width: 60,
-              height: 60,
-              margin: 2,
-              points: PointsOptions[0].value,
-              borderWidth: 2,
-              borderColor: 'rgba(255,255,255,0.7)',
-              fillColor: 'rgba(255,255,255,0.7)',
-
-              bgWidthType: InputType.Default,
-              bgHeightType: InputType.Default,
-              bgOffsetX: 0,
-              bgOffsetY: 0,
-              bgImageType: ImageTypeOptions[0].value,
-              bgImageEncoderOptions: 0.92,
-
-              imageWidthType: InputType.Default,
-              imageHeightType: InputType.Default,
+              ...initialValues,
             }}
             onValuesChange={(_, values) => {
               countRef.current += 1;
@@ -293,25 +296,25 @@ function Demo() {
               }}
               hidden={imgSourceType !== ImgSourceType.Input}
             />
-            <Card title="配置项" size="small">
-              <Card
-                title="拼图"
-                size="small"
-                type="inner"
-                extra={
-                  <Button
-                    type="link"
-                    size="small"
-                    style={{ margin: '-1px 0' }}
-                    onClick={() => {
-                      countRef.current += 1;
-                      create();
-                    }}
-                  >
-                    重新随机生成
-                  </Button>
-                }
-              >
+            <Card
+              title="配置项"
+              size="small"
+              extra={
+                <Button
+                  type="link"
+                  size="small"
+                  style={{ margin: '-1px 0' }}
+                  onClick={() => {
+                    form.setFieldsValue(initialValues);
+                    countRef.current += 1;
+                    create();
+                  }}
+                >
+                  重置
+                </Button>
+              }
+            >
+              <Card title="拼图" size="small" type="inner">
                 <BizFormItemRadio
                   label="x 轴偏移"
                   name="typeX"
@@ -490,6 +493,19 @@ function Demo() {
                 overflowY: 'auto',
               }}
               className={styles.result}
+              extra={
+                <Button
+                  type="link"
+                  size="small"
+                  style={{ margin: '-1px 0' }}
+                  onClick={() => {
+                    countRef.current += 1;
+                    create();
+                  }}
+                >
+                  重新生成
+                </Button>
+              }
             >
               {result ? (
                 <Spin spinning={loading} delay={300}>
