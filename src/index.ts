@@ -17,6 +17,7 @@ type Options = {
   bgOffset?: [number, number] | ((imgWidth: number, imgHeight: number) => [number, number]); // 背景图偏移值。 默认 [0,0]
   bgImageType?: string; // 背景图导出类型。默认 image/jpeg
   bgImageEncoderOptions?: number; // 背景图导出图片质量选项
+  cacheImage?: boolean; // 缓存当前加载的图片。默认为 true 。
 };
 
 type Result = {
@@ -46,6 +47,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     bgOffset: outBgOffset = [0, 0],
     bgImageType = 'image/jpeg',
     bgImageEncoderOptions,
+    cacheImage,
   } = options;
 
   return new Promise<Result>((resolve, reject) => {
@@ -55,7 +57,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     const bgCtx = bgCanvas.getContext('2d');
     const puzzleCtx = puzzleCanvas.getContext('2d');
 
-    internalLoadImage(imgUrl)
+    internalLoadImage(imgUrl, cacheImage)
       .then((img) => {
         if (imageWidth) {
           img.width = imageWidth;

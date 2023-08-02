@@ -231,30 +231,41 @@ function getImageUrl(image: string | Blob) {
   });
 }
 
-export function internalLoadImage(image: string | Blob) {
+let cacheImage: string | Blob;
+let cacheImageElement: HTMLImageElement;
+
+export function internalLoadImage(image: string | Blob, useCache = true) {
   return new Promise<HTMLImageElement>((resolve, reject) => {
-    getImageUrl(image)
-      .then((url) => {
-        function revoke() {
-          if (isBlobUrl(url)) {
-            URL.revokeObjectURL(url as string);
+    if (useCache && cacheImage === image && cacheImageElement) {
+      resolve(cacheImageElement);
+    } else {
+      getImageUrl(image)
+        .then((url) => {
+          function revoke() {
+            if (isBlobUrl(url)) {
+              URL.revokeObjectURL(url as string);
+            }
           }
-        }
-        const img = new Image();
-        img.onload = () => {
-          revoke();
-          resolve(img);
-        };
-        img.onerror = (err) => {
-          revoke();
-          console.error(`[createPuzzle] image load failed. ${image}`);
+          const img = new Image();
+          img.onload = () => {
+            revoke();
+            if (useCache) {
+              cacheImage = image;
+              cacheImageElement = img;
+            }
+            resolve(img);
+          };
+          img.onerror = (err) => {
+            revoke();
+            console.error(`[createPuzzle] image load failed. ${image}`);
+            reject(err);
+          };
+          img.src = url;
+        })
+        .catch((err) => {
+          err.message = `[createPuzzle] the image does not support get requests. ${image}`;
           reject(err);
-        };
-        img.src = url;
-      })
-      .catch((err) => {
-        err.message = `[createPuzzle] the image does not support get requests. ${image}`;
-        reject(err);
-      });
+        });
+    }
   });
 }
