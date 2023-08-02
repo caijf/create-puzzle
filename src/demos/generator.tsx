@@ -117,8 +117,6 @@ const colspan = {
   xs: 24,
 };
 
-const cacheURL: string[] = [];
-
 const initialValues = {
   typeX: InputType.Default,
   typeY: InputType.Default,
@@ -184,11 +182,13 @@ function Demo() {
 
     if (imgSourceType === ImgSourceType.Upload) {
       if (!Array.isArray(img) || !img[0]) {
+        setResult(undefined);
         message.error('请上传图片');
         return;
       }
     } else {
       if (!imgSourceUrl) {
+        setResult(undefined);
         message.error('请输入图片地址');
         return;
       }
@@ -208,8 +208,6 @@ function Demo() {
 
     const imageWidth = imageWidthType === InputType.Default ? undefined : internalImageWidth;
     const imageHeight = imageHeightType === InputType.Default ? undefined : internalImageHeight;
-
-    cacheURL.push(url);
 
     createPuzzle(url, {
       x,
@@ -231,17 +229,12 @@ function Demo() {
       .catch((err) => {
         if (count === countRef.current) {
           setResult(undefined);
-          setError(err);
+          setError(err?.message || err);
         }
       })
       .finally(() => {
         if (count === countRef.current) {
           setLoading(false);
-        }
-        if (cacheURL.length > 0) {
-          while (cacheURL.length) {
-            URL.revokeObjectURL(cacheURL.pop()!);
-          }
         }
       });
   }, []);
@@ -548,12 +541,7 @@ function Demo() {
                   </BizDescriptions>
                 </Spin>
               ) : error ? (
-                <Alert
-                  type="error"
-                  message="Warning"
-                  description={JSON.stringify(error)}
-                  showIcon
-                />
+                <Alert type="error" message="Error" description={JSON.stringify(error)} showIcon />
               ) : (
                 <Empty description="请上传图片" />
               )}

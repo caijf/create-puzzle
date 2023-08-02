@@ -184,7 +184,13 @@ function getUrlBlob(url: string) {
     xhr.open('get', url, true);
     xhr.responseType = 'blob';
     xhr.onload = (e: ProgressEvent) => {
-      resolve(e);
+      // @ts-ignore
+      // 进入 onload 表示 readyStatus 为 4 ，但是 status 不一定是 200 。
+      if (e.target.status === 200) {
+        resolve(e);
+      } else {
+        reject(e);
+      }
     };
     xhr.onerror = (e: ProgressEvent) => {
       reject(e);
@@ -206,17 +212,19 @@ function isBlobUrl(str: any) {
 }
 
 function getImageUrl(image: string | Blob) {
-  return new Promise<string>((resolve) => {
+  return new Promise<string>((resolve, reject) => {
     const imgIsBlob = isBlob(image);
     const imgIsBase64 = isBase64(image);
     if (imgIsBlob) {
       resolve(URL.createObjectURL(image));
     } else if (!imgIsBase64) {
       // url 可能有跨域问题
-      getUrlBlob(image).then((ev) => {
-        // @ts-ignore
-        resolve(URL.createObjectURL(ev.target.response));
-      });
+      getUrlBlob(image)
+        .then((ev) => {
+          // @ts-ignore
+          resolve(URL.createObjectURL(ev.target.response));
+        })
+        .catch(reject);
     } else {
       resolve(image);
     }
@@ -225,23 +233,28 @@ function getImageUrl(image: string | Blob) {
 
 export function internalLoadImage(image: string | Blob) {
   return new Promise<HTMLImageElement>((resolve, reject) => {
-    getImageUrl(image).then((url) => {
-      function revoke() {
-        if (isBlobUrl(url)) {
-          URL.revokeObjectURL(url as string);
+    getImageUrl(image)
+      .then((url) => {
+        function revoke() {
+          if (isBlobUrl(url)) {
+            URL.revokeObjectURL(url as string);
+          }
         }
-      }
-      const img = new Image();
-      img.onload = () => {
-        revoke();
-        resolve(img);
-      };
-      img.onerror = (err) => {
-        revoke();
-        console.error(`[createPuzzle] image load failed. ${image}`);
+        const img = new Image();
+        img.onload = () => {
+          revoke();
+          resolve(img);
+        };
+        img.onerror = (err) => {
+          revoke();
+          console.error(`[createPuzzle] image load failed. ${image}`);
+          reject(err);
+        };
+        img.src = url;
+      })
+      .catch((err) => {
+        err.message = `[createPuzzle] the image does not support get requests. ${image}`;
         reject(err);
-      };
-      img.src = url;
-    });
+      });
   });
 }
