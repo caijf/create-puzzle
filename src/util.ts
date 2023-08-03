@@ -186,10 +186,15 @@ function getUrlBlob(url: string) {
     xhr.onload = (e: ProgressEvent) => {
       // @ts-ignore
       // 进入 onload 表示 readyStatus 为 4 ，但是 status 不一定是 200 。
-      if (e.target.status === 200) {
+      const responseStatus = e.target.status;
+      if (responseStatus === 200) {
         resolve(e);
       } else {
-        reject(e);
+        reject(
+          new Error(
+            `[createPuzzle] The image does not support get requests, responseStatus ${responseStatus}, '${url}'.`,
+          ),
+        );
       }
     };
     xhr.onerror = (e: ProgressEvent) => {
@@ -257,15 +262,12 @@ export function internalLoadImage(image: string | Blob, useCache = true) {
           };
           img.onerror = (err) => {
             revoke();
-            console.error(`[createPuzzle] image load failed. ${image}`);
+            console.error(`[createPuzzle] The image load failed, '${image}'.`);
             reject(err);
           };
           img.src = url;
         })
-        .catch((err) => {
-          err.message = `[createPuzzle] the image does not support get requests. ${image}`;
-          reject(err);
-        });
+        .catch(reject);
     }
   });
 }
