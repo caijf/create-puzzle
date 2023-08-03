@@ -178,6 +178,8 @@ export function drawPuzzle(
   // ctx.strokeRect(x, y, w, h);
 }
 
+const SuccessResponseStatus = [200, 304];
+
 function getUrlBlob(url: string) {
   return new Promise<ProgressEvent>((resolve, reject) => {
     const xhr = new XMLHttpRequest();
@@ -187,7 +189,7 @@ function getUrlBlob(url: string) {
       // @ts-ignore
       // 进入 onload 表示 readyStatus 为 4 ，但是 status 不一定是 200 。
       const responseStatus = e.target.status;
-      if (responseStatus === 200) {
+      if (SuccessResponseStatus.indexOf(responseStatus) > -1) {
         resolve(e);
       } else {
         reject(
