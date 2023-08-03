@@ -77,7 +77,7 @@ type Options = {
   // 上传的图片
   imageWidth?: number; // 自定义图片宽度。
   imageHeight?: number; // 自定义图片高度。
-  cacheImage?: boolean; // 缓存当前加载的图片。默认为 true 。
+  cacheImage?: boolean; // 缓存最近加载成功的图片。默认为 true 。
 }
 
 type Result = {
