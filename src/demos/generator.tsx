@@ -3,10 +3,10 @@ import {
   BizDescriptions,
   BizForm,
   BizFormItemColor,
-  BizFormItemInput,
   BizFormItemNumber,
   BizFormItemRadio,
   BizFormItemSelect,
+  BizFormItemTextArea,
   BizFormItemUpload,
 } from 'antd-more';
 import { debounce } from 'ut2';
@@ -277,7 +277,7 @@ function Demo() {
               maxSize={50 * 1024 * 1024}
               hidden={imgSourceType !== ImgSourceType.Upload}
             />
-            <BizFormItemInput
+            <BizFormItemTextArea
               label="图片地址"
               name="imgSourceUrl"
               placeholder="请输入图片地址"
@@ -286,6 +286,7 @@ function Demo() {
               allowClear
               inputProps={{
                 size: 'large',
+                autoSize: { minRows: 2, maxRows: 6 },
               }}
               hidden={imgSourceType !== ImgSourceType.Input}
             />
