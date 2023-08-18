@@ -46,7 +46,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     bgHeight: outBgHeight,
     bgOffset: outBgOffset = [0, 0],
     bgImageType = 'image/jpeg',
-    bgImageEncoderOptions,
+    bgImageEncoderOptions = 0.8,
     cacheImage,
   } = options;
 

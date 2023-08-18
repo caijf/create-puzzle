@@ -86,7 +86,7 @@ type Options = {
   bgHeight?: number; // 背景图高度。默认 图片高度
   bgOffset?: [number, number] | ((imgWidth: number, imgHeight: number) => [number, number]); // 背景图偏移值。 默认 [0,0]
   bgImageType?: string; // 背景图导出类型。默认 image/jpeg
-  bgImageEncoderOptions?: any; // 背景图导出图片质量选项
+  bgImageEncoderOptions?: number; // 背景图导出图片质量选项。默认 0.8 。
 
   // 上传的图片
   imageWidth?: number; // 自定义图片宽度。

@@ -135,7 +135,7 @@ const initialValues = {
   bgOffsetX: 0,
   bgOffsetY: 0,
   bgImageType: ImageTypeOptions[0].value,
-  bgImageEncoderOptions: 0.92,
+  bgImageEncoderOptions: 0.8,
 
   imageWidthType: InputType.Default,
   imageHeightType: InputType.Default,
