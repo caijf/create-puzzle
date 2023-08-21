@@ -29,10 +29,10 @@ function Demo() {
             <img src={result.puzzleUrl} alt="" />
           </div>
           <div>
-            无透明背景的拼图：
+            不等高拼图：
             <img src={result.singlePuzzleUrl} alt="" />
           </div>
-          <div>无透明背景的拼图 y 轴：{result.singlePuzzleY}</div>
+          <div>不等高拼图 y 轴：{result.singlePuzzleY}</div>
           <div>x 轴偏移值：{result.x}</div>
         </div>
       )}

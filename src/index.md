@@ -85,13 +85,14 @@ type Options = {
   bgWidth?: number; // 背景图宽度。默认 图片宽度
   bgHeight?: number; // 背景图高度。默认 图片高度
   bgOffset?: [number, number] | ((imgWidth: number, imgHeight: number) => [number, number]); // 背景图偏移值。 默认 [0,0]
-  bgImageType?: string; // 背景图导出类型。默认 image/jpeg
-  bgImageEncoderOptions?: number; // 背景图导出图片质量选项。默认 0.8 。
 
   // 上传的图片
-  imageWidth?: number; // 自定义图片宽度。
-  imageHeight?: number; // 自定义图片高度。
+  imageWidth?: number; // 自定义输入图片宽度。
+  imageHeight?: number; // 自定义输入图片高度。
   cacheImage?: boolean; // 缓存最近加载成功的图片。默认为 true 。
+
+  // 拼图和背景图
+  quality?: number; // 导出图片质量。默认 0.8 。
 }
 
 type Result = {

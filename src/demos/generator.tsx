@@ -84,17 +84,6 @@ const PointsOptions = [
     value: 4,
   },
 ];
-// 导出图片类型
-const ImageTypeOptions = [
-  {
-    label: 'jpeg',
-    value: 'image/jpeg',
-  },
-  {
-    label: 'png',
-    value: 'image/png',
-  },
-];
 
 // 拼图等高类型
 enum PuzzleEqualHeightType {
@@ -134,8 +123,7 @@ const initialValues = {
   bgHeightType: InputType.Default,
   bgOffsetX: 0,
   bgOffsetY: 0,
-  bgImageType: ImageTypeOptions[0].value,
-  bgImageEncoderOptions: 0.8,
+  quality: 0.8,
 
   imageWidthType: InputType.Default,
   imageHeightType: InputType.Default,
@@ -419,17 +407,14 @@ function Demo() {
                   <Col {...colspan}>
                     <BizFormItemNumber label="y 轴偏移" name="bgOffsetY" precision={0} />
                   </Col>
-                  <Col {...colspan}>
-                    <BizFormItemRadio
-                      label="导出图片类型"
-                      name="bgImageType"
-                      options={ImageTypeOptions}
-                    />
-                  </Col>
+                </Row>
+              </Card>
+              <Card title="拼图和背景图" size="small" type="inner">
+                <Row>
                   <Col {...colspan}>
                     <BizFormItemNumber
                       label="导出图片质量"
-                      name="bgImageEncoderOptions"
+                      name="quality"
                       precision={2}
                       step={0.01}
                       max={1}

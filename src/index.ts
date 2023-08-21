@@ -1,5 +1,10 @@
 import { getRandomPoints, drawPuzzle, Point, getRandomInt, internalLoadImage } from './util';
 
+const MimeType = {
+  jpeg: 'image/jpeg',
+  png: 'image/png',
+};
+
 type Options = {
   borderWidth?: number; // 描边宽度。默认 2
   borderColor?: string; // 描边颜色。默认 rgba(255,255,255,0.7)
@@ -10,14 +15,23 @@ type Options = {
   x?: number; // x 轴偏移值，如果不传内部随机生成。
   y?: number; // y 轴偏移值，如果不传内部随机生成。
   margin?: number; // 上下左右留白。默认 2
-  imageWidth?: number; // 自定义图片宽度。
-  imageHeight?: number; // 自定义图片高度。
+  imageWidth?: number; // 自定义输入图片宽度。
+  imageHeight?: number; // 自定义输入图片高度。
   bgWidth?: number; // 背景图宽度。默认 图片宽度
   bgHeight?: number; // 背景图高度。默认 图片高度
   bgOffset?: [number, number] | ((imgWidth: number, imgHeight: number) => [number, number]); // 背景图偏移值。 默认 [0,0]
+
+  /**
+   * @deprecated 即将废弃。
+   */
   bgImageType?: string; // 背景图导出类型。默认 image/jpeg
+
+  /**
+   * @deprecated 即将废弃，请使用 quality 。
+   */
   bgImageEncoderOptions?: number; // 背景图导出图片质量选项
-  cacheImage?: boolean; // 缓存当前加载的图片。默认为 true 。
+  quality?: number; // 导出图片质量。默认 0.8 。
+  cacheImage?: boolean; // 缓存最近加载成功的图片。默认为 true 。
 };
 
 type Result = {
@@ -45,8 +59,9 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     bgWidth: outBgWidth,
     bgHeight: outBgHeight,
     bgOffset: outBgOffset = [0, 0],
-    bgImageType = 'image/jpeg',
-    bgImageEncoderOptions = 0.8,
+    bgImageType,
+    bgImageEncoderOptions,
+    quality = 0.8,
     cacheImage,
   } = options;
 
@@ -130,18 +145,18 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
           puzzleCtx.clearRect(0, 0, bgWidth, bgHeight);
           puzzleCanvas.width = width;
           puzzleCtx.putImageData(imgData, 0, y);
-          puzzleUrl = puzzleCanvas.toDataURL();
+          puzzleUrl = puzzleCanvas.toDataURL(MimeType.png, quality);
 
           // single image
           puzzleCtx.clearRect(0, 0, width, bgHeight);
           puzzleCanvas.width = width;
           puzzleCanvas.height = height;
           puzzleCtx.putImageData(imgData, 0, 0);
-          singlePuzzleUrl = puzzleCanvas.toDataURL();
+          singlePuzzleUrl = puzzleCanvas.toDataURL(MimeType.png, quality);
         }
 
         resolve({
-          bgUrl: bgCanvas.toDataURL(bgImageType, bgImageEncoderOptions),
+          bgUrl: bgCanvas.toDataURL(bgImageType || MimeType.jpeg, bgImageEncoderOptions || quality),
           puzzleUrl,
           x,
           singlePuzzleUrl,
