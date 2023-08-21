@@ -1,8 +1,8 @@
 // 拼图点
 export enum Point {
-  None = 'none', // 没有
-  Outer = 'outher', // 外部
-  Inner = 'inner', // 内部
+  None, // 没有
+  Outer, // 外部
+  Inner, // 内部
 }
 export const pointArray = [Point.None, Point.Outer, Point.Inner];
 
@@ -270,6 +270,31 @@ export function internalLoadImage(image: string | Blob, useCache = true) {
           img.src = url;
         })
         .catch(reject);
+    }
+  });
+}
+
+export function canvasToImage(
+  canvas: HTMLCanvasElement,
+  format: 'dataUrl' | 'blob',
+  type: string,
+  quality: number,
+) {
+  return new Promise<string>((resolve) => {
+    if (format === 'blob') {
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            resolve(URL.createObjectURL(blob));
+          } else {
+            resolve(canvas.toDataURL(type, quality));
+          }
+        },
+        type,
+        quality,
+      );
+    } else {
+      resolve(canvas.toDataURL(type, quality));
     }
   });
 }

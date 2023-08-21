@@ -4,6 +4,9 @@
 
 import createPuzzle, { Point } from '../src';
 
+URL.createObjectURL = jest.fn();
+URL.revokeObjectURL = jest.fn();
+
 describe('createPuzzle', () => {
   // ref: https://stackoverflow.com/questions/44462665/how-do-you-use-jest-to-test-img-onerror
   const LOAD_FAILURE_SRC = 'data:LOAD_FAILURE_SRC';
@@ -72,6 +75,20 @@ describe('createPuzzle', () => {
       bgImageEncoderOptions: 0.92,
       imageWidth: 320,
       imageHeight: 160,
+    });
+    // console.log('res: ', res);
+
+    expect(res).toHaveProperty('x');
+    expect(res).toHaveProperty('bgUrl');
+    expect(res).toHaveProperty('puzzleUrl');
+    expect(res).toHaveProperty('singlePuzzleUrl');
+    expect(res).toHaveProperty('singlePuzzleY');
+  });
+
+  it('format blob', async () => {
+    const res = await createPuzzle(LOAD_SUCCESS_SRC, {
+      format: 'blob',
+      quality: 0.5,
     });
     // console.log('res: ', res);
 

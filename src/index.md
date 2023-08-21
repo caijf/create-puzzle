@@ -93,21 +93,23 @@ type Options = {
 
   // 拼图和背景图
   quality?: number; // 导出图片质量。默认 0.8 。
+  format?: 'dataUrl' | 'blob'; // 导出图片格式。默认 dataUrl 。
+  autoRevokePreviousBlobUrl?: boolean; // 自动释放之前导出的 blob url ，仅在 format='blob' 时生效。默认 true 。
 }
 
 type Result = {
   bgUrl: string; // 背景图
   puzzleUrl: string; // 拼图
   x: number; // x 轴偏移值。如果使用该值校验，建议前后阈值增减 5 的范围
-  singlePuzzleUrl: string; // 不带透明背景的拼图，需要结合 singlePuzzleY 使用
-  singlePuzzleY: number; // 不带透明背景的拼图 y 轴偏移值
+  singlePuzzleUrl: string; // 不等高拼图，需要结合 singlePuzzleY 使用
+  singlePuzzleY: number; // 不等高拼图 y 轴偏移值
 }
 
 // 拼图点
 enum Point {
-  None = 'none',    // 没有
-  Outer = 'outher', // 外部
-  Inner = 'inner',  // 内部
+  None,    // 没有
+  Outer, // 外部
+  Inner  // 内部
 }
 ```
 

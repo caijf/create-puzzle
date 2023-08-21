@@ -101,6 +101,17 @@ const PuzzleEqualHeightTypeOptions = [
   },
 ];
 
+const FormatOptions = [
+  {
+    label: 'dataUrl',
+    value: 'dataUrl',
+  },
+  {
+    label: 'blob',
+    value: 'blob',
+  },
+];
+
 const colspan = {
   sm: 12,
   xs: 24,
@@ -123,6 +134,8 @@ const initialValues = {
   bgHeightType: InputType.Default,
   bgOffsetX: 0,
   bgOffsetY: 0,
+
+  format: FormatOptions[0].value,
   quality: 0.8,
 
   imageWidthType: InputType.Default,
@@ -236,7 +249,7 @@ function Demo() {
           <BizForm
             form={form}
             submitter={false}
-            labelWidth={98}
+            labelWidth={112}
             initialValues={{
               imgSourceType: ImgSourceType.Upload,
               ...initialValues,
@@ -411,6 +424,9 @@ function Demo() {
               </Card>
               <Card title="拼图和背景图" size="small" type="inner">
                 <Row>
+                  <Col {...colspan}>
+                    <BizFormItemSelect label="导出图片格式" name="format" options={FormatOptions} />
+                  </Col>
                   <Col {...colspan}>
                     <BizFormItemNumber
                       label="导出图片质量"
