@@ -103,8 +103,8 @@ const PuzzleEqualHeightTypeOptions = [
 
 const FormatOptions = [
   {
-    label: 'dataUrl',
-    value: 'dataUrl',
+    label: 'dataURL',
+    value: 'dataURL',
   },
   {
     label: 'blob',

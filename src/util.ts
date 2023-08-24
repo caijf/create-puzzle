@@ -276,7 +276,7 @@ export function internalLoadImage(image: string | Blob, useCache = true) {
 
 export function canvasToImage(
   canvas: HTMLCanvasElement,
-  format: 'dataUrl' | 'blob',
+  format: 'dataURL' | 'blob',
   type: string,
   quality: number,
 ) {

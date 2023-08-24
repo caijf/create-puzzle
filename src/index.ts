@@ -49,7 +49,7 @@ type Options = {
   cacheImage?: boolean; // 缓存最近加载成功的图片。默认为 true 。
 
   quality?: number; // 导出图片质量。默认 0.8 。
-  format?: 'dataUrl' | 'blob'; // 导出图片格式。默认 dataUrl 。
+  format?: 'dataURL' | 'blob'; // 导出图片格式。默认 dataURL 。
   autoRevokePreviousBlobUrl?: boolean; // 自动释放之前导出的 blob url ，仅在 format='blob' 时生效。默认 true 。
 };
 
@@ -82,7 +82,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     bgImageEncoderOptions,
     cacheImage,
     quality = 0.8,
-    format = 'dataUrl',
+    format = 'dataURL',
     autoRevokePreviousBlobUrl = true,
   } = options;
 
