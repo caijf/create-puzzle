@@ -1,11 +1,5 @@
-import {
-  getRandomPoints,
-  drawPuzzle,
-  Point,
-  getRandomInt,
-  internalLoadImage,
-  canvasToImage,
-} from './util';
+import { loadImageWithBlob } from 'util-helpers';
+import { getRandomPoints, drawPuzzle, Point, getRandomInt, canvasToImage } from './util';
 
 const MimeType = {
   jpeg: 'image/jpeg',
@@ -80,7 +74,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     bgOffset: outBgOffset = [0, 0],
     bgImageType,
     bgImageEncoderOptions,
-    cacheImage,
+    cacheImage = true,
     quality = 0.8,
     format = 'dataURL',
     autoRevokePreviousBlobUrl = true,
@@ -93,8 +87,8 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     const bgCtx = bgCanvas.getContext('2d')!;
     const puzzleCtx = puzzleCanvas.getContext('2d')!;
 
-    internalLoadImage(imgUrl, cacheImage)
-      .then((img) => {
+    loadImageWithBlob(imgUrl, cacheImage)
+      .then(({ image: img }) => {
         if (imageWidth) {
           img.width = imageWidth;
         }
