@@ -6,6 +6,7 @@ import {
   BizFormItemNumber,
   BizFormItemRadio,
   BizFormItemSelect,
+  BizFormItemSwitch,
   BizFormItemTextArea,
   BizFormItemUpload,
 } from 'antd-more';
@@ -140,6 +141,8 @@ const initialValues = {
 
   imageWidthType: InputType.Default,
   imageHeightType: InputType.Default,
+
+  cacheImage: true,
 };
 
 function Demo() {
@@ -294,6 +297,7 @@ function Demo() {
             <Card
               title="配置项"
               size="small"
+              className={styles.configWrapper}
               extra={
                 <Button
                   type="link"
@@ -316,15 +320,16 @@ function Demo() {
                   options={LocationTypeOptions}
                   className={styles.itemWrapperFlexNone}
                   contentAfter={
-                    <BizFormItemNumber
-                      name="offsetX"
-                      precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
-                      hidden={typeX !== InputType.Custom}
-                      style={{ margin: 0 }}
-                    />
+                    typeX === InputType.Custom && (
+                      <BizFormItemNumber
+                        name="offsetX"
+                        precision={0}
+                        inputProps={{
+                          min: 0,
+                        }}
+                        style={{ margin: 0 }}
+                      />
+                    )
                   }
                 />
                 <BizFormItemRadio
@@ -333,15 +338,16 @@ function Demo() {
                   options={LocationTypeOptions}
                   className={styles.itemWrapperFlexNone}
                   contentAfter={
-                    <BizFormItemNumber
-                      name="offsetY"
-                      precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
-                      hidden={typeY !== InputType.Custom}
-                      style={{ margin: 0 }}
-                    />
+                    typeY === InputType.Custom && (
+                      <BizFormItemNumber
+                        name="offsetY"
+                        precision={0}
+                        inputProps={{
+                          min: 0,
+                        }}
+                        style={{ margin: 0 }}
+                      />
+                    )
                   }
                 />
                 <Row>
@@ -385,15 +391,16 @@ function Demo() {
                   options={ImageWidthTypeOptions}
                   className={styles.itemWrapperFlexNone}
                   contentAfter={
-                    <BizFormItemNumber
-                      name="bgWidth"
-                      precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
-                      hidden={bgWidthType !== InputType.Custom}
-                      style={{ margin: 0 }}
-                    />
+                    bgWidthType === InputType.Custom && (
+                      <BizFormItemNumber
+                        name="bgWidth"
+                        precision={0}
+                        inputProps={{
+                          min: 0,
+                        }}
+                        style={{ margin: 0 }}
+                      />
+                    )
                   }
                 />
                 <BizFormItemRadio
@@ -402,15 +409,16 @@ function Demo() {
                   options={ImageHeightTypeOptions}
                   className={styles.itemWrapperFlexNone}
                   contentAfter={
-                    <BizFormItemNumber
-                      name="bgHeight"
-                      precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
-                      hidden={bgHeightType !== InputType.Custom}
-                      style={{ margin: 0 }}
-                    />
+                    bgHeightType === InputType.Custom && (
+                      <BizFormItemNumber
+                        name="bgHeight"
+                        precision={0}
+                        inputProps={{
+                          min: 0,
+                        }}
+                        style={{ margin: 0 }}
+                      />
+                    )
                   }
                 />
                 <Row>
@@ -422,14 +430,14 @@ function Demo() {
                   </Col>
                 </Row>
               </Card>
-              <Card title="拼图和背景图" size="small" type="inner">
+              <Card title="导出图片" size="small" type="inner">
                 <Row>
                   <Col {...colspan}>
-                    <BizFormItemSelect label="导出图片格式" name="format" options={FormatOptions} />
+                    <BizFormItemSelect label="格式" name="format" options={FormatOptions} />
                   </Col>
                   <Col {...colspan}>
                     <BizFormItemNumber
-                      label="导出图片质量"
+                      label="质量"
                       name="quality"
                       precision={2}
                       step={0.01}
@@ -446,15 +454,16 @@ function Demo() {
                   options={ImageWidthTypeOptions}
                   className={styles.itemWrapperFlexNone}
                   contentAfter={
-                    <BizFormItemNumber
-                      name="imageWidth"
-                      precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
-                      hidden={imageWidthType !== InputType.Custom}
-                      style={{ margin: 0 }}
-                    />
+                    imageWidthType === InputType.Custom && (
+                      <BizFormItemNumber
+                        name="imageWidth"
+                        precision={0}
+                        inputProps={{
+                          min: 0,
+                        }}
+                        style={{ margin: 0 }}
+                      />
+                    )
                   }
                 />
                 <BizFormItemRadio
@@ -463,16 +472,22 @@ function Demo() {
                   options={ImageHeightTypeOptions}
                   className={styles.itemWrapperFlexNone}
                   contentAfter={
-                    <BizFormItemNumber
-                      name="imageHeight"
-                      precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
-                      hidden={imageHeightType !== InputType.Custom}
-                      style={{ margin: 0 }}
-                    />
+                    imageHeightType === InputType.Custom && (
+                      <BizFormItemNumber
+                        name="imageHeight"
+                        precision={0}
+                        inputProps={{
+                          min: 0,
+                        }}
+                        style={{ margin: 0 }}
+                      />
+                    )
                   }
+                />
+                <BizFormItemSwitch
+                  label="缓存"
+                  name="cacheImage"
+                  tooltip="缓存最近一次加载成功的图片"
                 />
               </Card>
             </Card>

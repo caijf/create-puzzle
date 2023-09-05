@@ -1,20 +1,21 @@
 /**
  * @jest-environment jsdom
  */
-
 import { sleep } from 'ut2';
 import createPuzzle, { Point } from '../src';
 
-// ref: https://stackoverflow.com/questions/44462665/how-do-you-use-jest-to-test-img-onerror
-const LOAD_FAILURE_SRC = 'LOAD_FAILURE_SRC';
-const LOAD_SUCCESS_SRC = 'LOAD_SUCCESS_SRC';
+enum ImageLoadStatus {
+  Success,
+  Error,
+}
+let imageLoadStatus = ImageLoadStatus.Success;
 
 Object.defineProperties(globalThis.Image.prototype, {
   src: {
-    set(src) {
-      if (src === LOAD_FAILURE_SRC) {
+    set() {
+      if (imageLoadStatus === ImageLoadStatus.Error) {
         setTimeout(() => this.onerror(new Error('load error')));
-      } else if (src === LOAD_SUCCESS_SRC) {
+      } else {
         setTimeout(() => this.onload());
       }
     },
@@ -30,17 +31,6 @@ Object.defineProperties(globalThis.Image.prototype, {
     },
   },
 });
-
-enum ImageLoadStatus {
-  Success,
-  Error,
-}
-let imageLoadStatus = ImageLoadStatus.Success;
-
-URL.createObjectURL = jest.fn(() =>
-  imageLoadStatus === ImageLoadStatus.Success ? LOAD_SUCCESS_SRC : LOAD_FAILURE_SRC,
-);
-URL.revokeObjectURL = jest.fn();
 
 // ref: https://stackoverflow.com/questions/28584773/xmlhttprequest-testing-in-jest
 enum ResponseMethod {
@@ -87,15 +77,16 @@ const spyAjax = jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => {
   } as any;
 });
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});
+const consoleError = jest.fn();
+const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(consoleError);
 
 describe('createPuzzle', () => {
   beforeEach(() => {
     imageLoadStatus = ImageLoadStatus.Success;
     resMethod = ResponseMethod.Load;
     responseStatus = 200;
-    sendMock.mockReset();
+    sendMock.mockClear();
+    consoleError.mockClear();
   });
 
   afterAll(() => {
@@ -103,7 +94,7 @@ describe('createPuzzle', () => {
     spyConsoleError.mockRestore();
   });
 
-  it('load url success', async () => {
+  it('load url', async () => {
     const res = await createPuzzle('https://example.com/image');
 
     expect(res).toHaveProperty('x');
@@ -115,7 +106,7 @@ describe('createPuzzle', () => {
     expect(sendMock).toBeCalledTimes(1);
   });
 
-  it('load blob success', async () => {
+  it('load blob', async () => {
     const res = await createPuzzle(new Blob(['abc']));
 
     expect(res).toHaveProperty('x');
@@ -161,6 +152,9 @@ describe('createPuzzle', () => {
     const res2 = await createPuzzle('https://example.com/image', { x: 10, y: 10 });
     expect(res2.x).toBe(10);
     expect(res2.singlePuzzleY).toBe(10);
+
+    expect(res.x).toBe(0);
+    expect(res.singlePuzzleY).toBe(0);
   });
 
   it('options types', async () => {
@@ -196,28 +190,35 @@ describe('createPuzzle', () => {
       quality: 0.5,
     });
 
-    expect(res).toHaveProperty('x');
-    expect(res).toHaveProperty('bgUrl');
-    expect(res).toHaveProperty('puzzleUrl');
-    expect(res).toHaveProperty('singlePuzzleUrl');
-    expect(res).toHaveProperty('singlePuzzleY');
+    expect(res.bgUrl.indexOf('blob://') !== -1).toBe(true);
+    expect(res.puzzleUrl.indexOf('blob://') !== -1).toBe(true);
+    expect(res.singlePuzzleUrl.indexOf('blob://') !== -1).toBe(true);
+  });
+
+  it('自定义请求配置项', async () => {
+    await createPuzzle('abc', { ajaxOptions: { data: 'abc' } });
+    expect(sendMock).toBeCalledWith('abc');
   });
 
   it('ajax error', async () => {
+    expect(consoleError).toBeCalledTimes(0);
     resMethod = ResponseMethod.Error;
     try {
       await createPuzzle('https://example.com/image');
     } catch (err: any) {
       expect(err.message).toBe('ajax error');
     }
+    expect(consoleError).toBeCalledTimes(1);
   });
 
   it('image load error', async () => {
+    expect(consoleError).toBeCalledTimes(0);
     imageLoadStatus = ImageLoadStatus.Error;
     try {
       await createPuzzle('https://example.com/image');
     } catch (err: any) {
       expect(err.message).toBe('load error');
     }
+    expect(consoleError).toBeCalledTimes(1);
   });
 });

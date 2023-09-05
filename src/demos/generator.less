@@ -15,6 +15,25 @@
   }
 }
 
+.configWrapper {
+  :global {
+    .ant-card {
+      margin-bottom: -1px;
+      border-radius: 0;
+
+      &:first-child {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+      }
+      &:last-child {
+        margin-bottom: 1px;
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+    }
+  }
+}
+
 .result {
   :global {
     .ant-descriptions-item-content {

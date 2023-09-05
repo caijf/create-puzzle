@@ -76,8 +76,10 @@ type Options = {
   imageWidth?: number; // 自定义输入图片宽度。
   imageHeight?: number; // 自定义输入图片高度。
   cacheImage?: boolean; // 缓存最近加载成功的图片。默认为 true 。
+  ajaxOptions?: AjaxOptions; // ajax 请求配置项，当传入的图片为字符串时才会触发请求。可查阅： https://doly-dev.github.io/util-helpers/global.html#AjaxOptions
 
-  // 拼图和背景图
+  // 导出图片
+  bgImageType?: string; // 背景图导出类型。默认 image/jpeg
   quality?: number; // 导出图片质量。默认 0.8 。
   format?: 'dataURL' | 'blob'; // 导出图片格式。默认 dataURL 。
   autoRevokePreviousBlobUrl?: boolean; // 自动释放之前导出的 blob url ，仅在 format='blob' 时生效。默认 true 。

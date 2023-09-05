@@ -1,3 +1,5 @@
+const mathPI = Math.PI;
+
 // 拼图点
 export enum Point {
   None, // 没有
@@ -128,9 +130,9 @@ export function drawPuzzle(
   if (points.top !== Point.None) {
     ctx.lineTo(rect.x + w1_2 - l1_2, rect.y);
     if (points.top === Point.Inner) {
-      ctx.arc(rect.x + w1_2, rect.y + l1_2, r, 1.25 * Math.PI, 1.75 * Math.PI, true);
+      ctx.arc(rect.x + w1_2, rect.y + l1_2, r, 1.25 * mathPI, 1.75 * mathPI, true);
     } else {
-      ctx.arc(rect.x + w1_2, rect.y - l1_2, r, 0.75 * Math.PI, 0.25 * Math.PI);
+      ctx.arc(rect.x + w1_2, rect.y - l1_2, r, 0.75 * mathPI, 0.25 * mathPI);
     }
   }
   ctx.lineTo(rect.x + rect.w, rect.y);
@@ -139,9 +141,9 @@ export function drawPuzzle(
   if (points.right !== Point.None) {
     ctx.lineTo(rect.x + rect.w, rect.y + h1_2 - l1_2);
     if (points.right === Point.Inner) {
-      ctx.arc(rect.x + rect.w - l1_2, rect.y + h1_2, r, 1.75 * Math.PI, 0.25 * Math.PI, true);
+      ctx.arc(rect.x + rect.w - l1_2, rect.y + h1_2, r, 1.75 * mathPI, 0.25 * mathPI, true);
     } else {
-      ctx.arc(rect.x + rect.w + l1_2, rect.y + h1_2, r, 1.25 * Math.PI, 0.75 * Math.PI);
+      ctx.arc(rect.x + rect.w + l1_2, rect.y + h1_2, r, 1.25 * mathPI, 0.75 * mathPI);
     }
   }
   ctx.lineTo(rect.x + rect.w, rect.y + rect.h);
@@ -150,9 +152,9 @@ export function drawPuzzle(
   if (points.bottom !== Point.None) {
     ctx.lineTo(rect.x + w1_2 + l1_2, rect.y + rect.h);
     if (points.bottom === Point.Inner) {
-      ctx.arc(rect.x + w1_2, rect.y + rect.h - l1_2, r, 0.25 * Math.PI, 0.75 * Math.PI, true);
+      ctx.arc(rect.x + w1_2, rect.y + rect.h - l1_2, r, 0.25 * mathPI, 0.75 * mathPI, true);
     } else {
-      ctx.arc(rect.x + w1_2, rect.y + rect.h + l1_2, r, 1.75 * Math.PI, 1.25 * Math.PI);
+      ctx.arc(rect.x + w1_2, rect.y + rect.h + l1_2, r, 1.75 * mathPI, 1.25 * mathPI);
     }
   }
   ctx.lineTo(rect.x, rect.y + rect.h);
@@ -161,9 +163,9 @@ export function drawPuzzle(
   if (points.left !== Point.None) {
     ctx.lineTo(rect.x, rect.y + h1_2 + l1_2);
     if (points.left === Point.Inner) {
-      ctx.arc(rect.x + l1_2, rect.y + h1_2, r, 0.75 * Math.PI, 1.25 * Math.PI, true);
+      ctx.arc(rect.x + l1_2, rect.y + h1_2, r, 0.75 * mathPI, 1.25 * mathPI, true);
     } else {
-      ctx.arc(rect.x - l1_2, rect.y + h1_2, r, 0.25 * Math.PI, 1.75 * Math.PI);
+      ctx.arc(rect.x - l1_2, rect.y + h1_2, r, 0.25 * mathPI, 1.75 * mathPI);
     }
   }
   ctx.lineTo(rect.x, rect.y);
