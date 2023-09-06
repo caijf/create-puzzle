@@ -1,6 +1,6 @@
 {
   "name": "create-puzzle",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "在浏览器端生成滑块验证码的拼图和背景图。",
   "scripts": {
     "start": "dumi dev",
