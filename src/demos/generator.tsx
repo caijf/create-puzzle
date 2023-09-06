@@ -181,6 +181,7 @@ function Demo() {
       imageHeightType,
       imageWidth: internalImageWidth,
       imageHeight: internalImageHeight,
+      cacheImage: outCacheImage,
       ...restValues
     } = values || form.getFieldsValue();
 
@@ -212,6 +213,15 @@ function Demo() {
 
     const imageWidth = imageWidthType === InputType.Default ? undefined : internalImageWidth;
     const imageHeight = imageHeightType === InputType.Default ? undefined : internalImageHeight;
+    let cacheImage = outCacheImage;
+
+    if (
+      cacheImage &&
+      ((!imageWidth && typeof internalImageWidth === 'number') ||
+        (!imageHeight && typeof internalImageHeight === 'number'))
+    ) {
+      cacheImage = false;
+    }
 
     createPuzzle(url, {
       x,
@@ -221,6 +231,7 @@ function Demo() {
       bgOffset,
       imageWidth,
       imageHeight,
+      cacheImage,
       ...restValues,
     })
       .then((res) => {
