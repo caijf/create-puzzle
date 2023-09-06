@@ -487,7 +487,7 @@ function Demo() {
                 <BizFormItemSwitch
                   label="缓存"
                   name="cacheImage"
-                  tooltip="缓存最近一次加载成功的图片"
+                  tooltip="缓存最近一次加载成功的图片。注意图片宽高也会一并缓存。"
                 />
               </Card>
             </Card>

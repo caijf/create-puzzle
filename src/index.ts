@@ -118,19 +118,21 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
         bgCanvas.width = bgWidth;
         bgCanvas.height = bgHeight;
 
-        let x = typeof outX === 'undefined' ? getRandomInt(bgWidth - width) : outX || 0;
-        let y = typeof outY === 'undefined' ? getRandomInt(bgHeight - height) : outY || 0;
+        const maxOffsetX = bgWidth - width;
+        const maxOffsetY = bgHeight - height;
+        let x = typeof outX === 'undefined' ? getRandomInt(maxOffsetX) : outX || 0;
+        let y = typeof outY === 'undefined' ? getRandomInt(maxOffsetY) : outY || 0;
 
         if (x < 0) {
           x = 0;
-        } else if (x > bgWidth - width) {
-          x = bgWidth - width;
+        } else if (x > maxOffsetX) {
+          x = maxOffsetX;
         }
 
         if (y < 0) {
           y = 0;
-        } else if (y > bgHeight - height) {
-          y = bgHeight - height;
+        } else if (y > maxOffsetY) {
+          y = maxOffsetY;
         }
 
         const points =
@@ -173,7 +175,9 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
           singlePuzzleY: y,
         };
 
-        const puzzlePromise = canvasToImage(puzzleCanvas, format, MimeType.png, quality).then(
+        const formatBlob = format === 'blob';
+
+        const puzzlePromise = canvasToImage(puzzleCanvas, formatBlob, MimeType.png, quality).then(
           (puzzleUrl) => {
             result.puzzleUrl = puzzleUrl;
 
@@ -183,7 +187,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
             puzzleCanvas.height = height;
             puzzleCtx.putImageData(imgData, 0, 0);
 
-            return canvasToImage(puzzleCanvas, format, MimeType.png, quality).then(
+            return canvasToImage(puzzleCanvas, formatBlob, MimeType.png, quality).then(
               (singlePuzzleUrl) => {
                 result.singlePuzzleUrl = singlePuzzleUrl;
               },
@@ -193,7 +197,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
 
         const bgPromise = canvasToImage(
           bgCanvas,
-          format,
+          formatBlob,
           bgImageType || MimeType.jpeg,
           bgImageEncoderOptions || quality,
         ).then((bgUrl) => {
@@ -202,7 +206,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
 
         Promise.all([puzzlePromise, bgPromise])
           .then(() => {
-            if (format === 'blob' && autoRevokePreviousBlobUrl) {
+            if (formatBlob && autoRevokePreviousBlobUrl) {
               revokeBlobUrls(previousBlobUrlCache);
               previousBlobUrlCache.length = 0;
               previousBlobUrlCache.push(result.bgUrl!, result.puzzleUrl!, result.singlePuzzleUrl!);

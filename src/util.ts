@@ -182,12 +182,12 @@ export function drawPuzzle(
 
 export function canvasToImage(
   canvas: HTMLCanvasElement,
-  format: 'dataURL' | 'blob',
+  formatBlob: boolean,
   type: string,
   quality: number,
 ) {
   return new Promise<string>((resolve) => {
-    if (format === 'blob') {
+    if (formatBlob) {
       canvas.toBlob(
         (blob) => {
           if (blob) {
