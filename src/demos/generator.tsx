@@ -136,7 +136,7 @@ const initialValues = {
   bgOffsetX: 0,
   bgOffsetY: 0,
 
-  format: FormatOptions[0].value,
+  format: FormatOptions[1].value,
   quality: 0.8,
 
   imageWidthType: InputType.Default,

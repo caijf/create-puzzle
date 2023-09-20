@@ -1,6 +1,7 @@
 .itemUpload {
   :global {
-    .antd-more-form-upload-avatar .ant-upload.ant-upload-select-picture-card,
+    .antd-more-form-upload-avatar.ant-upload-wrapper.ant-upload-picture-card-wrapper
+      .ant-upload.ant-upload-select,
     .antd-more-form-upload-avatar-box {
       width: 100%;
     }
@@ -30,6 +31,10 @@
         margin-bottom: 1px;
         border-bottom-right-radius: 2px;
         border-bottom-left-radius: 2px;
+      }
+
+      .ant-card-head {
+        border-radius: 0;
       }
     }
   }

@@ -40,14 +40,4 @@ gtag('config', 'G-22TYFJH82L');
       display: none;
     }`,
   ],
-  extraBabelPlugins: [
-    [
-      'babel-plugin-import',
-      {
-        libraryName: 'antd',
-        libraryDirectory: 'es',
-        style: true,
-      },
-    ],
-  ],
 });
