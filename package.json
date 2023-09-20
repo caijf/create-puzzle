@@ -14,7 +14,8 @@
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx src",
     "lint-fix:js": "npm run lint:js -- --fix",
     "prepublishOnly": "npm test && npm run build",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "prepare": "husky install"
   },
   "files": [
     "dist",
@@ -25,10 +26,6 @@
   "module": "dist/createPuzzle.esm.js",
   "unpkg": "dist/createPuzzle.min.js",
   "types": "types/index.d.ts",
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "npx --no -- commitlint --edit \"$1\""
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -70,6 +67,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.4",
+    "@types/react": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@umijs/fabric": "^2.14.1",
@@ -91,9 +89,10 @@
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2",
     "ut2": "^1.4.8",
-    "yorkie": "^2.0.0"
+    "husky": "^8.0.0"
   },
   "dependencies": {
+    "tslib": "^2.6.2",
     "util-helpers": "^4.20.4"
   }
 }

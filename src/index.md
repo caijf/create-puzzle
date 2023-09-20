@@ -5,26 +5,28 @@ sidemenu: false
 
 # create-puzzle
 
-[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/caijf/create-puzzle.svg) [![GitHub Star][github-star]][github-url]
-
 在浏览器端生成滑块验证码的拼图和背景图。
 
 可以在客户端生成拼图，也可以使用它生成的拼图放到服务端图库，推荐搭配 [rc-slider-captcha] 使用。
 
+[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/caijf/create-puzzle.svg) [![GitHub Star][github-star]][github-url]
+
 ## 使用
 
-### es
+### `es` 或 `node` 开发环境
 
 安装依赖
 
-```bash
+```shell
 npm install create-puzzle
 ```
 
-或
-
-```bash
+```shell
 yarn add create-puzzle
+```
+
+```shell
+pnpm add create-puzzle
 ```
 
 项目中使用
