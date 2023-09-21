@@ -86,12 +86,12 @@
     "react-dom": "^18.2.0",
     "rollup": "^3.28.1",
     "ts-jest": "^29.1.1",
+    "tslib": "^2.6.2",
     "typescript": "^5.2.2",
     "ut2": "^1.4.8",
     "husky": "^8.0.0"
   },
   "dependencies": {
-    "tslib": "^2.6.2",
     "util-helpers": "^4.20.4"
   }
 }
