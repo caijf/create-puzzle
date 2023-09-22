@@ -19,14 +19,16 @@
 
 安装依赖
 
-```bash
+```shell
 npm install create-puzzle
 ```
 
-或
-
-```bash
+```shell
 yarn add create-puzzle
+```
+
+```shell
+pnpm add create-puzzle
 ```
 
 项目中使用
