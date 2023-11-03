@@ -6,6 +6,8 @@
 
 可以在客户端生成拼图，也可以使用它生成的拼图放到服务端图库，推荐搭配 [rc-slider-captcha] 使用。
 
+如果你使用的是 Node.js 做服务端，推荐使用 [`node-puzzle`](https://www.npmjs.com/package/node-puzzle)。
+
 ## 在线示例
 
 - [文档站点][site]
@@ -38,6 +40,13 @@ import createPuzzle from 'create-puzzle';
 
 createPuzzle(imgUrl).then((res) => {
   console.log(res);
+  // {
+  //   bgUrl:  "data:image/jpeg;base64,/9j/4AAQSk...",
+  //   puzzleUrl :  "data:image/png;base64,iVBORw0KGgo...",
+  //   x: 60,
+  //   singlePuzzleUrl: "data:image/png;base64,iVBORw0KGgoA...",
+  //   singlePuzzleY: 40,
+  // }
 });
 ```
 

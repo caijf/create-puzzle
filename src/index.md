@@ -9,6 +9,8 @@ sidemenu: false
 
 可以在客户端生成拼图，也可以使用它生成的拼图放到服务端图库，推荐搭配 [rc-slider-captcha] 使用。
 
+如果你使用的是 Node.js 做服务端，推荐使用 [`node-puzzle`](https://www.npmjs.com/package/node-puzzle)。
+
 [![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/caijf/create-puzzle.svg) [![GitHub Star][github-star]][github-url]
 
 ## 使用
