@@ -28,23 +28,26 @@ export function getRandomPoints(pointNum?: 2 | 3 | 4) {
     bottom: pick(pointArray),
     left: pick(pointArray),
   };
-  const pointsKeys = Object.keys(points) as (keyof typeof points)[];
+  type PointKey = keyof typeof points;
+  const pointsKeys = Object.keys(points) as PointKey[];
+  const verticalDirs = ['top', 'bottom'] as PointKey[];
+  const horizontalDirs = ['left', 'right'] as PointKey[];
 
   // 保证上下 和 左右 都必须有一个外部的拼图点
   if (points.top === Point.Outer && points.bottom === Point.Outer) {
-    points[pick<(typeof pointsKeys)[0]>(['top', 'bottom'])] = Point.Inner;
+    points[pick(verticalDirs)] = Point.Inner;
   } else if (points.top !== Point.Outer && points.bottom !== Point.Outer) {
-    points[pick<(typeof pointsKeys)[0]>(['top', 'bottom'])] = Point.Outer;
+    points[pick(verticalDirs)] = Point.Outer;
   }
   if (points.left === Point.Outer && points.right === Point.Outer) {
-    points[pick<(typeof pointsKeys)[0]>(['left', 'right'])] = Point.Inner;
+    points[pick(horizontalDirs)] = Point.Inner;
   } else if (points.left !== Point.Outer && points.right !== Point.Outer) {
-    points[pick<(typeof pointsKeys)[0]>(['left', 'right'])] = Point.Outer;
+    points[pick(horizontalDirs)] = Point.Outer;
   }
 
   if (pointNum) {
-    const inners: typeof pointsKeys = [];
-    const nones: typeof pointsKeys = [];
+    const inners: PointKey[] = [];
+    const nones: PointKey[] = [];
     pointsKeys.forEach((item) => {
       if (points[item] === Point.Inner) {
         inners.push(item);

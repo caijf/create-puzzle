@@ -120,7 +120,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
 
         const maxOffsetX = bgWidth - width;
         const maxOffsetY = bgHeight - height;
-        let x = typeof outX === 'undefined' ? getRandomInt(maxOffsetX) : outX || 0;
+        let x = typeof outX === 'undefined' ? getRandomInt(maxOffsetX, width) : outX || 0;
         let y = typeof outY === 'undefined' ? getRandomInt(maxOffsetY) : outY || 0;
 
         if (x < 0) {
