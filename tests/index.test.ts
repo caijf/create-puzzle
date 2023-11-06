@@ -100,10 +100,9 @@ describe('createPuzzle', () => {
     expect(res).toHaveProperty('x');
     expect(res).toHaveProperty('bgUrl');
     expect(res).toHaveProperty('puzzleUrl');
-    expect(res).toHaveProperty('singlePuzzleUrl');
-    expect(res).toHaveProperty('singlePuzzleY');
+    expect(res).toHaveProperty('y');
 
-    expect(sendMock).toBeCalledTimes(1);
+    expect(sendMock).toHaveBeenCalledTimes(1);
   });
 
   it('load blob', async () => {
@@ -112,49 +111,52 @@ describe('createPuzzle', () => {
     expect(res).toHaveProperty('x');
     expect(res).toHaveProperty('bgUrl');
     expect(res).toHaveProperty('puzzleUrl');
-    expect(res).toHaveProperty('singlePuzzleUrl');
-    expect(res).toHaveProperty('singlePuzzleY');
+    expect(res).toHaveProperty('y');
 
-    expect(sendMock).toBeCalledTimes(0);
+    expect(sendMock).toHaveBeenCalledTimes(0);
   });
 
   it('load with cache', async () => {
     const url = 'https://example.com/someimage';
-    expect(sendMock).toBeCalledTimes(0);
+    expect(sendMock).toHaveBeenCalledTimes(0);
 
     await createPuzzle(url);
-    expect(sendMock).toBeCalledTimes(1);
+    expect(sendMock).toHaveBeenCalledTimes(1);
 
     await createPuzzle(url);
-    expect(sendMock).toBeCalledTimes(1);
+    expect(sendMock).toHaveBeenCalledTimes(1);
   });
 
   it('load with not cache', async () => {
     const url = 'https://example.com/someimage';
-    expect(sendMock).toBeCalledTimes(0);
+    expect(sendMock).toHaveBeenCalledTimes(0);
 
     await createPuzzle(url, {
       cacheImage: false,
     });
-    expect(sendMock).toBeCalledTimes(1);
+    expect(sendMock).toHaveBeenCalledTimes(1);
 
     await createPuzzle(url, {
       cacheImage: false,
     });
-    expect(sendMock).toBeCalledTimes(2);
+    expect(sendMock).toHaveBeenCalledTimes(2);
   });
 
   it('define x and y', async () => {
     const res = await createPuzzle('https://example.com/image', { x: 0, y: 0 });
     expect(res.x).toBe(0);
-    expect(res.singlePuzzleY).toBe(0);
+    expect(res.y).toBe(0);
 
-    const res2 = await createPuzzle('https://example.com/image', { x: 10, y: 10 });
+    const res2 = await createPuzzle('https://example.com/image', {
+      x: 10,
+      y: 10,
+      equalHeight: false,
+    });
     expect(res2.x).toBe(10);
-    expect(res2.singlePuzzleY).toBe(10);
+    expect(res2.y).toBe(10);
 
     expect(res.x).toBe(0);
-    expect(res.singlePuzzleY).toBe(0);
+    expect(res.y).toBe(0);
   });
 
   it('options types', async () => {
@@ -172,7 +174,7 @@ describe('createPuzzle', () => {
       // bgOffset: [1, 2]
       bgOffset: (imgWidth, imgHeight) => [imgWidth + 1, imgHeight + 2],
       bgImageType: 'image/png',
-      bgImageEncoderOptions: 0.92,
+      quality: 0.92,
       imageWidth: 320,
       imageHeight: 160,
     });
@@ -180,8 +182,7 @@ describe('createPuzzle', () => {
     expect(res).toHaveProperty('x');
     expect(res).toHaveProperty('bgUrl');
     expect(res).toHaveProperty('puzzleUrl');
-    expect(res).toHaveProperty('singlePuzzleUrl');
-    expect(res).toHaveProperty('singlePuzzleY');
+    expect(res).toHaveProperty('y');
   });
 
   it('format blob', async () => {
@@ -192,33 +193,32 @@ describe('createPuzzle', () => {
 
     expect(res.bgUrl.indexOf('blob://') !== -1).toBe(true);
     expect(res.puzzleUrl.indexOf('blob://') !== -1).toBe(true);
-    expect(res.singlePuzzleUrl.indexOf('blob://') !== -1).toBe(true);
   });
 
   it('自定义请求配置项', async () => {
     await createPuzzle('abc', { ajaxOptions: { data: 'abc' } });
-    expect(sendMock).toBeCalledWith('abc');
+    expect(sendMock).toHaveBeenCalledWith('abc');
   });
 
   it('ajax error', async () => {
-    expect(consoleError).toBeCalledTimes(0);
+    expect(consoleError).toHaveBeenCalledTimes(0);
     resMethod = ResponseMethod.Error;
     try {
       await createPuzzle('https://example.com/image');
     } catch (err: any) {
       expect(err.message).toBe('ajax error');
     }
-    expect(consoleError).toBeCalledTimes(1);
+    expect(consoleError).toHaveBeenCalledTimes(1);
   });
 
   it('image load error', async () => {
-    expect(consoleError).toBeCalledTimes(0);
+    expect(consoleError).toHaveBeenCalledTimes(0);
     imageLoadStatus = ImageLoadStatus.Error;
     try {
       await createPuzzle('https://example.com/image');
     } catch (err: any) {
       expect(err.message).toBe('load error');
     }
-    expect(consoleError).toBeCalledTimes(1);
+    expect(consoleError).toHaveBeenCalledTimes(1);
   });
 });

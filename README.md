@@ -44,8 +44,7 @@ createPuzzle(imgUrl).then((res) => {
   //   bgUrl:  "data:image/jpeg;base64,/9j/4AAQSk...",
   //   puzzleUrl :  "data:image/png;base64,iVBORw0KGgo...",
   //   x: 60,
-  //   singlePuzzleUrl: "data:image/png;base64,iVBORw0KGgoA...",
-  //   singlePuzzleY: 40,
+  //   y: 0
   // }
 });
 ```
@@ -100,8 +99,7 @@ type Result = {
   bgUrl: string; // 背景图
   puzzleUrl: string; // 拼图
   x: number; // x 轴偏移值。如果使用该值校验，建议前后阈值增减 5 的范围
-  singlePuzzleUrl: string; // 不等高拼图，需要结合 singlePuzzleY 使用
-  singlePuzzleY: number; // 不等高拼图 y 轴偏移值
+  y: number; // y 轴偏移值，等高拼图时值始终为 0
 }
 
 // 拼图点

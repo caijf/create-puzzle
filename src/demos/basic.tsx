@@ -28,12 +28,8 @@ function Demo() {
             拼图：
             <img src={result.puzzleUrl} alt="" />
           </div>
-          <div>
-            不等高拼图：
-            <img src={result.singlePuzzleUrl} alt="" />
-          </div>
-          <div>不等高拼图 y 轴：{result.singlePuzzleY}</div>
           <div>x 轴偏移值：{result.x}</div>
+          <div>y 轴偏移值：{result.y}</div>
         </div>
       )}
       <br />

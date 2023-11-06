@@ -26,6 +26,7 @@ type Options = {
   x?: number; // x 轴偏移值，如果不传内部随机生成。
   y?: number; // y 轴偏移值，如果不传内部随机生成。
   margin?: number; // 上下左右留白。默认 2
+  equalHeight?: boolean; // 等高。默认 true
 
   // 背景图
   bgWidth?: number; // 背景图宽度。默认 图片宽度
@@ -40,10 +41,6 @@ type Options = {
 
   // 导出配置
   bgImageType?: string; // 背景图导出类型。默认 image/jpeg
-  /**
-   * @deprecated 即将废弃，请使用 quality 。
-   */
-  bgImageEncoderOptions?: number; // 背景图导出图片质量选项
   quality?: number; // 导出图片质量。默认 0.8 。
   format?: 'dataURL' | 'blob'; // 导出图片格式。默认 dataURL 。
   autoRevokePreviousBlobUrl?: boolean; // 自动释放之前导出的 blob url ，仅在 format='blob' 时生效。默认 true 。
@@ -53,8 +50,7 @@ type Result = {
   bgUrl: string; // 背景图
   puzzleUrl: string; // 拼图
   x: number; // x 轴偏移值，建议校验时前后阈值增减 5 的范围
-  singlePuzzleUrl: string; // 不等高拼图，需要结合 singlePuzzleY 使用
-  singlePuzzleY: number; // 不等高拼图 y 轴偏移值
+  y: number; // y 轴偏移值，等高拼图时值始终为 0
 };
 
 // 创建拼图和背景图
@@ -69,6 +65,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     x: outX,
     y: outY,
     margin = 2,
+    equalHeight = true,
 
     imageWidth,
     imageHeight,
@@ -77,8 +74,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     bgHeight: outBgHeight,
     bgOffset: outBgOffset = [0, 0],
 
-    bgImageType,
-    bgImageEncoderOptions,
+    bgImageType = MimeType.jpeg,
     quality = 0.8,
     format = 'dataURL',
 
@@ -165,53 +161,27 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
         const imgData = puzzleCtx.getImageData(x, y, width, height);
         puzzleCtx.clearRect(0, 0, bgWidth, bgHeight);
         puzzleCanvas.width = width;
-        puzzleCtx.putImageData(imgData, 0, y);
-
-        const result: Result = {
-          puzzleUrl: '',
-          singlePuzzleUrl: '',
-          bgUrl: '',
-          x,
-          singlePuzzleY: y,
-        };
+        puzzleCanvas.height = equalHeight ? bgHeight : height;
+        puzzleCtx.putImageData(imgData, 0, equalHeight ? y : 0);
 
         const formatBlob = format === 'blob';
 
-        const puzzlePromise = canvasToImage(puzzleCanvas, formatBlob, MimeType.png, quality).then(
-          (puzzleUrl) => {
-            result.puzzleUrl = puzzleUrl;
-
-            // single image
-            puzzleCtx.clearRect(0, 0, width, bgHeight);
-            puzzleCanvas.width = width;
-            puzzleCanvas.height = height;
-            puzzleCtx.putImageData(imgData, 0, 0);
-
-            return canvasToImage(puzzleCanvas, formatBlob, MimeType.png, quality).then(
-              (singlePuzzleUrl) => {
-                result.singlePuzzleUrl = singlePuzzleUrl;
-              },
-            );
-          },
-        );
-
-        const bgPromise = canvasToImage(
-          bgCanvas,
-          formatBlob,
-          bgImageType || MimeType.jpeg,
-          bgImageEncoderOptions || quality,
-        ).then((bgUrl) => {
-          result.bgUrl = bgUrl;
-        });
+        const puzzlePromise = canvasToImage(puzzleCanvas, formatBlob, MimeType.png, quality);
+        const bgPromise = canvasToImage(bgCanvas, formatBlob, bgImageType, quality);
 
         Promise.all([puzzlePromise, bgPromise])
-          .then(() => {
+          .then(([puzzleUrl, bgUrl]) => {
             if (formatBlob && autoRevokePreviousBlobUrl) {
               revokeBlobUrls(previousBlobUrlCache);
               previousBlobUrlCache.length = 0;
-              previousBlobUrlCache.push(result.bgUrl!, result.puzzleUrl!, result.singlePuzzleUrl!);
+              previousBlobUrlCache.push(bgUrl, puzzleUrl);
             }
-            resolve(result);
+            resolve({
+              puzzleUrl,
+              bgUrl,
+              x,
+              y: equalHeight ? 0 : y,
+            });
           })
           .catch(reject);
       })

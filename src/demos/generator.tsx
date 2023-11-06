@@ -12,7 +12,7 @@ import {
 } from 'antd-more';
 import { debounce } from 'ut2';
 import createPuzzle, { Result } from 'create-puzzle';
-import { Affix, Alert, Button, Card, Col, Empty, message, Radio, Row, Spin } from 'antd';
+import { Affix, Alert, Button, Card, Col, Empty, message, Row, Spin } from 'antd';
 import styles from './generator.less';
 
 enum ImgSourceType {
@@ -93,11 +93,11 @@ enum PuzzleEqualHeightType {
 }
 const PuzzleEqualHeightTypeOptions = [
   {
-    label: '等高',
+    label: '是',
     value: PuzzleEqualHeightType.Yes,
   },
   {
-    label: '不等高',
+    label: '否',
     value: PuzzleEqualHeightType.No,
   },
 ];
@@ -130,6 +130,7 @@ const initialValues = {
   borderWidth: 2,
   borderColor: 'rgba(255,255,255,0.7)',
   fillColor: 'rgba(255,255,255,0.7)',
+  equalHeight: PuzzleEqualHeightType.Yes,
 
   bgWidthType: InputType.Default,
   bgHeightType: InputType.Default,
@@ -155,7 +156,6 @@ function Demo() {
   const imageHeightType = BizForm.useWatch(['imageHeightType'], form);
   const imgSourceType = BizForm.useWatch(['imgSourceType'], form);
 
-  const [puzzleEqualType, setPuzzleEqualType] = useState(PuzzleEqualHeightType.Yes);
   const [result, setResult] = useState<Result>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any>(null);
@@ -176,6 +176,7 @@ function Demo() {
       bgHeight: internalBgHeight,
       bgOffsetX,
       bgOffsetY,
+      equalHeight: internalEqualHeight,
 
       imageWidthType,
       imageHeightType,
@@ -215,6 +216,8 @@ function Demo() {
     const imageHeight = imageHeightType === InputType.Default ? undefined : internalImageHeight;
     let cacheImage = outCacheImage;
 
+    const equalHeight = internalEqualHeight === PuzzleEqualHeightType.Yes ? true : false;
+
     if (
       cacheImage &&
       ((!imageWidth && typeof internalImageWidth === 'number') ||
@@ -231,6 +234,7 @@ function Demo() {
       bgOffset,
       imageWidth,
       imageHeight,
+      equalHeight,
       cacheImage,
       ...restValues,
     })
@@ -254,7 +258,7 @@ function Demo() {
       });
   }, []);
 
-  const deouncedCreate = useCallback(debounce(create, 500), [create]);
+  const deouncedCreate = useCallback(debounce(create, 300), [create]);
 
   return (
     <div>
@@ -390,6 +394,15 @@ function Demo() {
                   </Col>
                   <Col {...colspan}>
                     <BizFormItemColor label="填充颜色" name="fillColor" colorMode="rgb" />
+                  </Col>
+                  <Col {...colspan}>
+                    <BizFormItemRadio
+                      label="等高"
+                      name="equalHeight"
+                      optionType="button"
+                      options={PuzzleEqualHeightTypeOptions}
+                      tooltip="等高时 y 轴始终为 0"
+                    />
                   </Col>
                 </Row>
               </Card>
@@ -536,30 +549,11 @@ function Demo() {
                         <img src={result.bgUrl} alt="背景图" />
                       </div>
                     </BizDescriptions.Item>
-                    <BizDescriptions.Item label="拼图类型" tooltip="等高不需要 y 轴">
-                      <Radio.Group
-                        optionType="button"
-                        value={puzzleEqualType}
-                        onChange={(e) => setPuzzleEqualType(e.target.value)}
-                        options={PuzzleEqualHeightTypeOptions}
-                      />
-                    </BizDescriptions.Item>
                     <BizDescriptions.Item label="拼图">
-                      <img
-                        src={
-                          puzzleEqualType === PuzzleEqualHeightType.Yes
-                            ? result.puzzleUrl
-                            : result.singlePuzzleUrl
-                        }
-                        alt="拼图"
-                      />
+                      <img src={result.puzzleUrl} alt="拼图" />
                     </BizDescriptions.Item>
                     <BizDescriptions.Item label="x 轴偏移">{result.x}</BizDescriptions.Item>
-                    {puzzleEqualType === PuzzleEqualHeightType.No && (
-                      <BizDescriptions.Item label="y 轴偏移">
-                        {result.singlePuzzleY}
-                      </BizDescriptions.Item>
-                    )}
+                    <BizDescriptions.Item label="y 轴偏移">{result.y}</BizDescriptions.Item>
                   </BizDescriptions>
                 </Spin>
               ) : error ? (
