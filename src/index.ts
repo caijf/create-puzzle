@@ -171,10 +171,14 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
 
         Promise.all([puzzlePromise, bgPromise])
           .then(([puzzleUrl, bgUrl]) => {
-            if (formatBlob && autoRevokePreviousBlobUrl) {
+            if (autoRevokePreviousBlobUrl) {
               revokeBlobUrls(previousBlobUrlCache);
               previousBlobUrlCache.length = 0;
-              previousBlobUrlCache.push(bgUrl, puzzleUrl);
+
+              previousBlobUrlCache.push(img.src);
+              if (formatBlob) {
+                previousBlobUrlCache.push(bgUrl, puzzleUrl);
+              }
             }
             resolve({
               puzzleUrl,
