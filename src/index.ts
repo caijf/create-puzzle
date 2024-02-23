@@ -36,7 +36,7 @@ type Options = {
   // 上传的图片
   imageWidth?: number; // 自定义输入图片宽度。
   imageHeight?: number; // 自定义输入图片高度。
-  cacheImage?: boolean; // 缓存最近加载成功的图片。默认为 true 。
+  cacheImage?: Parameters<typeof loadImageWithBlob>[1]; // 缓存最近加载成功的图片。默认为 true 。
   ajaxOptions?: Parameters<typeof loadImageWithBlob>[2]; // ajax 请求配置项，当传入的图片为字符串时才会触发请求。可查阅： https://doly-dev.github.io/util-helpers/global.html#AjaxOptions
 
   // 导出配置
@@ -172,10 +172,11 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
         Promise.all([puzzlePromise, bgPromise])
           .then(([puzzleUrl, bgUrl]) => {
             if (autoRevokePreviousBlobUrl) {
-              revokeBlobUrls(previousBlobUrlCache);
-              previousBlobUrlCache.length = 0;
+              if (previousBlobUrlCache.length) {
+                revokeBlobUrls(previousBlobUrlCache);
+                previousBlobUrlCache.length = 0;
+              }
 
-              previousBlobUrlCache.push(img.src);
               if (formatBlob) {
                 previousBlobUrlCache.push(bgUrl, puzzleUrl);
               }

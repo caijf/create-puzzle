@@ -85,8 +85,8 @@ type Options = {
   // 上传的图片
   imageWidth?: number; // 自定义输入图片宽度。
   imageHeight?: number; // 自定义输入图片高度。
-  cacheImage?: boolean; // 缓存最近加载成功的图片。默认为 true 。
-  ajaxOptions?: AjaxOptions; // ajax 请求配置项，当传入的图片为字符串时才会触发请求。可查阅： https://doly-dev.github.io/util-helpers/global.html#AjaxOptions
+  cacheImage?: boolean | CacheOptions; // 缓存最近加载成功的图片。默认为 true 。更多信息可查阅：https://doly-dev.github.io/util-helpers/global.html#CacheOptions
+  ajaxOptions?: AjaxOptions; // ajax 请求配置项，当传入的图片为字符串时才会触发请求。更多信息可查阅： https://doly-dev.github.io/util-helpers/global.html#AjaxOptions
 
   // 导出图片
   bgImageType?: string; // 背景图导出类型。默认 image/jpeg

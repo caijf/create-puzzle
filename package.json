@@ -66,12 +66,12 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.2.1",
     "@types/jest": "^29.5.12",
-    "@types/react": "^18.2.57",
+    "@types/react": "^18.2.58",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@umijs/fabric": "^2.14.1",
-    "antd": "^5.14.1",
-    "antd-more": "^4.2.9",
+    "antd": "^5.14.2",
+    "antd-more": "^4.2.10",
     "cz-conventional-changelog": "^3.3.0",
     "dumi": "^1.1.54",
     "element-remove": "^1.0.4",
@@ -88,10 +88,10 @@
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3",
-    "ut2": "^1.7.0"
+    "ut2": "^1.7.1"
   },
   "dependencies": {
-    "util-helpers": "^4.21.1"
+    "util-helpers": "^4.21.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
