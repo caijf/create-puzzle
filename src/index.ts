@@ -78,7 +78,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     quality = 0.8,
     format = 'dataURL',
 
-    cacheImage = true,
+    cacheImage,
     autoRevokePreviousBlobUrl = true,
     ajaxOptions,
   } = options;
@@ -90,7 +90,9 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     const bgCtx = bgCanvas.getContext('2d')!;
     const puzzleCtx = puzzleCanvas.getContext('2d')!;
 
-    loadImageWithBlob(imgUrl, cacheImage, ajaxOptions)
+    const cacheOptions = cacheImage === true ? { cacheKey: 'create-puzzle' } : cacheImage;
+
+    loadImageWithBlob(imgUrl, cacheOptions, ajaxOptions)
       .then(({ image: img }) => {
         if (imageWidth) {
           img.width = imageWidth;
