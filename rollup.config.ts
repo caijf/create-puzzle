@@ -19,7 +19,7 @@ export const commonConfig = {
 
 const config: RollupOptions = {
   ...commonConfig,
-  external: ['util-helpers'],
+  external: ['ut2', 'util-helpers'],
   output: [
     {
       format: 'cjs',
