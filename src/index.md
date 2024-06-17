@@ -34,7 +34,7 @@ pnpm add create-puzzle
 项目中使用
 
 ```typescript
-import createPuzzle from 'create-puzzle';
+import { createPuzzle } from 'create-puzzle';
 
 createPuzzle(imgUrl).then((res) => {
   console.log(res);
@@ -72,6 +72,8 @@ createPuzzle(imgUrl).then((res) => {
 ## API
 
 ```javascript
+import { createPuzzle, Options, Result, Point, clearCache } from 'create-puzzle';
+
 function createPuzzle(imgUrl: string | Blob, options?: Options): Promise<Result>;
 
 type Options = {
@@ -99,7 +101,7 @@ type Options = {
   // 上传的图片
   imageWidth?: number; // 自定义输入图片宽度。
   imageHeight?: number; // 自定义输入图片高度。
-  cacheImage?: boolean | CacheOptions; // 缓存最近加载成功的图片。默认为 true 。更多信息可查阅：https://doly-dev.github.io/util-helpers/global.html#CacheOptions
+  cacheImage?: boolean; // 缓存最近加载成功的图片，最大缓存数量为 5 ，可使用 clearCache 清理缓存。默认为 true 。
   ajaxOptions?: AjaxOptions; // ajax 请求配置项，当传入的图片为字符串时才会触发请求。更多信息可查阅： https://doly-dev.github.io/util-helpers/global.html#AjaxOptions
 
   // 导出图片

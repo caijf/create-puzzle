@@ -204,7 +204,7 @@ describe('createPuzzle', () => {
     expect(consoleError).toHaveBeenCalledTimes(0);
     resMethod = ResponseMethod.Error;
     try {
-      await createPuzzle('https://example.com/image');
+      await createPuzzle('https://example.com/image', { cacheImage: false });
     } catch (err: any) {
       expect(err.message).toBe('ajax error');
     }
@@ -215,7 +215,7 @@ describe('createPuzzle', () => {
     expect(consoleError).toHaveBeenCalledTimes(0);
     imageLoadStatus = ImageLoadStatus.Error;
     try {
-      await createPuzzle('https://example.com/image');
+      await createPuzzle('https://example.com/image', { cacheImage: false });
     } catch (err: any) {
       expect(err.message).toBe('load error');
     }

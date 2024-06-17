@@ -1,3 +1,5 @@
+import { randomInt } from 'ut2';
+
 const mathPI = Math.PI;
 
 // 拼图点
@@ -8,15 +10,10 @@ export enum Point {
 }
 export const pointArray = [Point.None, Point.Outer, Point.Inner];
 
-// 获取随机整数，大于等于0，小于max
-export function getRandomInt(max: number, min = 0) {
-  return Math.max(Math.floor(Math.random() * max), min);
-}
-
 // 随机选择数组中的某一项
 function pick<T = any>(arr: T[]) {
   const len = arr.length;
-  const randomIndex = getRandomInt(len);
+  const randomIndex = randomInt(0, len - 1);
   return arr[randomIndex];
 }
 

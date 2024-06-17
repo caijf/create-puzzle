@@ -11,7 +11,7 @@ import {
   BizFormItemUpload,
 } from 'antd-more';
 import { debounce } from 'ut2';
-import createPuzzle, { Result } from 'create-puzzle';
+import { createPuzzle, Result } from 'create-puzzle';
 import { Affix, Alert, Button, Card, Col, Empty, message, Row, Spin } from 'antd';
 import styles from './generator.less';
 
@@ -505,7 +505,7 @@ function Demo() {
                 <BizFormItemSwitch
                   label="缓存"
                   name="cacheImage"
-                  tooltip="缓存最近一次加载成功的图片。注意图片宽高也会一并缓存。"
+                  tooltip="缓存最近加载成功的图片。注意图片宽高也会一并缓存。"
                 />
               </Card>
             </Card>
@@ -516,9 +516,11 @@ function Demo() {
             <Card
               title="生成结果"
               size="small"
-              bodyStyle={{
-                maxHeight: 'calc(100vh - 80px)',
-                overflowY: 'auto',
+              styles={{
+                body: {
+                  maxHeight: 'calc(100vh - 80px)',
+                  overflowY: 'auto',
+                },
               }}
               className={styles.result}
               extra={

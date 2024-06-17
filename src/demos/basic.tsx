@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import createPuzzle, { Result } from 'create-puzzle';
+import { createPuzzle, Result } from 'create-puzzle';
 import DemoImage from './sunflower.jpg';
 
 function Demo() {

@@ -1,6 +1,27 @@
-import { loadImageWithBlob } from 'util-helpers';
-import { getRandomPoints, drawPuzzle, Point, getRandomInt, canvasToImage } from './util';
-import { uniqueId } from 'ut2';
+import { AsyncMemo, loadImageWithBlob } from 'util-helpers';
+import { getRandomPoints, drawPuzzle, Point, canvasToImage } from './util';
+import { randomInt, uniqueId } from 'ut2';
+
+const asyncMemo = new AsyncMemo<{
+  image: HTMLImageElement;
+  blob: Blob;
+}>({ max: 5, maxStrategy: 'replaced' });
+asyncMemo.cache.on('del', (k, v) => {
+  try {
+    if (v.image.src) {
+      URL.revokeObjectURL(v.image.src);
+    }
+  } catch (err) {
+    /* empty */
+  }
+});
+function clearCache(key?: string | string[]) {
+  if (key) {
+    asyncMemo.cache.del(key);
+  } else {
+    asyncMemo.cache.clear();
+  }
+}
 
 const weakMap = new WeakMap();
 const getCacheKey = (obj: string | Blob) => {
@@ -48,8 +69,8 @@ type Options = {
   // 上传的图片
   imageWidth?: number; // 自定义输入图片宽度。
   imageHeight?: number; // 自定义输入图片高度。
-  cacheImage?: Parameters<typeof loadImageWithBlob>[1]; // 缓存最近加载成功的图片。默认为 true 。
-  ajaxOptions?: Parameters<typeof loadImageWithBlob>[2]; // ajax 请求配置项，当传入的图片为字符串时才会触发请求。可查阅： https://doly-dev.github.io/util-helpers/global.html#AjaxOptions
+  cacheImage?: boolean; // 缓存最近加载成功的图片，最大缓存数量为 5 ，可使用 clearCache 清理缓存。默认为 true 。
+  ajaxOptions?: Parameters<typeof loadImageWithBlob>[1]; // ajax 请求配置项，当传入的图片为字符串时才会触发请求。可查阅： https://doly-dev.github.io/util-helpers/global.html#AjaxOptions
 
   // 导出配置
   bgImageType?: string; // 背景图导出类型。默认 image/jpeg
@@ -90,7 +111,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     quality = 0.8,
     format = 'dataURL',
 
-    cacheImage,
+    cacheImage = true,
     autoRevokePreviousBlobUrl = true,
     ajaxOptions,
   } = options;
@@ -102,15 +123,10 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     const bgCtx = bgCanvas.getContext('2d')!;
     const puzzleCtx = puzzleCanvas.getContext('2d')!;
 
-    const cacheKey = getCacheKey(imgUrl);
-    const cacheOptions =
-      cacheImage !== false
-        ? cacheImage === true
-          ? { cacheKey }
-          : { cacheKey, ...cacheImage }
-        : false;
+    const cacheKey = cacheImage ? getCacheKey(imgUrl) : undefined;
 
-    loadImageWithBlob(imgUrl, cacheOptions, ajaxOptions)
+    asyncMemo
+      .run(() => loadImageWithBlob(imgUrl, ajaxOptions), cacheKey)
       .then(({ image: img }) => {
         if (imageWidth) {
           img.width = imageWidth;
@@ -136,8 +152,8 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
 
         const maxOffsetX = bgWidth - width;
         const maxOffsetY = bgHeight - height;
-        let x = typeof outX === 'undefined' ? getRandomInt(maxOffsetX, width) : outX || 0;
-        let y = typeof outY === 'undefined' ? getRandomInt(maxOffsetY) : outY || 0;
+        let x = typeof outX === 'undefined' ? randomInt(width, maxOffsetX) : outX || 0;
+        let y = typeof outY === 'undefined' ? randomInt(0, maxOffsetY) : outY || 0;
 
         if (x < 0) {
           x = 0;
@@ -214,7 +230,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
   });
 }
 
-export { getRandomPoints, drawPuzzle, getRandomInt, Point };
+export { createPuzzle, getRandomPoints, Point, clearCache };
 export type { Result, Options };
 
 export default createPuzzle;
