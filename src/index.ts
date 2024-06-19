@@ -1,17 +1,5 @@
 import { loadImageWithBlob } from 'util-helpers';
 import { getRandomPoints, drawPuzzle, Point, getRandomInt, canvasToImage } from './util';
-import { uniqueId } from 'ut2';
-
-const weakMap = new WeakMap();
-const getCacheKey = (obj: string | Blob) => {
-  if (typeof obj === 'string') {
-    return obj;
-  }
-  if (!weakMap.get(obj)) {
-    weakMap.set(obj, uniqueId('cp'));
-  }
-  return weakMap.get(obj) as string;
-};
 
 const MimeType = {
   jpeg: 'image/jpeg',
@@ -102,15 +90,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     const bgCtx = bgCanvas.getContext('2d')!;
     const puzzleCtx = puzzleCanvas.getContext('2d')!;
 
-    const cacheKey = getCacheKey(imgUrl);
-    const cacheOptions =
-      cacheImage !== false
-        ? cacheImage === true
-          ? { cacheKey }
-          : { cacheKey, ...cacheImage }
-        : false;
-
-    loadImageWithBlob(imgUrl, cacheOptions, ajaxOptions)
+    loadImageWithBlob(imgUrl, cacheImage, ajaxOptions)
       .then(({ image: img }) => {
         if (imageWidth) {
           img.width = imageWidth;
