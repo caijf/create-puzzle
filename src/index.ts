@@ -1,6 +1,6 @@
 import { AsyncMemo, loadImageWithBlob } from 'util-helpers';
 import { getRandomPoints, drawPuzzle, Point, canvasToImage } from './util';
-import { randomInt, uniqueId } from 'ut2';
+import { isObject, randomInt, uniqueId } from 'ut2';
 
 const asyncMemo = new AsyncMemo<{
   image: HTMLImageElement;
@@ -23,15 +23,15 @@ function clearCache(key?: string | string[]) {
   }
 }
 
-const weakMap = new WeakMap();
+const wm = new WeakMap();
 const getCacheKey = (obj: string | Blob) => {
-  if (typeof obj === 'string') {
-    return obj;
+  if (!isObject(obj)) {
+    return String(obj);
   }
-  if (!weakMap.get(obj)) {
-    weakMap.set(obj, uniqueId('cp'));
+  if (!wm.get(obj)) {
+    wm.set(obj, uniqueId('cp'));
   }
-  return weakMap.get(obj) as string;
+  return wm.get(obj) as string;
 };
 
 const MimeType = {
