@@ -89,9 +89,10 @@ export function drawPuzzle(
           left: Point;
         };
     margin?: number; // 外部留白
+    needClosePath?: boolean; // 是否要闭合路径
   } = {},
 ) {
-  const { x = 0, y = 0, w = 60, h = 60 } = options;
+  const { x = 0, y = 0, w = 60, h = 60, needClosePath = true } = options;
   let { points, margin = 0 } = options;
 
   margin = margin <= 0 ? 0 : margin;
@@ -172,7 +173,7 @@ export function drawPuzzle(
 
   ctx.stroke();
 
-  ctx.closePath();
+  needClosePath && ctx.closePath();
 
   // ctx.fillStyle = "red";
   // ctx.fill();

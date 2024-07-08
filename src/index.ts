@@ -230,7 +230,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
   });
 }
 
-export { createPuzzle, getRandomPoints, Point, clearCache };
+export { createPuzzle, getRandomPoints, drawPuzzle, Point, clearCache };
 export type { Result, Options };
 
 export default createPuzzle;
