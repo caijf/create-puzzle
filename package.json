@@ -5,9 +5,7 @@
   "scripts": {
     "start": "dumi dev",
     "test": "jest",
-    "build": "rm -rf dist && npm run build:module && npm run build:umd && npm run build:types",
-    "build:module": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
-    "build:umd": "rollup --config rollup.umd.config.ts --configPlugin @rollup/plugin-typescript",
+    "build": "rm -rf dist && rollup --config rollup.config.ts --configPlugin typescript && npm run build:types",
     "build:types": "rm -rf types && tsc -p tsconfig.types.json",
     "docs:build": "dumi build",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
