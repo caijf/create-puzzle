@@ -14,7 +14,7 @@ toc: false
 
 [点击返回 create-puzzle 文档](./)
 
-[rc-slider-captcha]: https://caijf.github.io/rc-slider-captcha/index.html
+[rc-slider-captcha]: https://caijf.github.io/rc-slider-captcha/
 [npm]: https://img.shields.io/npm/v/create-puzzle.svg
 [npm-url]: https://npmjs.com/package/create-puzzle
 [github-star]: https://img.shields.io/github/stars/caijf/create-puzzle?style=social
