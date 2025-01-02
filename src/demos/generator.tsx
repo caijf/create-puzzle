@@ -10,10 +10,11 @@ import {
   BizFormItemTextArea,
   BizFormItemUpload,
 } from 'antd-more';
-import { debounce } from 'ut2';
+import { debounce, isArray, uniqueId } from 'ut2';
 import { createPuzzle, Result } from 'create-puzzle';
 import { Affix, Alert, Button, Card, Col, Empty, message, Row, Spin } from 'antd';
 import styles from './generator.less';
+import ImageSunflower from './sunflower.jpg';
 
 enum ImgSourceType {
   Upload,
@@ -205,7 +206,7 @@ function Demo() {
     setLoading(true);
 
     const url =
-      imgSourceType === ImgSourceType.Upload ? img[0]?.originFileObj || img[0] : imgSourceUrl;
+      imgSourceType === ImgSourceType.Upload ? img[0]?.originFileObj || img[0]?.url : imgSourceUrl;
     const x = internalTypeX === InputType.Default ? undefined : offsetX;
     const y = internalTypeY === InputType.Default ? undefined : offsetY;
     const bgWidth = bgWidthType === InputType.Default ? undefined : internalBgWidth;
@@ -291,7 +292,27 @@ function Demo() {
               type="avatar"
               name="img"
               title="点击上传图片"
-              extra="上传后再点击图片可以重新上传"
+              extra={
+                <div>
+                  上传后再点击图片可以重新上传，
+                  <a
+                    onClick={() => {
+                      const currentImg = form.getFieldValue('img');
+                      if (!isArray(currentImg) || currentImg[0]?.url !== ImageSunflower) {
+                        form.setFieldValue('img', [
+                          { uid: uniqueId(), name: 'sunflower.jpg', url: ImageSunflower },
+                        ]);
+
+                        countRef.current += 1;
+                        deouncedCreate();
+                      }
+                    }}
+                  >
+                    点击使用示例图片
+                  </a>
+                  。
+                </div>
+              }
               className={styles.itemUpload}
               maxSize={50 * 1024 * 1024}
               hidden={imgSourceType !== ImgSourceType.Upload}
