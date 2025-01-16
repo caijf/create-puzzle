@@ -9,6 +9,7 @@ on:
       - .umirc.ts
       - .github/**
       - package.json
+      - README.md
 
 jobs:
   build-and-deploy:

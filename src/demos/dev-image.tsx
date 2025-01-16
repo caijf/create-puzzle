@@ -1,3 +1,6 @@
+/**
+ * debug: true
+ */
 import React, { useEffect, useRef } from 'react';
 import DemoImage from './sunflower.jpg';
 import { drawPuzzle } from '../util';

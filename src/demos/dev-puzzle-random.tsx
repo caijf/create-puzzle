@@ -1,3 +1,6 @@
+/**
+ * debug: true
+ */
 import React, { useEffect, useRef, useState } from 'react';
 import { drawPuzzle } from '../util';
 
