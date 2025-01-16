@@ -21,17 +21,21 @@ type Options = {
   borderWidth?: number; // \u63CF\u8FB9\u5BBD\u5EA6\u3002\u9ED8\u8BA4 2
   borderColor?: string; // \u63CF\u8FB9\u989C\u8272\u3002\u9ED8\u8BA4 rgba(255,255,255,0.7)
   fillColor?: string; // \u586B\u5145\u989C\u8272\u3002\u9ED8\u8BA4 rgba(255,255,255,0.7)
-  points?:  2 | 3 | 4 | {
-    top: Point;
-    right: Point;
-    bottom: Point;
-    left: Point;
-  }; // \u62FC\u56FE\u70B9\uFF0C\u4E0D\u4F20\u9ED8\u8BA4\u968F\u673A2/3/4
-  width?: number;  // \u5BBD\u5EA6\u3002\u9ED8\u8BA4 60
+  points?:
+    | 2
+    | 3
+    | 4
+    | {
+        top: Point;
+        right: Point;
+        bottom: Point;
+        left: Point;
+      }; // \u62FC\u56FE\u70B9\uFF0C\u4E0D\u4F20\u9ED8\u8BA4\u968F\u673A2/3/4
+  width?: number; // \u5BBD\u5EA6\u3002\u9ED8\u8BA4 60
   height?: number; // \u9AD8\u5EA6\u3002\u9ED8\u8BA4 60
   x?: number; // x \u8F74\u504F\u79FB\u503C\uFF0C\u5982\u679C\u4E0D\u4F20\u5185\u90E8\u968F\u673A\u751F\u6210\u3002
   y?: number; // y \u8F74\u504F\u79FB\u503C\uFF0C\u5982\u679C\u4E0D\u4F20\u5185\u90E8\u968F\u673A\u751F\u6210\u3002
-  margin?: number;  // \u4E0A\u4E0B\u5DE6\u53F3\u7559\u767D\u3002\u9ED8\u8BA4 2
+  margin?: number; // \u4E0A\u4E0B\u5DE6\u53F3\u7559\u767D\u3002\u9ED8\u8BA4 2
 
   // \u80CC\u666F\u56FE
   bgWidth?: number; // \u80CC\u666F\u56FE\u5BBD\u5EA6\u3002\u9ED8\u8BA4 \u56FE\u7247\u5BBD\u5EA6
@@ -49,20 +53,20 @@ type Options = {
   quality?: number; // \u5BFC\u51FA\u56FE\u7247\u8D28\u91CF\u3002\u9ED8\u8BA4 0.8 \u3002
   format?: 'dataURL' | 'blob'; // \u5BFC\u51FA\u56FE\u7247\u683C\u5F0F\u3002\u9ED8\u8BA4 dataURL \u3002
   autoRevokePreviousBlobUrl?: boolean; // \u81EA\u52A8\u91CA\u653E\u4E4B\u524D\u5BFC\u51FA\u7684 blob url \uFF0C\u4EC5\u5728 format='blob' \u65F6\u751F\u6548\u3002\u9ED8\u8BA4 true \u3002
-}
+};
 
 type Result = {
   bgUrl: string; // \u80CC\u666F\u56FE
   puzzleUrl: string; // \u62FC\u56FE
   x: number; // x \u8F74\u504F\u79FB\u503C\u3002\u5982\u679C\u4F7F\u7528\u8BE5\u503C\u6821\u9A8C\uFF0C\u5EFA\u8BAE\u524D\u540E\u9608\u503C\u589E\u51CF 5 \u7684\u8303\u56F4
   y: number; // y \u8F74\u504F\u79FB\u503C\uFF0C\u7B49\u9AD8\u62FC\u56FE\u65F6\u503C\u59CB\u7EC8\u4E3A 0
-}
+};
 
 // \u62FC\u56FE\u70B9
 enum Point {
-  None,    // \u6CA1\u6709
+  None, // \u6CA1\u6709
   Outer, // \u5916\u90E8
-  Inner  // \u5185\u90E8
+  Inner, // \u5185\u90E8
 }
 `,paraId:13,tocIndex:7}]},48011:function(R,i){i.Z=`import React, { useEffect, useState } from 'react';
 import { createPuzzle, Result } from 'create-puzzle';
