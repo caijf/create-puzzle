@@ -51,9 +51,9 @@ createPuzzle(imgUrl).then((res) => {
 
 ### 原生 js 开发环境
 
-如果你的项目使用的是原生方式开发，可以在浏览器中使用 script 标签直接引入文件，并使用全局变量 createPuzzle 。
+如果你的项目使用的是原生方式开发，可以在浏览器中使用 `script` 标签直接引入文件，并使用全局变量 `createPuzzle` 。
 
-npm 包的 dist 目录下提供了 UMD 包 createPuzzle.js 以及 createPuzzle.min.js。你也可以通过 [UNPKG](https://unpkg.com/create-puzzle/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/create-puzzle@latest/dist/createPuzzle.min.js)<sup>注意版本</sup>。
+npm 包的 `dist` 目录下提供了 UMD 包 `createPuzzle.js` 以及 `createPuzzle.min.js`。你也可以通过 [UNPKG](https://unpkg.com/create-puzzle/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/create-puzzle@latest/dist/createPuzzle.min.js)<sup>注意版本</sup>。
 
 ## API
 

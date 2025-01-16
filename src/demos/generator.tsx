@@ -13,7 +13,7 @@ import {
 import { debounce, isArray, uniqueId } from 'ut2';
 import { createPuzzle, Result } from 'create-puzzle';
 import { Affix, Alert, Button, Card, Col, Empty, message, Row, Spin } from 'antd';
-import styles from './generator.less';
+import styles from './generator.module.less';
 import ImageSunflower from './sunflower.jpg';
 
 enum ImgSourceType {
@@ -562,7 +562,9 @@ function Demo() {
                 <Spin spinning={loading} delay={300}>
                   <BizDescriptions
                     column={1}
-                    labelStyle={{ width: 98, justifyContent: 'flex-end' }}
+                    styles={{
+                      label: { width: 98, justifyContent: 'flex-end' },
+                    }}
                   >
                     <BizDescriptions.Item
                       label="背景图"

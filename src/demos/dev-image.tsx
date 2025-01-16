@@ -1,7 +1,3 @@
-/**
- * debug: true
- * title: 图像
- */
 import React, { useEffect, useRef } from 'react';
 import DemoImage from './sunflower.jpg';
 import { drawPuzzle } from '../util';

@@ -8,6 +8,11 @@
     "lib": ["DOM", "ESNext"],
     "types": ["jest"],
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@@/*": [".dumi/tmp/*"],
+      "create-puzzle": ["src"]
+    }
   }
 }

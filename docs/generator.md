@@ -1,6 +1,6 @@
 ---
 title: 拼图生成器
-sidemenu: false
+sidebar: false
 toc: false
 ---
 
@@ -10,7 +10,11 @@ toc: false
 
 可以使用该工具生成图片存入拼图图库，建议图片尺寸 `320 <= 高度 <= 480` `160 <= 宽度 <= 240` ，前端推荐搭配 [rc-slider-captcha] 使用。
 
-<code src="./demos/generator.tsx" inline />
+<br/>
+
+<code src="../src/demos/generator.tsx" inline></code>
+
+<br/>
 
 [点击返回 create-puzzle 文档](./)
 

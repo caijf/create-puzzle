@@ -1,7 +1,3 @@
-/**
- * debug: true
- * title: 路径拼图
- */
 import React, { useEffect, useRef } from 'react';
 
 function Demo() {

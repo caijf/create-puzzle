@@ -1,7 +1,3 @@
-/**
- * debug: true
- * title: 随机拼图
- */
 import React, { useEffect, useRef, useState } from 'react';
 import { drawPuzzle } from '../util';
 
