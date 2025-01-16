@@ -113,7 +113,7 @@ enum Point {
 ```
 
 [site]: https://caijf.github.io/create-puzzle/index.html
-[generator]: https://caijf.github.io/create-puzzle/index.html#/generator
+[generator]: https://caijf.github.io/create-puzzle/generator
 [rc-slider-captcha]: https://caijf.github.io/rc-slider-captcha/
 [npm]: https://img.shields.io/npm/v/create-puzzle.svg
 [npm-url]: https://npmjs.com/package/create-puzzle
