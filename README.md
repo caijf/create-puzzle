@@ -57,7 +57,7 @@ npm 包的 `dist` 目录下提供了 UMD 包 `createPuzzle.js` 以及 `createPuz
 
 ## API
 
-```javascript
+```typescript
 import { createPuzzle, Options, Result, Point, clearCache } from 'create-puzzle';
 
 function createPuzzle(imgUrl: string | Blob, options?: Options): Promise<Result>;
@@ -67,17 +67,21 @@ type Options = {
   borderWidth?: number; // 描边宽度。默认 2
   borderColor?: string; // 描边颜色。默认 rgba(255,255,255,0.7)
   fillColor?: string; // 填充颜色。默认 rgba(255,255,255,0.7)
-  points?:  2 | 3 | 4 | {
-    top: Point;
-    right: Point;
-    bottom: Point;
-    left: Point;
-  }; // 拼图点，不传默认随机2/3/4
-  width?: number;  // 宽度。默认 60
+  points?:
+    | 2
+    | 3
+    | 4
+    | {
+        top: Point;
+        right: Point;
+        bottom: Point;
+        left: Point;
+      }; // 拼图点，不传默认随机2/3/4
+  width?: number; // 宽度。默认 60
   height?: number; // 高度。默认 60
   x?: number; // x 轴偏移值，如果不传内部随机生成。
   y?: number; // y 轴偏移值，如果不传内部随机生成。
-  margin?: number;  // 上下左右留白。默认 2
+  margin?: number; // 上下左右留白。默认 2
 
   // 背景图
   bgWidth?: number; // 背景图宽度。默认 图片宽度
@@ -95,20 +99,20 @@ type Options = {
   quality?: number; // 导出图片质量。默认 0.8 。
   format?: 'dataURL' | 'blob'; // 导出图片格式。默认 dataURL 。
   autoRevokePreviousBlobUrl?: boolean; // 自动释放之前导出的 blob url ，仅在 format='blob' 时生效。默认 true 。
-}
+};
 
 type Result = {
   bgUrl: string; // 背景图
   puzzleUrl: string; // 拼图
   x: number; // x 轴偏移值。如果使用该值校验，建议前后阈值增减 5 的范围
   y: number; // y 轴偏移值，等高拼图时值始终为 0
-}
+};
 
 // 拼图点
 enum Point {
-  None,    // 没有
+  None, // 没有
   Outer, // 外部
-  Inner  // 内部
+  Inner, // 内部
 }
 ```
 
