@@ -2,7 +2,6 @@ import React, { useCallback, useRef, useState } from 'react';
 import {
   BizDescriptions,
   BizForm,
-  BizFormExtraInstance,
   BizFormItemColorPicker,
   BizFormItemNumber,
   BizFormItemRadio,
@@ -11,12 +10,11 @@ import {
   BizFormItemTextArea,
   BizFormItemUpload,
 } from 'antd-more';
-import { debounce, isArray, isObject, uniqueId } from 'ut2';
+import { debounce, isArray, uniqueId } from 'ut2';
 import { createPuzzle, Result } from 'create-puzzle';
 import { Affix, Alert, Button, Card, Col, Empty, message, Row, Spin } from 'antd';
 import styles from './generator.module.less';
 import ImageSunflower from './sunflower.jpg';
-import { SingleValueType } from 'antd/es/color-picker/interface';
 
 enum ImgSourceType {
   Upload,
@@ -151,7 +149,6 @@ const initialValues = {
 
 function Demo() {
   const [form] = BizForm.useForm();
-  const formExtraRef = useRef<BizFormExtraInstance>();
   const typeX = BizForm.useWatch(['typeX'], form);
   const typeY = BizForm.useWatch(['typeY'], form);
   const bgWidthType = BizForm.useWatch(['bgWidthType'], form);
@@ -188,7 +185,7 @@ function Demo() {
       imageHeight: internalImageHeight,
       cacheImage: outCacheImage,
       ...restValues
-    } = formExtraRef.current!.getTransformFieldsValue();
+    } = form.getFieldsValue();
 
     if (imgSourceType === ImgSourceType.Upload) {
       if (!Array.isArray(img) || !img[0]) {
@@ -280,7 +277,6 @@ function Demo() {
               countRef.current += 1;
               deouncedCreate();
             }}
-            formExtraRef={formExtraRef}
           >
             <BizFormItemRadio
               label="图片源类型"
@@ -404,14 +400,14 @@ function Demo() {
                     <BizFormItemColorPicker
                       label="描边颜色"
                       name="borderColor"
-                      transform={(v: SingleValueType) => (isObject(v) ? v.toCssString() : v)}
+                      normalize={(v) => BizFormItemColorPicker.transformColor(v, 'rgb')}
                     />
                   </Col>
                   <Col {...colspan}>
                     <BizFormItemColorPicker
                       label="填充颜色"
                       name="fillColor"
-                      transform={(v: SingleValueType) => (isObject(v) ? v.toCssString() : v)}
+                      normalize={(v) => BizFormItemColorPicker.transformColor(v, 'rgb')}
                     />
                   </Col>
                   <Col {...colspan}>
