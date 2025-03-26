@@ -2,7 +2,8 @@ import React, { useCallback, useRef, useState } from 'react';
 import {
   BizDescriptions,
   BizForm,
-  BizFormItemColor,
+  BizFormExtraInstance,
+  BizFormItemColorPicker,
   BizFormItemNumber,
   BizFormItemRadio,
   BizFormItemSelect,
@@ -10,11 +11,12 @@ import {
   BizFormItemTextArea,
   BizFormItemUpload,
 } from 'antd-more';
-import { debounce, isArray, uniqueId } from 'ut2';
+import { debounce, isArray, isObject, uniqueId } from 'ut2';
 import { createPuzzle, Result } from 'create-puzzle';
 import { Affix, Alert, Button, Card, Col, Empty, message, Row, Spin } from 'antd';
 import styles from './generator.module.less';
 import ImageSunflower from './sunflower.jpg';
+import { SingleValueType } from 'antd/es/color-picker/interface';
 
 enum ImgSourceType {
   Upload,
@@ -149,6 +151,7 @@ const initialValues = {
 
 function Demo() {
   const [form] = BizForm.useForm();
+  const formExtraRef = useRef<BizFormExtraInstance>();
   const typeX = BizForm.useWatch(['typeX'], form);
   const typeY = BizForm.useWatch(['typeY'], form);
   const bgWidthType = BizForm.useWatch(['bgWidthType'], form);
@@ -162,7 +165,7 @@ function Demo() {
   const [error, setError] = useState<any>(null);
   const countRef = useRef(1);
 
-  const create = useCallback((values?: any) => {
+  const create = useCallback(() => {
     const {
       imgSourceType,
       imgSourceUrl,
@@ -185,7 +188,7 @@ function Demo() {
       imageHeight: internalImageHeight,
       cacheImage: outCacheImage,
       ...restValues
-    } = values || form.getFieldsValue();
+    } = formExtraRef.current!.getTransformFieldsValue();
 
     if (imgSourceType === ImgSourceType.Upload) {
       if (!Array.isArray(img) || !img[0]) {
@@ -273,10 +276,11 @@ function Demo() {
               imgSourceType: ImgSourceType.Upload,
               ...initialValues,
             }}
-            onValuesChange={(_, values) => {
+            onValuesChange={() => {
               countRef.current += 1;
-              deouncedCreate(values);
+              deouncedCreate();
             }}
+            formExtraRef={formExtraRef}
           >
             <BizFormItemRadio
               label="图片源类型"
@@ -324,7 +328,7 @@ function Demo() {
               hideLabel
               disabledWhiteSpace
               allowClear
-              inputProps={{
+              textAreaProps={{
                 size: 'large',
                 autoSize: { minRows: 2, maxRows: 6 },
               }}
@@ -359,9 +363,7 @@ function Demo() {
                     <BizFormItemNumber
                       name="offsetX"
                       precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
+                      min={0}
                       style={{ margin: 0 }}
                       hidden={typeX !== InputType.Custom}
                     />
@@ -376,9 +378,7 @@ function Demo() {
                     <BizFormItemNumber
                       name="offsetY"
                       precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
+                      min={0}
                       style={{ margin: 0 }}
                       hidden={typeY !== InputType.Custom}
                     />
@@ -386,20 +386,10 @@ function Demo() {
                 />
                 <Row>
                   <Col {...colspan}>
-                    <BizFormItemNumber
-                      label="宽度"
-                      name="width"
-                      precision={0}
-                      inputProps={{ min: 20 }}
-                    />
+                    <BizFormItemNumber label="宽度" name="width" precision={0} min={20} />
                   </Col>
                   <Col {...colspan}>
-                    <BizFormItemNumber
-                      label="高度"
-                      name="height"
-                      precision={0}
-                      inputProps={{ min: 20 }}
-                    />
+                    <BizFormItemNumber label="高度" name="height" precision={0} min={20} />
                   </Col>
                   <Col {...colspan}>
                     <BizFormItemNumber label="留白" name="margin" precision={0} />
@@ -411,10 +401,18 @@ function Demo() {
                     <BizFormItemNumber label="描边宽度" name="borderWidth" precision={0} />
                   </Col>
                   <Col {...colspan}>
-                    <BizFormItemColor label="描边颜色" name="borderColor" colorMode="rgb" />
+                    <BizFormItemColorPicker
+                      label="描边颜色"
+                      name="borderColor"
+                      transform={(v: SingleValueType) => (isObject(v) ? v.toCssString() : v)}
+                    />
                   </Col>
                   <Col {...colspan}>
-                    <BizFormItemColor label="填充颜色" name="fillColor" colorMode="rgb" />
+                    <BizFormItemColorPicker
+                      label="填充颜色"
+                      name="fillColor"
+                      transform={(v: SingleValueType) => (isObject(v) ? v.toCssString() : v)}
+                    />
                   </Col>
                   <Col {...colspan}>
                     <BizFormItemRadio
@@ -437,9 +435,7 @@ function Demo() {
                     <BizFormItemNumber
                       name="bgWidth"
                       precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
+                      min={0}
                       style={{ margin: 0 }}
                       hidden={bgWidthType !== InputType.Custom}
                     />
@@ -454,9 +450,7 @@ function Demo() {
                     <BizFormItemNumber
                       name="bgHeight"
                       precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
+                      min={0}
                       style={{ margin: 0 }}
                       hidden={bgHeightType !== InputType.Custom}
                     />
@@ -498,9 +492,7 @@ function Demo() {
                     <BizFormItemNumber
                       name="imageWidth"
                       precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
+                      min={0}
                       style={{ margin: 0 }}
                       hidden={imageWidthType !== InputType.Custom}
                     />
@@ -515,9 +507,7 @@ function Demo() {
                     <BizFormItemNumber
                       name="imageHeight"
                       precision={0}
-                      inputProps={{
-                        min: 0,
-                      }}
+                      min={0}
                       style={{ margin: 0 }}
                       hidden={imageHeightType !== InputType.Custom}
                     />
