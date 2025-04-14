@@ -16,6 +16,8 @@ import { Affix, Alert, Button, Card, Col, Empty, message, Row, Spin } from 'antd
 import styles from './generator.module.less';
 import ImageSunflower from './sunflower.jpg';
 
+const LoremPicsumUrl = 'https://picsum.photos/360/160';
+
 enum ImgSourceType {
   Upload,
   Input,
@@ -329,6 +331,19 @@ function Demo() {
                 autoSize: { minRows: 2, maxRows: 6 },
               }}
               hidden={imgSourceType !== ImgSourceType.Input}
+              extra={
+                <div>
+                  <a
+                    onClick={() => {
+                      form.setFieldValue('imgSourceUrl', LoremPicsumUrl + '?t=' + Date.now());
+                      countRef.current += 1;
+                      deouncedCreate();
+                    }}
+                  >
+                    点击使用 Lorem Picsum
+                  </a>
+                </div>
+              }
             />
             <Card
               title="配置项"
