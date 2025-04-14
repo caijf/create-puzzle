@@ -16,7 +16,7 @@ import { Affix, Alert, Button, Card, Col, Empty, message, Row, Spin } from 'antd
 import styles from './generator.module.less';
 import ImageSunflower from './sunflower.jpg';
 
-const LoremPicsumUrl = 'https://picsum.photos/360/160';
+const LoremPicsumUrl = 'https://picsum.photos/320/160';
 
 enum ImgSourceType {
   Upload,
