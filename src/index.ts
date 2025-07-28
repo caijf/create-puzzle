@@ -11,6 +11,7 @@ asyncMemo.cache.on('del', (k, v) => {
     if (v.image.src) {
       URL.revokeObjectURL(v.image.src);
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
     /* empty */
   }

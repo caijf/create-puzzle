@@ -173,7 +173,9 @@ export function drawPuzzle(
 
   ctx.stroke();
 
-  needClosePath && ctx.closePath();
+  if (needClosePath) {
+    ctx.closePath();
+  }
 
   // ctx.fillStyle = "red";
   // ctx.fill();
