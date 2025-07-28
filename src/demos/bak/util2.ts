@@ -30,7 +30,7 @@ export function drawPuzzle(
       bottom?: Point;
       left?: Point;
     };
-  } = {},
+  } = {}
 ) {
   const {
     r = 7,
@@ -38,8 +38,8 @@ export function drawPuzzle(
       top: getRandomPuzzlePoint(),
       right: getRandomPuzzlePoint(),
       bottom: getRandomPuzzlePoint(),
-      left: getRandomPuzzlePoint(),
-    },
+      left: getRandomPuzzlePoint()
+    }
   } = options;
 
   const l = Math.hypot(r, r); // 斜边长度

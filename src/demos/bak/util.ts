@@ -11,7 +11,7 @@ export function drawCircle3_4(
   x: number,
   y: number,
   r: number,
-  dir: CircleDir = 'top',
+  dir: CircleDir = 'top'
 ) {
   let sAngle = 0;
   let eAngle = 0;
@@ -93,7 +93,7 @@ export function drawPuzzle(
       left?: Point;
     };
     // min?: number;
-  } = {},
+  } = {}
 ) {
   const {
     r = 7.5,
@@ -101,15 +101,15 @@ export function drawPuzzle(
       top: getRandomPuzzlePointValue(),
       right: getRandomPuzzlePointValue(),
       bottom: getRandomPuzzlePointValue(),
-      left: getRandomPuzzlePointValue(),
-    },
+      left: getRandomPuzzlePointValue()
+    }
   } = options;
 
   const rect = {
     x,
     y,
     w,
-    h,
+    h
   };
 
   const l = Math.hypot(r, r); // 斜边长度
@@ -120,7 +120,7 @@ export function drawPuzzle(
     top: [rect.x + rect.w / 2, rect.y - c3_4r],
     right: [rect.x + rect.w + c3_4r, rect.y + rect.h / 2],
     bottom: [rect.x + rect.w / 2, rect.y + rect.h + c3_4r],
-    left: [rect.x - c3_4r, rect.y + rect.h / 2],
+    left: [rect.x - c3_4r, rect.y + rect.h / 2]
   };
 
   // 圆在里面的位置
@@ -128,7 +128,7 @@ export function drawPuzzle(
     top: [rect.x + rect.w / 2, rect.y + c3_4r],
     right: [rect.x + rect.w - c3_4r, rect.y + rect.h / 2],
     bottom: [rect.x + rect.w / 2, rect.y + rect.h - c3_4r],
-    left: [rect.x + c3_4r, rect.y + rect.h / 2],
+    left: [rect.x + c3_4r, rect.y + rect.h / 2]
   };
 
   // sharp

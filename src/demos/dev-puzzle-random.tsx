@@ -23,7 +23,7 @@ function Demo() {
         w: size,
         h: size,
         margin,
-        points,
+        points
       });
     }
   }

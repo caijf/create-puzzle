@@ -112,7 +112,7 @@ type Result = {
 enum Point {
   None, // 没有
   Outer, // 外部
-  Inner, // 内部
+  Inner // 内部
 }
 ```
 

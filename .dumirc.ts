@@ -10,12 +10,12 @@ export default defineConfig({
     nav: [],
     prefersColor: {
       default: 'light',
-      switch: false,
+      switch: false
     },
     footer: `<div>
     <div>caijf | Copyright © 2022-present</div>
     <div>Powered by <a href="https://d.umijs.org/" target="_blank">dumi</a></div>
-    </div>`,
+    </div>`
   },
   favicons: ['https://www.caijinfeng.com/favicon.ico'],
   base: publicPath,
@@ -23,7 +23,7 @@ export default defineConfig({
   outputPath: 'docs-dist',
   // more config: https://d.umijs.org/config
   analytics: {
-    ga_v2: 'G-22TYFJH82L',
+    ga_v2: 'G-22TYFJH82L'
   },
   styles: [
     `body .dumi-default-doc-layout {
@@ -51,6 +51,6 @@ export default defineConfig({
       body .dumi-default-doc-layout > main {
         padding: 0 12px;
       }
-    }`,
-  ],
+    }`
+  ]
 });

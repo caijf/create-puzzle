@@ -13,9 +13,9 @@ const commonConfig = {
     resolve(),
     commonjs(),
     typescript({
-      tsconfig: './tsconfig.build.json',
-    }),
-  ],
+      tsconfig: './tsconfig.build.json'
+    })
+  ]
 };
 
 const config: RollupOptions[] = [
@@ -26,14 +26,14 @@ const config: RollupOptions[] = [
       {
         format: 'cjs',
         file: `${outputFilePrefix}.cjs.js`,
-        exports: 'named',
+        exports: 'named'
       },
       {
         format: 'es',
         file: `${outputFilePrefix}.esm.js`,
-        exports: 'named',
-      },
-    ],
+        exports: 'named'
+      }
+    ]
   },
   {
     ...commonConfig,
@@ -43,7 +43,7 @@ const config: RollupOptions[] = [
         file: `${outputFilePrefix}.js`,
         exports: 'named',
         name: pkgName,
-        sourcemap: true,
+        sourcemap: true
       },
       {
         format: 'umd',
@@ -51,10 +51,10 @@ const config: RollupOptions[] = [
         exports: 'named',
         name: pkgName,
         sourcemap: true,
-        plugins: [terser()],
-      },
-    ],
-  },
+        plugins: [terser()]
+      }
+    ]
+  }
 ];
 
 export default config;

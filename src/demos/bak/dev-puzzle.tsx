@@ -25,7 +25,7 @@ function Demo() {
       x: 40.5,
       y: 40.5,
       w: 40,
-      h: 40,
+      h: 40
     };
 
     const r = 7; // 圆的半径
@@ -37,7 +37,7 @@ function Demo() {
       top: [rect.x + rect.w / 2, rect.y - c3_4r],
       right: [rect.x + rect.w + c3_4r, rect.y + rect.h / 2],
       bottom: [rect.x + rect.w / 2, rect.y + rect.h + c3_4r],
-      left: [rect.x - c3_4r, rect.y + rect.h / 2],
+      left: [rect.x - c3_4r, rect.y + rect.h / 2]
     };
 
     // 圆在里面的位置
@@ -45,7 +45,7 @@ function Demo() {
       top: [rect.x + rect.w / 2, rect.y + c3_4r],
       right: [rect.x + rect.w - c3_4r, rect.y + rect.h / 2],
       bottom: [rect.x + rect.w / 2, rect.y + rect.h - c3_4r],
-      left: [rect.x + c3_4r, rect.y + rect.h / 2],
+      left: [rect.x + c3_4r, rect.y + rect.h / 2]
     };
 
     // sharp 1

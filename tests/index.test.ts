@@ -7,13 +7,13 @@ import {
   ResponseMethod,
   createSpyAjax,
   setResponseMethod,
-  setResponseStatus,
+  setResponseStatus
 } from './fixtures/spyAjax';
 import { mockImage, restoreImage, setImageLoadStatus } from './fixtures/mockImage';
 
 const sendMock = jest.fn();
 const spyAjax = createSpyAjax({
-  send: sendMock,
+  send: sendMock
 });
 
 const spyConsoleError = createSpyConsoleError();
@@ -72,12 +72,12 @@ describe('createPuzzle', () => {
     expect(sendMock).toHaveBeenCalledTimes(0);
 
     await createPuzzle(url, {
-      cacheImage: false,
+      cacheImage: false
     });
     expect(sendMock).toHaveBeenCalledTimes(1);
 
     await createPuzzle(url, {
-      cacheImage: false,
+      cacheImage: false
     });
     expect(sendMock).toHaveBeenCalledTimes(2);
   });
@@ -90,7 +90,7 @@ describe('createPuzzle', () => {
     const res2 = await createPuzzle('https://example.com/image', {
       x: 10,
       y: 10,
-      equalHeight: false,
+      equalHeight: false
     });
     expect(res2.x).toBe(10);
     expect(res2.y).toBe(10);
@@ -116,7 +116,7 @@ describe('createPuzzle', () => {
       bgImageType: 'image/png',
       quality: 0.92,
       imageWidth: 320,
-      imageHeight: 160,
+      imageHeight: 160
     });
 
     expect(res).toHaveProperty('x');
@@ -128,7 +128,7 @@ describe('createPuzzle', () => {
   it('format blob', async () => {
     const res = await createPuzzle('https://example.com/image', {
       format: 'blob',
-      quality: 0.5,
+      quality: 0.5
     });
 
     expect(res.bgUrl.indexOf('blob://') !== -1).toBe(true);

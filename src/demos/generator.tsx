@@ -8,7 +8,7 @@ import {
   BizFormItemSelect,
   BizFormItemSwitch,
   BizFormItemTextArea,
-  BizFormItemUpload,
+  BizFormItemUpload
 } from 'antd-more';
 import { debounce, isArray, uniqueId } from 'ut2';
 import { createPuzzle, Result } from 'create-puzzle';
@@ -20,105 +20,105 @@ const LoremPicsumUrl = 'https://picsum.photos/320/160';
 
 enum ImgSourceType {
   Upload,
-  Input,
+  Input
 }
 
 const ImgSourceTypeOptions = [
   {
     label: '上传图片',
-    value: ImgSourceType.Upload,
+    value: ImgSourceType.Upload
   },
   {
     label: '远程地址',
-    value: ImgSourceType.Input,
-  },
+    value: ImgSourceType.Input
+  }
 ];
 
 // 输入类型
 enum InputType {
   Custom,
-  Default,
+  Default
 }
 const LocationTypeOptions = [
   {
     label: '随机',
-    value: InputType.Default,
+    value: InputType.Default
   },
   {
     label: '自定义',
-    value: InputType.Custom,
-  },
+    value: InputType.Custom
+  }
 ];
 const ImageWidthTypeOptions = [
   {
     label: '图片宽度',
-    value: InputType.Default,
+    value: InputType.Default
   },
   {
     label: '自定义',
-    value: InputType.Custom,
-  },
+    value: InputType.Custom
+  }
 ];
 const ImageHeightTypeOptions = [
   {
     label: '图片高度',
-    value: InputType.Default,
+    value: InputType.Default
   },
   {
     label: '自定义',
-    value: InputType.Custom,
-  },
+    value: InputType.Custom
+  }
 ];
 // 拼图点选项
 const PointsOptions = [
   {
     label: '2/3/4',
-    value: '',
+    value: ''
   },
   {
     label: '2',
-    value: 2,
+    value: 2
   },
   {
     label: '3',
-    value: 3,
+    value: 3
   },
   {
     label: '4',
-    value: 4,
-  },
+    value: 4
+  }
 ];
 
 // 拼图等高类型
 enum PuzzleEqualHeightType {
   Yes,
-  No,
+  No
 }
 const PuzzleEqualHeightTypeOptions = [
   {
     label: '是',
-    value: PuzzleEqualHeightType.Yes,
+    value: PuzzleEqualHeightType.Yes
   },
   {
     label: '否',
-    value: PuzzleEqualHeightType.No,
-  },
+    value: PuzzleEqualHeightType.No
+  }
 ];
 
 const FormatOptions = [
   {
     label: 'dataURL',
-    value: 'dataURL',
+    value: 'dataURL'
   },
   {
     label: 'blob',
-    value: 'blob',
-  },
+    value: 'blob'
+  }
 ];
 
 const colspan = {
   sm: 12,
-  xs: 24,
+  xs: 24
 };
 
 const initialValues = {
@@ -146,7 +146,7 @@ const initialValues = {
   imageWidthType: InputType.Default,
   imageHeightType: InputType.Default,
 
-  cacheImage: true,
+  cacheImage: true
 };
 
 function Demo() {
@@ -239,7 +239,7 @@ function Demo() {
       imageHeight,
       equalHeight,
       cacheImage,
-      ...restValues,
+      ...restValues
     })
       .then((res) => {
         if (count === countRef.current) {
@@ -273,7 +273,7 @@ function Demo() {
             labelWidth={112}
             initialValues={{
               imgSourceType: ImgSourceType.Upload,
-              ...initialValues,
+              ...initialValues
             }}
             onValuesChange={() => {
               countRef.current += 1;
@@ -287,7 +287,7 @@ function Demo() {
               hideLabel
               optionType="button"
               radioGroupProps={{
-                buttonStyle: 'solid',
+                buttonStyle: 'solid'
               }}
             />
             <BizFormItemUpload
@@ -302,7 +302,7 @@ function Demo() {
                       const currentImg = form.getFieldValue('img');
                       if (!isArray(currentImg) || currentImg[0]?.url !== ImageSunflower) {
                         form.setFieldValue('img', [
-                          { uid: uniqueId(), name: 'sunflower.jpg', url: ImageSunflower },
+                          { uid: uniqueId(), name: 'sunflower.jpg', url: ImageSunflower }
                         ]);
 
                         countRef.current += 1;
@@ -328,7 +328,7 @@ function Demo() {
               allowClear
               textAreaProps={{
                 size: 'large',
-                autoSize: { minRows: 2, maxRows: 6 },
+                autoSize: { minRows: 2, maxRows: 6 }
               }}
               hidden={imgSourceType !== ImgSourceType.Input}
               extra={
@@ -541,8 +541,8 @@ function Demo() {
               styles={{
                 body: {
                   maxHeight: 'calc(100vh - 80px)',
-                  overflowY: 'auto',
-                },
+                  overflowY: 'auto'
+                }
               }}
               className={styles.result}
               extra={
@@ -564,7 +564,7 @@ function Demo() {
                   <BizDescriptions
                     column={1}
                     styles={{
-                      label: { width: 98, justifyContent: 'flex-end' },
+                      label: { width: 98, justifyContent: 'flex-end' }
                     }}
                   >
                     <BizDescriptions.Item

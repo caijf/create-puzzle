@@ -37,7 +37,7 @@ const getCacheKey = (obj: string | Blob) => {
 
 const MimeType = {
   jpeg: 'image/jpeg',
-  png: 'image/png',
+  png: 'image/png'
 };
 
 // 缓存之前的 blob url
@@ -114,7 +114,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
 
     cacheImage = true,
     autoRevokePreviousBlobUrl = true,
-    ajaxOptions,
+    ajaxOptions
   } = options;
 
   return new Promise<Result>((resolve, reject) => {
@@ -222,7 +222,7 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
               puzzleUrl,
               bgUrl,
               x,
-              y: equalHeight ? 0 : y,
+              y: equalHeight ? 0 : y
             });
           })
           .catch(reject);

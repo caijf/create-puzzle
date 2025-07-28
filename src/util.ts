@@ -6,7 +6,7 @@ const mathPI = Math.PI;
 export enum Point {
   None, // 没有
   Outer, // 外部
-  Inner, // 内部
+  Inner // 内部
 }
 export const pointArray = [Point.None, Point.Outer, Point.Inner];
 
@@ -23,7 +23,7 @@ export function getRandomPoints(pointNum?: 2 | 3 | 4) {
     top: pick(pointArray),
     right: pick(pointArray),
     bottom: pick(pointArray),
-    left: pick(pointArray),
+    left: pick(pointArray)
   };
   type PointKey = keyof typeof points;
   const pointsKeys = Object.keys(points) as PointKey[];
@@ -90,7 +90,7 @@ export function drawPuzzle(
         };
     margin?: number; // 外部留白
     needClosePath?: boolean; // 是否要闭合路径
-  } = {},
+  } = {}
 ) {
   const { x = 0, y = 0, w = 60, h = 60, needClosePath = true } = options;
   let { points, margin = 0 } = options;
@@ -110,7 +110,7 @@ export function drawPuzzle(
     x: x + margin,
     y: y + margin,
     w: w - c2r - margin * 2,
-    h: h - c2r - margin * 2,
+    h: h - c2r - margin * 2
   };
   const w1_2 = rect.w / 2; // 矩形一半宽度
   const h1_2 = rect.h / 2; // 矩形一半高度
@@ -185,7 +185,7 @@ export function canvasToImage(
   canvas: HTMLCanvasElement,
   formatBlob: boolean,
   type: string,
-  quality: number,
+  quality: number
 ) {
   return new Promise<string>((resolve) => {
     if (formatBlob) {
@@ -198,7 +198,7 @@ export function canvasToImage(
           }
         },
         type,
-        quality,
+        quality
       );
     } else {
       resolve(canvas.toDataURL(type, quality));

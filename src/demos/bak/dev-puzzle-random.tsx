@@ -16,7 +16,7 @@ function Demo() {
         x: 40.5,
         y: 40.5,
         w: 40,
-        h: 40,
+        h: 40
       };
 
       // sharp

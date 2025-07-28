@@ -5,7 +5,7 @@ export enum ResponseMethod {
   Load,
   Abort,
   Timeout,
-  Error,
+  Error
 }
 
 // 将要触发的响应方法
@@ -29,7 +29,7 @@ export function createSpyAjax(opts?: {
     open: jest.fn(),
     send: jest.fn(),
     setRequestHeader: jest.fn(),
-    ...opts,
+    ...opts
   };
 
   const spyAjax = jest.spyOn(globalThis, 'XMLHttpRequest').mockImplementation(() => {
@@ -53,8 +53,8 @@ export function createSpyAjax(opts?: {
         const res = {
           target: {
             response: new Blob(['hello word']),
-            status: responseStatus,
-          },
+            status: responseStatus
+          }
         };
         // @ts-ignore
         methods.load(res);
@@ -69,7 +69,7 @@ export function createSpyAjax(opts?: {
       open: xhrMock.open,
       removeEventListener: jest.fn(),
       send: xhrMock.send.mockImplementation(send),
-      setRequestHeader: xhrMock.setRequestHeader,
+      setRequestHeader: xhrMock.setRequestHeader
     } as any;
   });
 

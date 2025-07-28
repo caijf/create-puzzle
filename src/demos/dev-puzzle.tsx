@@ -19,7 +19,7 @@ function Demo() {
       x: 40.5,
       y: 40.5,
       w: 40,
-      h: 40,
+      h: 40
     };
 
     const r = 7; // 圆的半径
@@ -100,7 +100,7 @@ function Demo() {
         r,
         1.75 * Math.PI,
         0.25 * Math.PI,
-        true,
+        true
       );
       ctx2.moveTo(rect.x + rect.w, rect.y + rect.h / 2 + l / 2);
       ctx2.lineTo(rect.x + rect.w, rect.y + rect.h);
@@ -113,7 +113,7 @@ function Demo() {
         r,
         0.25 * Math.PI,
         0.75 * Math.PI,
-        true,
+        true
       );
       ctx2.moveTo(rect.x + rect.w / 2 - l / 2, rect.y + rect.h);
       ctx2.lineTo(rect.x, rect.y + rect.h);
