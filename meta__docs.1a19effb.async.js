@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkcreate_puzzle=self.webpackChunkcreate_puzzle||[]).push([[904],{6055:function(O,l,n){n.r(l),n.d(l,{demos:function(){return r}});var g=n(75271),u=n(43258),r={"docs-generator-demo-generator":{component:g.memo(g.lazy(function(){return Promise.all([n.e(557),n.e(433)]).then(n.bind(n,82394))})),asset:null,context:void 0,renderOpts:void 0}}},22453:function(O,l,n){var g;n.r(l),n.d(l,{demos:function(){return I}});var u=n(90228),r=n.n(u),R=n(87999),s=n.n(R),x=n(75271),L=n(48421),z=n(91874),t=n(23482),a=n(67991),I={"docs-demo-dev-puzzle":{component:x.memo(x.lazy(function(){return Promise.all([n.e(557),n.e(433)]).then(n.bind(n,61729))})),asset:{type:"BLOCK",id:"docs-demo-dev-puzzle",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:n(47735).Z},react:{type:"NPM",value:"18.3.1"}},entry:"index.tsx"},context:{react:g||(g=n.t(x,2))},renderOpts:{compile:function(){var f=s()(r()().mark(function h(){var p,c=arguments;return r()().wrap(function(i){for(;;)switch(i.prev=i.next){case 0:return i.next=2,n.e(105).then(n.bind(n,59105));case 2:return i.abrupt("return",(p=i.sent).default.apply(p,c));case 3:case"end":return i.stop()}},h)}));function d(){return f.apply(this,arguments)}return d}()}},"docs-demo-dev-puzzle-random":{component:x.memo(x.lazy(function(){return Promise.all([n.e(557),n.e(433)]).then(n.bind(n,41976))})),asset:{type:"BLOCK",id:"docs-demo-dev-puzzle-random",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:n(38567).Z},react:{type:"NPM",value:"18.3.1"},"../util.ts":{type:"FILE",value:n(18415).Z},ut2:{type:"NPM",value:"1.19.0"}},entry:"index.tsx"},context:{"../util.ts":z,react:g||(g=n.t(x,2)),"/home/runner/work/create-puzzle/create-puzzle/src/util.ts":z,ut2:t},renderOpts:{compile:function(){var f=s()(r()().mark(function h(){var p,c=arguments;return r()().wrap(function(i){for(;;)switch(i.prev=i.next){case 0:return i.next=2,n.e(105).then(n.bind(n,59105));case 2:return i.abrupt("return",(p=i.sent).default.apply(p,c));case 3:case"end":return i.stop()}},h)}));function d(){return f.apply(this,arguments)}return d}()}},"docs-demo-dev-image":{component:x.memo(x.lazy(function(){return Promise.all([n.e(557),n.e(433)]).then(n.bind(n,10114))})),asset:{type:"BLOCK",id:"docs-demo-dev-image",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:n(74467).Z},react:{type:"NPM",value:"18.3.1"},"../util.ts":{type:"FILE",value:n(18415).Z},ut2:{type:"NPM",value:"1.19.0"}},entry:"index.tsx"},context:{"../util.ts":z,react:g||(g=n.t(x,2)),"/home/runner/work/create-puzzle/create-puzzle/src/util.ts":z,ut2:t},renderOpts:{compile:function(){var f=s()(r()().mark(function h(){var p,c=arguments;return r()().wrap(function(i){for(;;)switch(i.prev=i.next){case 0:return i.next=2,n.e(105).then(n.bind(n,59105));case 2:return i.abrupt("return",(p=i.sent).default.apply(p,c));case 3:case"end":return i.stop()}},h)}));function d(){return f.apply(this,arguments)}return d}()}},"docs-demo-basic":{component:x.memo(x.lazy(function(){return Promise.all([n.e(557),n.e(433)]).then(n.bind(n,87074))})),asset:{type:"BLOCK",id:"docs-demo-basic",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:n(14535).Z},react:{type:"NPM",value:"18.3.1"},"create-puzzle":{type:"NPM",value:"3.0.3"}},entry:"index.tsx"},context:{react:g||(g=n.t(x,2)),"create-puzzle":a},renderOpts:{compile:function(){var f=s()(r()().mark(function h(){var p,c=arguments;return r()().wrap(function(i){for(;;)switch(i.prev=i.next){case 0:return i.next=2,n.e(105).then(n.bind(n,59105));case 2:return i.abrupt("return",(p=i.sent).default.apply(p,c));case 3:case"end":return i.stop()}},h)}));function d(){return f.apply(this,arguments)}return d}()}}}},67991:function(O,l,n){n.r(l),n.d(l,{Point:function(){return s.Point},clearCache:function(){return t},createPuzzle:function(){return p},drawPuzzle:function(){return s.drawPuzzle},getRandomPoints:function(){return s.getRandomPoints}});var g=n(48305),u=n.n(g),r=n(12969),R=n(23042),s=n(91874),x=n(95810),L=n(81855),z=new r.Z({max:5,maxStrategy:"replaced"});z.cache.on("del",function(c,o){try{o.image.src&&URL.revokeObjectURL(o.image.src)}catch(i){}});function t(c){c?z.cache.del(c):z.cache.clear()}var a=new WeakMap,I=function(o){if(!(0,x.Z)(o))return String(o);if(!a.get(o)){var i="_"+Date.now();a.set(o,i)}return a.get(o)},f={jpeg:"image/jpeg",png:"image/png"},d=[];function h(c){c.forEach(function(o){URL.revokeObjectURL(o)})}function p(c){var o=arguments.length>1&&arguments[1]!==void 0?arguments[1]:{},i=o.borderWidth,B=i===void 0?2:i,W=o.borderColor,v=W===void 0?"rgba(255,255,255,0.7)":W,K=o.fillColor,b=K===void 0?"rgba(255,255,255,0.7)":K,y=o.points,N=o.width,m=N===void 0?60:N,_=o.height,e=_===void 0?60:_,E=o.x,C=o.y,Q=o.margin,J=Q===void 0?2:Q,k=o.equalHeight,V=k===void 0?!0:k,q=o.imageWidth,nn=o.imageHeight,S=o.bgWidth,$=o.bgHeight,en=o.bgOffset,F=en===void 0?[0,0]:en,tn=o.bgImageType,hn=tn===void 0?f.jpeg:tn,rn=o.quality,on=rn===void 0?.8:rn,an=o.format,fn=an===void 0?"dataURL":an,cn=o.cacheImage,gn=cn===void 0?!0:cn,ln=o.autoRevokePreviousBlobUrl,xn=ln===void 0?!0:ln,vn=o.ajaxOptions;return new Promise(function(yn,un){var j=document.createElement("canvas"),U=document.createElement("canvas"),w=j.getContext("2d"),M=U.getContext("2d"),In=gn?I(c):void 0;z.run(function(){return(0,R.Z)(c,vn)},In).then(function(Pn){var P=Pn.image;q&&(P.width=q),nn&&(P.height=nn);var H=typeof S=="number"&&S>0?S>m?S:m:P.width,A=typeof $=="number"&&$>0?$>e?$:e:P.height;j.width=H,j.height=A;var G=H-m,X=A-e,D=typeof E=="undefined"?(0,L.Z)(m,G):E||0,T=typeof C=="undefined"?(0,L.Z)(0,X):C||0;D<0?D=0:D>G&&(D=G),T<0?T=0:T>X&&(T=X);var sn=typeof y=="number"||!y?(0,s.getRandomPoints)(y):y,Z=typeof F=="function"?F(P.width,P.height):F;w.strokeStyle=v,w.lineWidth=B,w.fillStyle=b,(0,s.drawPuzzle)(w,{x:D,y:T,w:m,h:e,points:sn,margin:J}),w.fillStyle=b,w.fill(),w.globalCompositeOperation="destination-over",w.drawImage(P,Z[0],Z[1],P.width,P.height),U.width=H,U.height=A,M.strokeStyle=v,M.lineWidth=B,(0,s.drawPuzzle)(M,{x:D,y:T,w:m,h:e,points:sn,margin:J}),M.globalCompositeOperation="destination-over",M.clip(),M.drawImage(P,Z[0],Z[1],P.width,P.height);var zn=M.getImageData(D,T,m,e);M.clearRect(0,0,H,A),U.width=m,U.height=V?A:e,M.putImageData(zn,0,V?T:0);var Y=fn==="blob",bn=(0,s.canvasToImage)(U,Y,f.png,on),On=(0,s.canvasToImage)(j,Y,hn,on);Promise.all([bn,On]).then(function(Rn){var dn=u()(Rn,2),mn=dn[0],pn=dn[1];xn&&(d.length&&(h(d),d.length=0),Y&&d.push(pn,mn)),yn({puzzleUrl:mn,bgUrl:pn,x:D,y:V?0:T})}).catch(un)}).catch(un)})}l.default=p},91874:function(O,l,n){n.r(l),n.d(l,{Point:function(){return r},canvasToImage:function(){return z},drawPuzzle:function(){return L},getRandomPoints:function(){return x},pointArray:function(){return R}});var g=n(81855),u=Math.PI,r=function(t){return t[t.None=0]="None",t[t.Outer=1]="Outer",t[t.Inner=2]="Inner",t}({}),R=[r.None,r.Outer,r.Inner];function s(t){var a=t.length,I=(0,g.Z)(0,a-1);return t[I]}function x(t){var a={top:s(R),right:s(R),bottom:s(R),left:s(R)},I=Object.keys(a),f=["top","bottom"],d=["left","right"];if(a.top===r.Outer&&a.bottom===r.Outer?a[s(f)]=r.Inner:a.top!==r.Outer&&a.bottom!==r.Outer&&(a[s(f)]=r.Outer),a.left===r.Outer&&a.right===r.Outer?a[s(d)]=r.Inner:a.left!==r.Outer&&a.right!==r.Outer&&(a[s(d)]=r.Outer),t){var h=[],p=[];I.forEach(function(c){a[c]===r.Inner?h.push(c):a[c]===r.None&&p.push(c)}),t===2?h.forEach(function(c){return a[c]=r.None}):t===3?h.length===0?a[s(p)]=r.Inner:h.length===2&&(a[s(h)]=r.None):t==4&&p.forEach(function(c){return a[c]=r.Inner})}return a}function L(t){var a=arguments.length>1&&arguments[1]!==void 0?arguments[1]:{},I=a.x,f=I===void 0?0:I,d=a.y,h=d===void 0?0:d,p=a.w,c=p===void 0?60:p,o=a.h,i=o===void 0?60:o,B=a.needClosePath,W=B===void 0?!0:B,v=a.points,K=a.margin,b=K===void 0?0:K;b=b<=0?0:b,(typeof v=="number"||!v)&&(v=x(v));var y=(Math.min(c,i)-b*2)*.15,N=Math.hypot(y,y),m=N/2,_=y+m,e={x:f+b,y:h+b,w:c-_-b*2,h:i-_-b*2},E=e.w/2,C=e.h/2;v.left===r.Outer&&(e.x+=_),v.top===r.Outer&&(e.y+=_),t.beginPath(),t.lineWidth=2,t.moveTo(e.x,e.y),v.top!==r.None&&(t.lineTo(e.x+E-m,e.y),v.top===r.Inner?t.arc(e.x+E,e.y+m,y,1.25*u,1.75*u,!0):t.arc(e.x+E,e.y-m,y,.75*u,.25*u)),t.lineTo(e.x+e.w,e.y),v.right!==r.None&&(t.lineTo(e.x+e.w,e.y+C-m),v.right===r.Inner?t.arc(e.x+e.w-m,e.y+C,y,1.75*u,.25*u,!0):t.arc(e.x+e.w+m,e.y+C,y,1.25*u,.75*u)),t.lineTo(e.x+e.w,e.y+e.h),v.bottom!==r.None&&(t.lineTo(e.x+E+m,e.y+e.h),v.bottom===r.Inner?t.arc(e.x+E,e.y+e.h-m,y,.25*u,.75*u,!0):t.arc(e.x+E,e.y+e.h+m,y,1.75*u,1.25*u)),t.lineTo(e.x,e.y+e.h),v.left!==r.None&&(t.lineTo(e.x,e.y+C+m),v.left===r.Inner?t.arc(e.x+m,e.y+C,y,.75*u,1.25*u,!0):t.arc(e.x-m,e.y+C,y,.25*u,1.75*u)),t.lineTo(e.x,e.y),t.stroke(),W&&t.closePath()}function z(t,a,I,f){return new Promise(function(d){a?t.toBlob(function(h){d(h?URL.createObjectURL(h):t.toDataURL(I,f))},I,f):d(t.toDataURL(I,f))})}},54780:function(O,l,n){n.r(l),n.d(l,{texts:function(){return u}});var g=n(43258);const u=[{value:" ",paraId:0,tocIndex:0},{value:" ",paraId:0,tocIndex:0},{value:"\u53EF\u4EE5\u4F7F\u7528\u8BE5\u5DE5\u5177\u751F\u6210\u56FE\u7247\u5B58\u5165\u62FC\u56FE\u56FE\u5E93\uFF0C\u5EFA\u8BAE\u56FE\u7247\u5C3A\u5BF8 ",paraId:1,tocIndex:0},{value:"320 <= \u9AD8\u5EA6 <= 480",paraId:1,tocIndex:0},{value:" ",paraId:1,tocIndex:0},{value:"160 <= \u5BBD\u5EA6 <= 240",paraId:1,tocIndex:0},{value:" \uFF0C\u524D\u7AEF\u63A8\u8350\u642D\u914D ",paraId:1,tocIndex:0},{value:"rc-slider-captcha",paraId:1,tocIndex:0},{value:" \u4F7F\u7528\u3002",paraId:1,tocIndex:0},{value:"\u70B9\u51FB\u8FD4\u56DE create-puzzle \u6587\u6863",paraId:2}]},89512:function(O,l,n){n.r(l),n.d(l,{texts:function(){return u}});var g=n(48421);const u=[{value:" ",paraId:0,tocIndex:0},{value:" ",paraId:0,tocIndex:0},{value:"\u5728\u6D4F\u89C8\u5668\u7AEF\u751F\u6210\u6ED1\u5757\u9A8C\u8BC1\u7801\u7684\u62FC\u56FE\u548C\u80CC\u666F\u56FE\u3002",paraId:1,tocIndex:0},{value:"\u53EF\u4EE5\u5728\u5BA2\u6237\u7AEF\u751F\u6210\u62FC\u56FE\uFF0C\u4E5F\u53EF\u4EE5\u4F7F\u7528\u5B83\u751F\u6210\u7684\u62FC\u56FE\u653E\u5230\u670D\u52A1\u7AEF\u56FE\u5E93\uFF0C\u63A8\u8350\u642D\u914D ",paraId:2,tocIndex:0},{value:"rc-slider-captcha",paraId:2,tocIndex:0},{value:" \u4F7F\u7528\u3002",paraId:2,tocIndex:0},{value:"\u5982\u679C\u4F60\u4F7F\u7528\u7684\u662F Node.js \u505A\u670D\u52A1\u7AEF\uFF0C\u63A8\u8350\u4F7F\u7528 ",paraId:3,tocIndex:0},{value:"node-puzzle",paraId:3,tocIndex:0},{value:"\u3002",paraId:3,tocIndex:0},{value:"\u5B89\u88C5\u4F9D\u8D56",paraId:4,tocIndex:2},{value:`npm install create-puzzle
+"use strict";(self.webpackChunkcreate_puzzle=self.webpackChunkcreate_puzzle||[]).push([[904],{64276:function(z,i,n){n.r(i),n.d(i,{demos:function(){return u}});var f=n(75271),u={"docs-generator-demo-generator":{component:f.memo(f.lazy(function(){return Promise.all([n.e(264),n.e(43),n.e(433)]).then(n.bind(n,28768))})),asset:null,context:void 0,renderOpts:void 0}}},41716:function(z,i,n){var f;n.r(i),n.d(i,{demos:function(){return a}});var u=n(90228),o=n.n(u),b=n(87999),l=n.n(b),g=n(75271),O=n(52042),R=n(8547),r=n(92119),a={"docs-demo-dev-puzzle":{component:g.memo(g.lazy(function(){return Promise.all([n.e(264),n.e(43),n.e(433)]).then(n.bind(n,77782))})),asset:{type:"BLOCK",id:"docs-demo-dev-puzzle",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:n(85748).Z},react:{type:"NPM",value:"18.3.1"}},entry:"index.tsx"},context:{react:f||(f=n.t(g,2))},renderOpts:{compile:function(){var p=l()(o()().mark(function d(){var s,x=arguments;return o()().wrap(function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,n.e(323).then(n.bind(n,53323));case 2:return e.abrupt("return",(s=e.sent).default.apply(s,x));case 3:case"end":return e.stop()}},d)}));function h(){return p.apply(this,arguments)}return h}()}},"docs-demo-dev-puzzle-random":{component:g.memo(g.lazy(function(){return Promise.all([n.e(264),n.e(43),n.e(433)]).then(n.bind(n,53712))})),asset:{type:"BLOCK",id:"docs-demo-dev-puzzle-random",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:n(66256).Z},react:{type:"NPM",value:"18.3.1"},"../util.ts":{type:"FILE",value:n(96646).Z},ut2:{type:"NPM",value:"1.20.1"}},entry:"index.tsx"},context:{"../util.ts":O,react:f||(f=n.t(g,2)),"/home/runner/work/create-puzzle/create-puzzle/src/util.ts":O,ut2:R},renderOpts:{compile:function(){var p=l()(o()().mark(function d(){var s,x=arguments;return o()().wrap(function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,n.e(323).then(n.bind(n,53323));case 2:return e.abrupt("return",(s=e.sent).default.apply(s,x));case 3:case"end":return e.stop()}},d)}));function h(){return p.apply(this,arguments)}return h}()}},"docs-demo-dev-image":{component:g.memo(g.lazy(function(){return Promise.all([n.e(264),n.e(43),n.e(433)]).then(n.bind(n,3193))})),asset:{type:"BLOCK",id:"docs-demo-dev-image",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:n(17964).Z},react:{type:"NPM",value:"18.3.1"},"../util.ts":{type:"FILE",value:n(96646).Z},ut2:{type:"NPM",value:"1.20.1"}},entry:"index.tsx"},context:{"../util.ts":O,react:f||(f=n.t(g,2)),"/home/runner/work/create-puzzle/create-puzzle/src/util.ts":O,ut2:R},renderOpts:{compile:function(){var p=l()(o()().mark(function d(){var s,x=arguments;return o()().wrap(function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,n.e(323).then(n.bind(n,53323));case 2:return e.abrupt("return",(s=e.sent).default.apply(s,x));case 3:case"end":return e.stop()}},d)}));function h(){return p.apply(this,arguments)}return h}()}},"docs-demo-basic":{component:g.memo(g.lazy(function(){return Promise.all([n.e(264),n.e(43),n.e(433)]).then(n.bind(n,93481))})),asset:{type:"BLOCK",id:"docs-demo-basic",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:n(26876).Z},react:{type:"NPM",value:"18.3.1"},"create-puzzle":{type:"NPM",value:"3.0.3"}},entry:"index.tsx"},context:{react:f||(f=n.t(g,2)),"create-puzzle":r},renderOpts:{compile:function(){var p=l()(o()().mark(function d(){var s,x=arguments;return o()().wrap(function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,n.e(323).then(n.bind(n,53323));case 2:return e.abrupt("return",(s=e.sent).default.apply(s,x));case 3:case"end":return e.stop()}},d)}));function h(){return p.apply(this,arguments)}return h}()}}}},92119:function(z,i,n){n.r(i),n.d(i,{Point:function(){return l.Point},clearCache:function(){return r},createPuzzle:function(){return x},drawPuzzle:function(){return l.drawPuzzle},getRandomPoints:function(){return l.getRandomPoints}});var f=n(48305),u=n.n(f),o=n(49578),b=n(76225),l=n(52042),g=n(78507),O=n(22036),R=new o.Z({max:5,maxStrategy:"replaced"});R.cache.on("del",function(c,e){try{e.image.src&&URL.revokeObjectURL(e.image.src)}catch(w){}});function r(c){c?R.cache.del(c):R.cache.clear()}var a=new WeakMap,p=function(e){if(!(0,g.Z)(e))return String(e);if(!a.get(e)){var w="_"+Date.now();a.set(e,w)}return a.get(e)},h={jpeg:"image/jpeg",png:"image/png"},d=[];function s(c){c.forEach(function(e){URL.revokeObjectURL(e)})}function x(c){var e=arguments.length>1&&arguments[1]!==void 0?arguments[1]:{},w=e.borderWidth,K=w===void 0?2:w,N=e.borderColor,v=N===void 0?"rgba(255,255,255,0.7)":N,A=e.fillColor,P=A===void 0?"rgba(255,255,255,0.7)":A,y=e.points,S=e.width,m=S===void 0?60:S,L=e.height,t=L===void 0?60:L,C=e.x,M=e.y,Q=e.margin,J=Q===void 0?2:Q,k=e.equalHeight,F=k===void 0?!0:k,q=e.imageWidth,nn=e.imageHeight,$=e.bgWidth,j=e.bgHeight,en=e.bgOffset,G=en===void 0?[0,0]:en,tn=e.bgImageType,fn=tn===void 0?h.jpeg:tn,rn=e.quality,on=rn===void 0?.8:rn,an=e.format,hn=an===void 0?"dataURL":an,cn=e.cacheImage,gn=cn===void 0?!0:cn,ln=e.autoRevokePreviousBlobUrl,xn=ln===void 0?!0:ln,vn=e.ajaxOptions;return new Promise(function(yn,sn){var H=document.createElement("canvas"),B=document.createElement("canvas"),D=H.getContext("2d"),T=B.getContext("2d"),In=gn?p(c):void 0;R.run(function(){return(0,b.Z)(c,vn)},In).then(function(Pn){var I=Pn.image;q&&(I.width=q),nn&&(I.height=nn);var Z=typeof $=="number"&&$>0?$>m?$:m:I.width,W=typeof j=="number"&&j>0?j>t?j:t:I.height;H.width=Z,H.height=W;var X=Z-m,Y=W-t,U=typeof C=="undefined"?(0,O.Z)(m,X):C||0,E=typeof M=="undefined"?(0,O.Z)(0,Y):M||0;U<0?U=0:U>X&&(U=X),E<0?E=0:E>Y&&(E=Y);var un=typeof y=="number"||!y?(0,l.getRandomPoints)(y):y,V=typeof G=="function"?G(I.width,I.height):G;D.strokeStyle=v,D.lineWidth=K,D.fillStyle=P,(0,l.drawPuzzle)(D,{x:U,y:E,w:m,h:t,points:un,margin:J}),D.fillStyle=P,D.fill(),D.globalCompositeOperation="destination-over",D.drawImage(I,V[0],V[1],I.width,I.height),B.width=Z,B.height=W,T.strokeStyle=v,T.lineWidth=K,(0,l.drawPuzzle)(T,{x:U,y:E,w:m,h:t,points:un,margin:J}),T.globalCompositeOperation="destination-over",T.clip(),T.drawImage(I,V[0],V[1],I.width,I.height);var zn=T.getImageData(U,E,m,t);T.clearRect(0,0,Z,W),B.width=m,B.height=F?W:t,T.putImageData(zn,0,F?E:0);var _=hn==="blob",bn=(0,l.canvasToImage)(B,_,h.png,on),On=(0,l.canvasToImage)(H,_,fn,on);Promise.all([bn,On]).then(function(Rn){var dn=u()(Rn,2),mn=dn[0],pn=dn[1];xn&&(d.length&&(s(d),d.length=0),_&&d.push(pn,mn)),yn({puzzleUrl:mn,bgUrl:pn,x:U,y:F?0:E})}).catch(sn)}).catch(sn)})}i.default=x},52042:function(z,i,n){n.r(i),n.d(i,{Point:function(){return o},canvasToImage:function(){return R},drawPuzzle:function(){return O},getRandomPoints:function(){return g},pointArray:function(){return b}});var f=n(22036),u=Math.PI,o=function(r){return r[r.None=0]="None",r[r.Outer=1]="Outer",r[r.Inner=2]="Inner",r}({}),b=[o.None,o.Outer,o.Inner];function l(r){var a=r.length,p=(0,f.Z)(0,a-1);return r[p]}function g(r){var a={top:l(b),right:l(b),bottom:l(b),left:l(b)},p=Object.keys(a),h=["top","bottom"],d=["left","right"];if(a.top===o.Outer&&a.bottom===o.Outer?a[l(h)]=o.Inner:a.top!==o.Outer&&a.bottom!==o.Outer&&(a[l(h)]=o.Outer),a.left===o.Outer&&a.right===o.Outer?a[l(d)]=o.Inner:a.left!==o.Outer&&a.right!==o.Outer&&(a[l(d)]=o.Outer),r){var s=[],x=[];p.forEach(function(c){a[c]===o.Inner?s.push(c):a[c]===o.None&&x.push(c)}),r===2?s.forEach(function(c){return a[c]=o.None}):r===3?s.length===0?a[l(x)]=o.Inner:s.length===2&&(a[l(s)]=o.None):r==4&&x.forEach(function(c){return a[c]=o.Inner})}return a}function O(r){var a=arguments.length>1&&arguments[1]!==void 0?arguments[1]:{},p=a.x,h=p===void 0?0:p,d=a.y,s=d===void 0?0:d,x=a.w,c=x===void 0?60:x,e=a.h,w=e===void 0?60:e,K=a.needClosePath,N=K===void 0?!0:K,v=a.points,A=a.margin,P=A===void 0?0:A;P=P<=0?0:P,(typeof v=="number"||!v)&&(v=g(v));var y=(Math.min(c,w)-P*2)*.15,S=Math.hypot(y,y),m=S/2,L=y+m,t={x:h+P,y:s+P,w:c-L-P*2,h:w-L-P*2},C=t.w/2,M=t.h/2;v.left===o.Outer&&(t.x+=L),v.top===o.Outer&&(t.y+=L),r.beginPath(),r.lineWidth=2,r.moveTo(t.x,t.y),v.top!==o.None&&(r.lineTo(t.x+C-m,t.y),v.top===o.Inner?r.arc(t.x+C,t.y+m,y,1.25*u,1.75*u,!0):r.arc(t.x+C,t.y-m,y,.75*u,.25*u)),r.lineTo(t.x+t.w,t.y),v.right!==o.None&&(r.lineTo(t.x+t.w,t.y+M-m),v.right===o.Inner?r.arc(t.x+t.w-m,t.y+M,y,1.75*u,.25*u,!0):r.arc(t.x+t.w+m,t.y+M,y,1.25*u,.75*u)),r.lineTo(t.x+t.w,t.y+t.h),v.bottom!==o.None&&(r.lineTo(t.x+C+m,t.y+t.h),v.bottom===o.Inner?r.arc(t.x+C,t.y+t.h-m,y,.25*u,.75*u,!0):r.arc(t.x+C,t.y+t.h+m,y,1.75*u,1.25*u)),r.lineTo(t.x,t.y+t.h),v.left!==o.None&&(r.lineTo(t.x,t.y+M+m),v.left===o.Inner?r.arc(t.x+m,t.y+M,y,.75*u,1.25*u,!0):r.arc(t.x-m,t.y+M,y,.25*u,1.75*u)),r.lineTo(t.x,t.y),r.stroke(),N&&r.closePath()}function R(r,a,p,h){return new Promise(function(d){a?r.toBlob(function(s){d(s?URL.createObjectURL(s):r.toDataURL(p,h))},p,h):d(r.toDataURL(p,h))})}},78957:function(z,i,n){n.r(i),n.d(i,{texts:function(){return f}});const f=[{value:" ",paraId:0,tocIndex:0},{value:" ",paraId:0,tocIndex:0},{value:"\u53EF\u4EE5\u4F7F\u7528\u8BE5\u5DE5\u5177\u751F\u6210\u56FE\u7247\u5B58\u5165\u62FC\u56FE\u56FE\u5E93\uFF0C\u5EFA\u8BAE\u56FE\u7247\u5C3A\u5BF8 ",paraId:1,tocIndex:0},{value:"320 <= \u9AD8\u5EA6 <= 480",paraId:1,tocIndex:0},{value:" ",paraId:1,tocIndex:0},{value:"160 <= \u5BBD\u5EA6 <= 240",paraId:1,tocIndex:0},{value:" \uFF0C\u524D\u7AEF\u63A8\u8350\u642D\u914D ",paraId:1,tocIndex:0},{value:"rc-slider-captcha",paraId:1,tocIndex:0},{value:" \u4F7F\u7528\u3002",paraId:1,tocIndex:0},{value:"\u70B9\u51FB\u8FD4\u56DE create-puzzle \u6587\u6863",paraId:2}]},42373:function(z,i,n){n.r(i),n.d(i,{texts:function(){return f}});const f=[{value:" ",paraId:0,tocIndex:0},{value:" ",paraId:0,tocIndex:0},{value:"\u5728\u6D4F\u89C8\u5668\u7AEF\u751F\u6210\u6ED1\u5757\u9A8C\u8BC1\u7801\u7684\u62FC\u56FE\u548C\u80CC\u666F\u56FE\u3002",paraId:1,tocIndex:0},{value:"\u53EF\u4EE5\u5728\u5BA2\u6237\u7AEF\u751F\u6210\u62FC\u56FE\uFF0C\u4E5F\u53EF\u4EE5\u4F7F\u7528\u5B83\u751F\u6210\u7684\u62FC\u56FE\u653E\u5230\u670D\u52A1\u7AEF\u56FE\u5E93\uFF0C\u63A8\u8350\u642D\u914D ",paraId:2,tocIndex:0},{value:"rc-slider-captcha",paraId:2,tocIndex:0},{value:" \u4F7F\u7528\u3002",paraId:2,tocIndex:0},{value:"\u5982\u679C\u4F60\u4F7F\u7528\u7684\u662F Node.js \u505A\u670D\u52A1\u7AEF\uFF0C\u63A8\u8350\u4F7F\u7528 ",paraId:3,tocIndex:0},{value:"node-puzzle",paraId:3,tocIndex:0},{value:"\u3002",paraId:3,tocIndex:0},{value:"\u5B89\u88C5\u4F9D\u8D56",paraId:4,tocIndex:2},{value:`npm install create-puzzle
 `,paraId:5,tocIndex:2},{value:`yarn add create-puzzle
 `,paraId:6,tocIndex:2},{value:`pnpm add create-puzzle
 `,paraId:7,tocIndex:2},{value:"\u9879\u76EE\u4E2D\u4F7F\u7528",paraId:8,tocIndex:2},{value:`import { createPuzzle } from 'create-puzzle';
@@ -66,9 +66,9 @@ type Result = {
 enum Point {
   None, // \u6CA1\u6709
   Outer, // \u5916\u90E8
-  Inner, // \u5185\u90E8
+  Inner // \u5185\u90E8
 }
-`,paraId:13,tocIndex:7}]},14535:function(O,l){l.Z=`import React, { useEffect, useState } from 'react';
+`,paraId:13,tocIndex:7}]},26876:function(z,i){i.Z=`import React, { useEffect, useState } from 'react';
 import { createPuzzle, Result } from 'create-puzzle';
 import DemoImage from './sunflower.jpg';
 
@@ -109,7 +109,7 @@ function Demo() {
 }
 
 export default Demo;
-`},74467:function(O,l){l.Z=`import React, { useEffect, useRef } from 'react';
+`},17964:function(z,i){i.Z=`import React, { useEffect, useRef } from 'react';
 import DemoImage from './sunflower.jpg';
 import { drawPuzzle } from '../util';
 
@@ -178,7 +178,7 @@ function Demo() {
 }
 
 export default Demo;
-`},38567:function(O,l){l.Z=`import React, { useEffect, useRef, useState } from 'react';
+`},66256:function(z,i){i.Z=`import React, { useEffect, useRef, useState } from 'react';
 import { drawPuzzle } from '../util';
 
 function Demo() {
@@ -200,7 +200,7 @@ function Demo() {
         w: size,
         h: size,
         margin,
-        points,
+        points
       });
     }
   }
@@ -277,7 +277,7 @@ function Demo() {
 }
 
 export default Demo;
-`},47735:function(O,l){l.Z=`import React, { useEffect, useRef } from 'react';
+`},85748:function(z,i){i.Z=`import React, { useEffect, useRef } from 'react';
 
 function Demo() {
   const myCanvasRef1 = useRef<HTMLCanvasElement>(null);
@@ -295,7 +295,7 @@ function Demo() {
       x: 40.5,
       y: 40.5,
       w: 40,
-      h: 40,
+      h: 40
     };
 
     const r = 7; // \u5706\u7684\u534A\u5F84
@@ -376,7 +376,7 @@ function Demo() {
         r,
         1.75 * Math.PI,
         0.25 * Math.PI,
-        true,
+        true
       );
       ctx2.moveTo(rect.x + rect.w, rect.y + rect.h / 2 + l / 2);
       ctx2.lineTo(rect.x + rect.w, rect.y + rect.h);
@@ -389,7 +389,7 @@ function Demo() {
         r,
         0.25 * Math.PI,
         0.75 * Math.PI,
-        true,
+        true
       );
       ctx2.moveTo(rect.x + rect.w / 2 - l / 2, rect.y + rect.h);
       ctx2.lineTo(rect.x, rect.y + rect.h);
@@ -420,7 +420,7 @@ function Demo() {
 }
 
 export default Demo;
-`},18415:function(O,l){l.Z=`import { randomInt } from 'ut2';
+`},96646:function(z,i){i.Z=`import { randomInt } from 'ut2';
 
 const mathPI = Math.PI;
 
@@ -428,7 +428,7 @@ const mathPI = Math.PI;
 export enum Point {
   None, // \u6CA1\u6709
   Outer, // \u5916\u90E8
-  Inner, // \u5185\u90E8
+  Inner // \u5185\u90E8
 }
 export const pointArray = [Point.None, Point.Outer, Point.Inner];
 
@@ -445,7 +445,7 @@ export function getRandomPoints(pointNum?: 2 | 3 | 4) {
     top: pick(pointArray),
     right: pick(pointArray),
     bottom: pick(pointArray),
-    left: pick(pointArray),
+    left: pick(pointArray)
   };
   type PointKey = keyof typeof points;
   const pointsKeys = Object.keys(points) as PointKey[];
@@ -512,7 +512,7 @@ export function drawPuzzle(
         };
     margin?: number; // \u5916\u90E8\u7559\u767D
     needClosePath?: boolean; // \u662F\u5426\u8981\u95ED\u5408\u8DEF\u5F84
-  } = {},
+  } = {}
 ) {
   const { x = 0, y = 0, w = 60, h = 60, needClosePath = true } = options;
   let { points, margin = 0 } = options;
@@ -532,7 +532,7 @@ export function drawPuzzle(
     x: x + margin,
     y: y + margin,
     w: w - c2r - margin * 2,
-    h: h - c2r - margin * 2,
+    h: h - c2r - margin * 2
   };
   const w1_2 = rect.w / 2; // \u77E9\u5F62\u4E00\u534A\u5BBD\u5EA6
   const h1_2 = rect.h / 2; // \u77E9\u5F62\u4E00\u534A\u9AD8\u5EA6
@@ -595,7 +595,9 @@ export function drawPuzzle(
 
   ctx.stroke();
 
-  needClosePath && ctx.closePath();
+  if (needClosePath) {
+    ctx.closePath();
+  }
 
   // ctx.fillStyle = "red";
   // ctx.fill();
@@ -607,7 +609,7 @@ export function canvasToImage(
   canvas: HTMLCanvasElement,
   formatBlob: boolean,
   type: string,
-  quality: number,
+  quality: number
 ) {
   return new Promise<string>((resolve) => {
     if (formatBlob) {
@@ -620,7 +622,7 @@ export function canvasToImage(
           }
         },
         type,
-        quality,
+        quality
       );
     } else {
       resolve(canvas.toDataURL(type, quality));
