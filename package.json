@@ -22,6 +22,7 @@
   "main": "dist/createPuzzle.cjs.js",
   "module": "dist/createPuzzle.esm.js",
   "unpkg": "dist/createPuzzle.min.js",
+  "browser": "dist/createPuzzle.min.js",
   "types": "types/index.d.ts",
   "config": {
     "commitizen": {
