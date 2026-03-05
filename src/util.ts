@@ -69,6 +69,18 @@ export function getRandomPoints(pointNum?: 2 | 3 | 4) {
   return points;
 }
 
+export type PointsType =
+  | 2
+  | 3
+  | 4
+  | {
+      // 拼图点
+      top: Point;
+      right: Point;
+      bottom: Point;
+      left: Point;
+    };
+
 // 画拼图
 export function drawPuzzle(
   ctx: CanvasRenderingContext2D,
@@ -77,17 +89,7 @@ export function drawPuzzle(
     y?: number;
     w?: number;
     h?: number;
-    points?:
-      | 2
-      | 3
-      | 4
-      | {
-          // 拼图点
-          top: Point;
-          right: Point;
-          bottom: Point;
-          left: Point;
-        };
+    points?: PointsType;
     margin?: number; // 外部留白
     needClosePath?: boolean; // 是否要闭合路径
   } = {}

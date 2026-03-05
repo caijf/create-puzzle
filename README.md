@@ -70,21 +70,13 @@ type Options = {
   borderWidth?: number; // 描边宽度。默认 2
   borderColor?: string; // 描边颜色。默认 rgba(255,255,255,0.7)
   fillColor?: string; // 填充颜色。默认 rgba(255,255,255,0.7)
-  points?:
-    | 2
-    | 3
-    | 4
-    | {
-        top: Point;
-        right: Point;
-        bottom: Point;
-        left: Point;
-      }; // 拼图点，不传默认随机2/3/4
+  points?: PointsType; // 拼图点，不传默认随机2/3/4
   width?: number; // 宽度。默认 60
   height?: number; // 高度。默认 60
   x?: number; // x 轴偏移值，如果不传内部随机生成。
   y?: number; // y 轴偏移值，如果不传内部随机生成。
   margin?: number; // 上下左右留白。默认 2
+  equalHeight?: boolean; // 等高。默认 true
 
   // 背景图
   bgWidth?: number; // 背景图宽度。默认 图片宽度
@@ -117,6 +109,17 @@ enum Point {
   Outer, // 外部
   Inner // 内部
 }
+
+type PointsType =
+  | 2
+  | 3
+  | 4
+  | {
+      top: Point;
+      right: Point;
+      bottom: Point;
+      left: Point;
+    };
 ```
 
 [site]: https://caijf.github.io/create-puzzle

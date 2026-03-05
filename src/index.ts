@@ -1,5 +1,5 @@
 import { AsyncMemo, loadImageWithBlob } from 'util-helpers';
-import { getRandomPoints, drawPuzzle, Point, canvasToImage } from './util';
+import { getRandomPoints, drawPuzzle, Point, canvasToImage, PointsType } from './util';
 import { isObject, randomInt } from 'ut2';
 
 const asyncMemo = new AsyncMemo<{
@@ -11,9 +11,8 @@ asyncMemo.cache.on('del', (k, v) => {
     if (v.image.src) {
       URL.revokeObjectURL(v.image.src);
     }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
-    /* empty */
+    console.error('revokeObjectURL error', err);
   }
 });
 function clearCache(key?: string | string[]) {
@@ -55,7 +54,7 @@ type Options = {
   borderWidth?: number; // 描边宽度。默认 2
   borderColor?: string; // 描边颜色。默认 rgba(255,255,255,0.7)
   fillColor?: string; // 填充颜色。默认 rgba(255,255,255,0.7)
-  points?: NonNullable<Parameters<typeof drawPuzzle>[1]>['points']; // 拼图点，不传默认随机2/3/4
+  points?: PointsType; // 拼图点，不传默认随机2/3/4
   width?: number; // 宽度。默认 60
   height?: number; // 高度。默认 60
   x?: number; // x 轴偏移值，如果不传内部随机生成。
@@ -94,20 +93,20 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
     borderWidth = 2,
     borderColor = 'rgba(255,255,255,0.7)',
     fillColor = 'rgba(255,255,255,0.7)',
-    points: outPoints,
+    points: customPoints,
     width = 60,
     height = 60,
-    x: outX,
-    y: outY,
+    x: customX,
+    y: customY,
     margin = 2,
     equalHeight = true,
 
     imageWidth,
     imageHeight,
 
-    bgWidth: outBgWidth,
-    bgHeight: outBgHeight,
-    bgOffset: outBgOffset = [0, 0],
+    bgWidth: customBgWidth,
+    bgHeight: customBgHeight,
+    bgOffset: customBgOffset = [0, 0],
 
     bgImageType = MimeType.jpeg,
     quality = 0.8,
@@ -137,15 +136,15 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
           img.height = imageHeight;
         }
         const bgWidth =
-          typeof outBgWidth === 'number' && outBgWidth > 0
-            ? outBgWidth > width
-              ? outBgWidth
+          typeof customBgWidth === 'number' && customBgWidth > 0
+            ? customBgWidth > width
+              ? customBgWidth
               : width
             : img.width;
         const bgHeight =
-          typeof outBgHeight === 'number' && outBgHeight > 0
-            ? outBgHeight > height
-              ? outBgHeight
+          typeof customBgHeight === 'number' && customBgHeight > 0
+            ? customBgHeight > height
+              ? customBgHeight
               : height
             : img.height;
 
@@ -154,8 +153,8 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
 
         const maxOffsetX = bgWidth - width;
         const maxOffsetY = bgHeight - height;
-        let x = typeof outX === 'undefined' ? randomInt(width, maxOffsetX) : outX || 0;
-        let y = typeof outY === 'undefined' ? randomInt(0, maxOffsetY) : outY || 0;
+        let x = typeof customX === 'undefined' ? randomInt(width, maxOffsetX) : customX || 0;
+        let y = typeof customY === 'undefined' ? randomInt(0, maxOffsetY) : customY || 0;
 
         if (x < 0) {
           x = 0;
@@ -170,9 +169,13 @@ function createPuzzle(imgUrl: string | Blob, options: Options = {}) {
         }
 
         const points =
-          typeof outPoints === 'number' || !outPoints ? getRandomPoints(outPoints) : outPoints;
+          typeof customPoints === 'number' || !customPoints
+            ? getRandomPoints(customPoints)
+            : customPoints;
         const bgOffset =
-          typeof outBgOffset === 'function' ? outBgOffset(img.width, img.height) : outBgOffset;
+          typeof customBgOffset === 'function'
+            ? customBgOffset(img.width, img.height)
+            : customBgOffset;
 
         // 背景图
         bgCtx.strokeStyle = borderColor;
